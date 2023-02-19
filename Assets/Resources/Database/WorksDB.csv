@@ -1,0 +1,25 @@
+Work,Work Id,Creator Id,Year,Category,Price,Movement,Reputation
+Crucifix at Santa Croce,2000001,20000,1265,Art,500,B,1
+Crucifix at Arezzo,2000002,20000,1271,Art,250,B,0
+Christ Mocked,2000003,20000,1280,Art,500,B,1
+The Flagellation of Christ,2000004,20000,1280,Art,500,B,1
+Castelfiorentino Madonna,2000005,20000,1284,Art,500,B,1
+Virgin and Child with Two Angels,2000006,20000,1285,Art,750,B,1
+Santa Trinita Maestà,2000007,20000,1291,Art,1500,B,2
+Maestà,2000008,20000,1295,Art,1000,B,2
+Saint Francis Receiving the Stigmata,2000101,20001,1300,Art,1000,R,2
+Badia Polyptych,2000102,20001,1302,Art,500,R,1
+Padua Crucifix,2000103,20001,1305,Art,250,R,0
+Lamentation,2000104,20001,1306,Art,1000,R,2
+Ognissanti Madonna,2000105,20001,1310,Art,500,R,1
+Strasbourg Crucifixion,2000106,20001,1315,Art,250,R,0
+Berlin Crucifixion,2000107,20001,1320,Art,250,R,0
+Stefaneschi Triptych,2000108,20001,1320,Art,750,R,1
+Saint Stephen,2000109,20001,1335,Art,500,R,1
+Gualino Madonna,2000201,20002,1283,Art,250,R,0
+Crevole Madonna,2000202,20002,1284,Art,500,R,1
+Rucellai Madonna,2000203,20002,1286,Art,750,R,1
+Madonna and Child,2000204,20002,1300,Art,500,R,1
+Madonna with Child and Six Angels,2000205,20002,1305,Art,250,R,0
+Maestà,2000206,20002,1311,Art,1500,R,2
+Madonna and Child with Saints Polyptych,2000207,20002,1318,Art,1000,R,2

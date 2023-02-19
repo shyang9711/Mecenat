@@ -1,0 +1,153 @@
+Id,Name,Occupation,Birth,Start,Death,Potential,Nationality,Affiliation
+20000,Cimabue,Artist,1240,1270,1302,6,Italy,None
+20001,Duccio di Buoninsegna,Artist,1255,1278,1319,6,Italy,None
+20002,Giotto,Artist,1267,1290,1337,7,Italy,None
+20003,Simone Martini,Artist,1284,1315,1344,7,Italy,None
+20004,Ambrogio Lorenzetti,Artist,1290,1317,1348,6,Italy,None
+20005,Paolo Veneziano,Artist,1300,1333,1365,6,Italy,None
+20006,Orcagna,Artist,1308,1343,1368,5,Italy,None
+20007,Jacopo di Cione,Artist,1325,1366,1398,5,Italy,None
+20008,Lorenzo di Bicci,Artist,1350,1370,1427,5,Italy,None
+20009,Agnolo Gaddi,Artist,1350,1374,1396,5,Italy,None
+20010,Andrei Rublev,Artist,1370,1400,1430,6,Russia,None
+20011,Donato di Niccolo,Artist,1386,1406,1466,7,Italy,None
+20012,Guido di Pietro,Artist,1395,1417,1455,7,Italy,None
+20013,Paolo Uccello,Artist,1397,1420,1475,6,Italy,None
+20014,Jan van Eyck,Artist,1390,1422,1441,7,Belgium,None
+20015,Masaccio,Artist,1401,1422,1428,6,Italy,None
+20016,Piero di Benedetto,Artist,1415,1432,1492,6,Italy,None
+20017,Filippo Lippi,Artist,1406,1434,1469,6,Italy,None
+20018,Andrea Mantegna,Artist,1431,1442,1506,6,Italy,None
+20019,Giovanni Bellini,Artist,1430,1450,1516,6,Italy,None
+20020,Leonardo da Vinci,Artist,1452,1466,1519,8,Italy,None
+20021,Alessandro di Mariano,Artist,1445,1467,1510,6,Italy,None
+20022,Hieronymus Bosch,Artist,1450,1470,1516,6,Netherlands,None
+20023,Piero di Cosimo,Artist,1462,1481,1522,6,Italy,None
+20024,Albrecht Durer,Artist,1471,1484,1528,6,Germany,None
+20025,Kamil ud-Din Behzad,Artist,1460,1486,1535,5,Afghanistan,None
+20026,Michelangelo,Artist,1475,1488,1564,7,Italy,None
+20027,Raffaello Sanzio,Artist,1483,1499,1520,8,Italy,None
+20028,Raphael,Artist,1483,1499,1520,8,Italy,None
+20029,Titian,Artist,1488,1510,1576,7,Italy,None
+20030,Hans Holbein II,Artist,1497,1517,1543,6,Germany,None
+20031,Rosso Fiorentino,Artist,1495,1521,1540,6,Italy,None
+20032,Giorgio Vasari,Artist,1511,1529,1574,6,Italy,None
+20033,Qiu Ying,Artist,1494,1530,1552,7,China,None
+20034,Jacopo Robusti,Artist,1518,1544,1594,6,Italy,None
+20035,Giuseppe Arcimboldo,Artist,1526,1548,1593,6,Italy,None
+20036,Sofonisba Anguissola,Artist,1532,1550,1625,6,Italy,None
+20037,Pieter Bruegel I,Artist,1530,1551,1569,6,Netherlands,None
+20038,Hasegawa Tōhaku,Artist,1539,1559,1610,5,Japan,None
+20039,El Greco,Artist,1541,1563,1614,7,Greece,None
+20040,George Gower,Artist,1540,1573,1596,6,England,None
+20041,Annibale Carracci,Artist,1560,1582,1609,6,Italy,None
+20042,Pieter Bruegel II,Artist,1564,1584,1638,6,Netherlands,None
+20043,Caravaggio,Artist,1571,1593,1610,7,Italy,None
+20044,Peter Paul Rubens,Artist,1577,1598,1640,7,Belgium,None
+20045,Frans Hals,Artist,1582,1610,1666,6,Netherlands,None
+20046,Jusepe de Ribera,Artist,1591,1611,1652,7,Spain,None
+20047,Nicolas Poussin,Artist,1594,1612,1665,7,France,None
+20048,Anthony van Dyck,Artist,1599,1615,1641,7,Netherlands,None
+20049,Gian Lorenzo Bernini,Artist,1598,1615,1680,7,Italy,None
+20050,Diego Velazquez,Artist,1599,1617,1660,6,Spain,None
+20051,Rembrandt van Rijn,Artist,1606,1624,1669,7,Netherlands,None
+20052,Francisco de Zurbarán,Artist,1598,1626,1664,6,Spain,None
+20053,Cornelis de Wael,Artist,1592,1627,1667,5,Netherlands,None
+20054,Claude Lorrain,Artist,1600,1629,1682,7,France,None
+20055,Charles Le Brun,Artist,1619,1635,1690,7,France,None
+20056,Frans Post,Artist,1612,1637,1680,7,Netherlands,None
+20057,Aelbert Cuyp,Artist,1620,1639,1691,6,Netherlands,None
+20058,Bartolomé Esteban Murillo,Artist,1617,1645,1682,7,Spain,None
+20059,Jan Steen,Artist,1626,1650,1679,7,Netherlands,None
+20060,Pieter de Hooch,Artist,1629,1650,1684,6,Netherlands,None
+20061,Johannes Vermeer,Artist,1632,1653,1675,6,Netherlands,None
+20062,Nicolaes Maes,Artist,1634,1653,1693,6,Netherlands,None
+20063,Claude Lefebvre,Artist,1632,1654,1675,6,France,None
+20064,Jan Weenix,Artist,1640,1664,1719,5,Netherlands,None
+20065,Francois de Troy,Artist,1645,1671,1730,6,France,None
+20066,Hyacinthe Rigaud,Artist,1659,1685,1743,6,France,None
+20067,Jean-Antoine Watteau,Artist,1684,1705,1721,6,France,None
+20068,Jeong Seon,Artist,1676,1711,1759,6,Korea,None
+20069,Giovanni Battista Tiepolo,Artist,1696,1715,1770,6,Italy,None
+20070,William Hogarth,Artist,1697,1720,1764,7,England,None
+20071,Jean-Baptiste-Simeon Chardin,Artist,1699,1724,1779,6,France,None
+20072,Thomas Gainsborough,Artist,1727,1746,1788,6,England,None
+20073,Jean-Honore Fragonard,Artist,1732,1752,1806,6,France,None
+20074,Angelica Kauffman,Artist,1741,1762,1807,6,Switzerland,None
+20075,Francisco Goya,Artist,1746,1763,1828,7,Spain,None
+20076,Gim Hongdo,Artist,1745,1766,1806,5,Korea,None
+20077,Marie-Anne Collot,Artist,1748,1766,1821,5,France,None
+20078,Johann Friedrich August Tischbein,Artist,1750,1768,1829,6,Germany,None
+20079,Jacques-Louis David,Artist,1748,1769,1825,7,France,None
+20080,Élisabeth Vigée Le Brun,Artist,1755,1774,1842,7,France,None
+20081,Kim Deuk-sin,Artist,1754,1774,1822,5,Korea,None
+20082,Gilbert Stuart,Artist,1755,1777,1828,7,USA,None
+20083,Sin Yun-bok,Artist,1758,1778,1813,6,Korea,None
+20084,Katsushika Hokusai,Artist,1760,1779,1849,7,Japan,None
+20085,Joseph Mallord William Turner,Artist,1775,1790,1851,8,England,None
+20086,Sharaku,Artist,1770,1794,1825,6,Japan,None
+20087,Jean-Auguste-Dominique Ingres,Artist,1780,1797,1867,7,France,None
+20088,Caspar David Friedrich,Artist,1774,1798,1840,6,Germany,None
+20089,Francesco Hayez,Artist,1791,1809,1882,6,Italy,None
+20090,Theodore Gericault,Artist,1791,1810,1824,6,France,None
+20091,Boris Orlovsky,Artist,1793,1811,1837,5,Russia,None
+20092,Ferdinand Victor Eugene Delacroix,Artist,1798,1819,1863,7,France,None
+20093,Jean-Baptiste-Camille Corot,Artist,1796,1822,1875,6,France,None
+20094,Thomas Cole,Artist,1801,1822,1848,6,England,None
+20095,Théodore Chassériau,Artist,1819,1835,1856,5,France,None
+20096,Gustave Courbet,Artist,1819,1839,1877,6,France,None
+20097,Jean-Francois Millet,Artist,1814,1839,1875,6,France,None
+20098,Emanuel Leutze,Artist,1816,1840,1868,5,USA,None
+20099,Alexandre Cabanel,Artist,1823,1844,1889,6,France,None
+20100,Gustave Moreau,Artist,1826,1846,1898,6,France,None
+20101,William-Adolphe Bouguereau,Artist,1825,1848,1905,6,France,None
+20102,Dante Gabriel Rossetti,Artist,1828,1849,1882,6,England,None
+20103,Emily Mary Osborn,Artist,1828,1851,1925,6,England,None
+20104,Rosa Bonheur,Artist,1822,1851,1899,6,France,None
+20105,Camille Pissarro,Artist,1830,1854,1903,6,France,None
+20106,Edgar Degas,Artist,1834,1855,1917,7,France,None
+20107,Jules Joseph Lefebvre,Artist,1836,1855,1911,6,France,None
+20108,Edouard Manet,Artist,1832,1856,1883,7,France,None
+20109,Auguste Rodin,Artist,1840,1857,1917,7,France,None
+20110,Paul Cezanne,Artist,1839,1860,1906,7,France,None
+20111,Pierre-Auguste Renoir,Artist,1841,1860,1919,7,France,None
+20112,Jang Seung-eop,Artist,1843,1863,1897,4,Korea,None
+20113,Edmonia Lewis,Artist,1844,1864,1907,5,USA,None
+20114,Claude Monet,Artist,1840,1865,1926,8,France,None
+20115,Viktor Vasnetsov,Artist,1848,1867,1926,6,Russia,None
+20116,Mary Cassatt,Artist,1844,1868,1926,6,USA,None
+20117,Berthe Morisot,Artist,1841,1869,1895,6,France,None
+20118,Ilya Repin,Artist,1844,1870,1930,7,Russia,None
+20119,Paul Gauguin,Artist,1848,1873,1903,7,France,None
+20120,Raja Ravi Varma,Artist,1848,1873,1906,6,India,None
+20121,Vincent van Gogh,Artist,1853,1873,1890,8,Netherlands,None
+20122,John Collier,Artist,1850,1875,1934,6,England,None
+20123,Gustave Caillebotte,Artist,1848,1876,1894,6,France,None
+20124,Carl Larsson,Artist,1853,1877,1919,6,Sweden,None
+20125,Henri Rousseau,Artist,1844,1877,1910,7,France,None
+20126,Childe Hassam,Artist,1859,1879,1935,6,USA,None
+20127,Gustav Klimt,Artist,1862,1880,1918,7,Austria,None
+20128,Henri de Toulouse-Lautrec,Artist,1864,1881,1901,7,France,None
+20129,Camille Claudel,Artist,1864,1882,1943,7,France,None
+20130,Paul Signac,Artist,1863,1882,1935,6,France,None
+20131,Edvard Munch,Artist,1863,1883,1944,6,Norway,None
+20132,Georges Seurat,Artist,1859,1883,1891,6,France,None
+20133,Frederic Remington,Artist,1861,1886,1909,6,USA,None
+20134,Alfons Mucha,Artist,1860,1887,1939,7,Czech Republic,None
+20135,Paul Sérusier,Artist,1864,1888,1927,5,France,None
+20136,Pablo Picasso,Artist,1881,1893,1973,8,Spain,None
+20137,Henri Matisse,Artist,1869,1894,1954,7,France,None
+20138,Paul Klee,Artist,1879,1901,1940,7,Germany,None
+20139,Wassily Kandinsky,Artist,1866,1901,1944,7,Russia,None
+20140,Robert Delaunay,Artist,1885,1904,1941,6,France,None
+20141,Ernst Ludwig Kirchner,Artist,1880,1905,1938,7,Germany,None
+20142,Piet Mondrian,Artist,1872,1905,1944,7,Netherlands,None
+20143,Amedeo Modigliani,Artist,1884,1907,1920,7,Italy,None
+20144,Egon Schiele,Artist,1890,1907,1918,7,Austria,None
+20145,Marc Chagall,Artist,1887,1907,1985,7,Belarus,None
+20146,Joan Miro,Artist,1893,1917,1983,7,Spain,None
+20147,Grant Wood,Artist,1891,1919,1942,7,USA,None
+20148,Salvador Dali,Artist,1904,1922,1989,8,Spain,None
+20149,Frida Kahlo,Artist,1907,1925,1954,7,Mexico,None
+20150,Max Beckmann,Artist,1884,1925,1950,6,Germany,None
+20151,Amrita Sher-Gil,Artist,1913,1932,1941,6,India,None
