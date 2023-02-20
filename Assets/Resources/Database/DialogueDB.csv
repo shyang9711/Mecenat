@@ -1,0 +1,16 @@
+eventId,alertType,alertName,alertDesc,posBtn,negBtn
+0,1,Offer Accepted, has accepted your offer for ,Accept,Reject
+1,0,Reached Deal,You have reached a deal and paid ,OK,OK
+2,0,Deal Broken,You decided not to continue with the deal.,OK,OK
+3,1,Offer Denied, has denied your offer.,Accept,Rage
+4,0,Got Rejected,You accepted the rejection,OK,OK
+5,0,Cannot Resist the Insult,You took the rejection letter personally and broke a table,OK,OK
+6,1,Offer Denied due to Insufficient Money,You are not able to pay the amount of money you have offered.,Accept,Be Sad
+7,0,I'll Get the Money Somehow,You think about stealing money,OK,OK
+8,0,You Are Broke,You are sad because you realized you are broke,OK,OK
+9,1,Death of Your Client, has passed away. Would you attend the funeral?,Certainly,I'm busy
+10,0,At the Funeral,You have paid respects to ,OK,OK
+11,0,I Don't Have Time,You did not attend the funeral and people started gossiping about you.,OK,OK
+12,1,New Artwork, has created a new artwork. Would you keep the artwork?,Keep it,Sell it
+13,0,This is masterpiece,You decided to keep the work.,OK,OK
+14,0,Sold the Hearts and Soul of Your Client,You decided to sell the artwork and auctioned off at the price of ,OK,OK

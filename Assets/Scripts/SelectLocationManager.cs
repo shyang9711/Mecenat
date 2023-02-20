@@ -51,10 +51,6 @@ public class SelectLocationManager : MonoBehaviour
         }
         Destroy(indivBtn);
     }
-
-
-
-
     void ItemClicked(int itemIndex)
     {
         Debug.Log("item " + itemIndex + " cliked");

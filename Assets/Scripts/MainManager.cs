@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,8 +6,6 @@ using DG.Tweening;
 using System.Linq;
 using System;
 using static GameManager;
-using Newtonsoft.Json.Linq;
-using UnityEditor.PackageManager;
 
 public class MainManager : MonoBehaviour
 {
@@ -37,12 +34,17 @@ public class MainManager : MonoBehaviour
     public Text mAlertNeg;
     public int pBookmark;
     GameManager.Events pEvents;
+    public int eventCount;
 
-    public int mAlertNum;
     public string sDeath;
     public string cName;
     public string cArtname;
     public int cArtId;
+
+    Work newWork;
+
+    public Boolean openLocation = false;
+    public Boolean locationAttempt = false;
 
     public GameObject UILocationsSet;
 
@@ -51,28 +53,13 @@ public class MainManager : MonoBehaviour
 
     public int noPlaceEventNum;
 
-    [System.Serializable]
-    public class SelectedWorks
-    {
-        public string Name;
-        public int Id;
-        public int CreatorId;
-        public int Year;
-        public string Category;
-        public int Price;
-        public string Movement;
-        public int Reputation;
-    }
-
-    public List<SelectedWorks> selectedWorks;
-
     private void Awake()
     {
         UIAlertSet.transform.DOScale(Vector3.zero, 0);
-        UImNext.SetActive(false);
         gameManager.receiveCDB();
         gameManager.receiveWDB();
         gameManager.receiveLDB();
+        gameManager.receiveDDB();
         int ran = UnityEngine.Random.Range(1, 200);
         gameManager.ownedLandProcess(ran, "Piazza de " + gameManager.surname, "Florence", 1000, "Residential");
         gameManager.createBuilding(ran, "Piazza de " + gameManager.surname, "Casa", "anonymous", 1, -10);
@@ -113,7 +100,8 @@ public class MainManager : MonoBehaviour
         gameManager.currentYClient.Clear();
         gameManager.recursionNum = 1;
         gameManager.createWorks();
-        checkEvents(0);
+        pBookmark = 0;
+        checkEvents();
     }
 
     public void calculateAge()
@@ -121,137 +109,38 @@ public class MainManager : MonoBehaviour
         ageText.text = (gameManager.year - gameManager.dob).ToString();
     }
 
-    public void checkEvents(int bookmark)
+    public void checkEvents()
     {
-        if (gameManager.events.Count() != 0)
+        if (gameManager.events.Count > 0)
         {
-            Debug.Log("event list counted");
-            if (bookmark > gameManager.events.Count - 1)
-            {
-                Debug.Log("reached the limit");
-                checkEvents(0);
+            UImNext.SetActive(false);
+            if (gameManager.eventCount > 1) {
+                UImNext.SetActive(true);
             }
-            else
+            if (gameManager.events[pBookmark].waitTime <= gameManager.year)
             {
-                Debug.Log("not reached the limit and the limit is " + gameManager.events.Count());
-                for (int i = bookmark; i < gameManager.events.Count(); i++)
+                if (gameManager.events[pBookmark].alertType == 0)
                 {
-                    Debug.Log("i is " + i);
-                    if (gameManager.events[i].year == gameManager.year - 2 && (gameManager.events[i].eventId == 1 || gameManager.events[i].eventId == 0))
+                    alertName.text = gameManager.events[pBookmark].alertName;
+                    alertDesc.text = gameManager.events[pBookmark].alertDesc;
+                    openAlert();
+                } else
+                {
+                    mAlertName.text = gameManager.events[pBookmark].alertName;
+                    mAlertDesc.text = gameManager.events[pBookmark].alertDesc;
+                    mAlertPos.text = gameManager.events[pBookmark].posBtn;
+                    mAlertNeg.text = gameManager.events[pBookmark].negBtn;
+                    if (gameManager.events[pBookmark].eventId == 12)
                     {
-                        Debug.Log("received respond");
-
-                        if (gameManager.events[i].eventId == 1)
-                        {
-                            mAlertName.text = "Offer Denied.";
-                            mAlertDesc.text = gameManager.events[i].name + " has denied your offer.";
-                            mAlertPos.text = "Fine";
-                            mAlertNeg.text = "OK";
-
-                            UImNext.SetActive(true);
-                            pBookmark = i;
-                            openmAlert();
-                            mAlertNum = 0;
-                            pEvents = gameManager.events[i];
-                            break;
-                        }
-                        else if (gameManager.events[i].eventId == 0 && gameManager.money >= gameManager.events[i].offeredValue)
-                        {
-                            mAlertName.text = "Offer Accepted.";
-                            mAlertDesc.text = gameManager.events[i].name + " has accepted your offer for " + gameManager.events[i].offeredValue + ".";
-                            mAlertPos.text = "Accept";
-                            mAlertNeg.text = "Reject";
-
-                            UImNext.SetActive(true);
-                            pBookmark = i;
-                            openmAlert();
-                            for (int j = 0; j < gameManager.currClients.Count; j++)
-                            {
-                                if (gameManager.currClients[j].Id == gameManager.events[i].id)
-                                {
-                                    gameManager.currClients[j].Wage = gameManager.events[i].offeredWage;
-                                }
-                            }
-                            mAlertNum = 1;
-                            pEvents = gameManager.events[i];
-                            break;
-
-                        }
-                        else if (gameManager.money < gameManager.events[i].offeredValue)
-                        {
-                            alertName.text = "Offer Denied";
-                            alertDesc.text = "You are not able to pay " + gameManager.events[i].name + " the amount of money you have offered.";
-                            mAlertPos.text = "Fine";
-                            mAlertNeg.text = "OK";
-
-                            UImNext.SetActive(true);
-                            openmAlert();
-                            pBookmark = i;
-                            mAlertNum = 0;
-                            pEvents = gameManager.events[i];
-                            break;
-                        }
-
-
-                    }
-                    else if (gameManager.events[i].eventId == 2)
-                    {
-                        sDeath = gameManager.events[i].name;
-                        mAlertName.text = "Death of Your Client";
-                        mAlertDesc.text = "Your client " + sDeath + " has passed away in " + gameManager.year + "." + Environment.NewLine + "Would you attend the funeral?";
-                        mAlertPos.text = "Certainly";
-                        mAlertNeg.text = "I'm busy";
-
-                        UImNext.SetActive(true);
-                        pBookmark = i;
-                        openmAlert();
-                        mAlertNum = 2;
-                        pEvents = gameManager.events[i];
-                        break;
-                    }
-                    else if (gameManager.events[i].eventId == 3)
-                    {
-                        cArtId = gameManager.events[i].id;
-                        for (int j = 0; j < gameManager.ownedWorks.Count; j++)
-                        {
-                            if (gameManager.ownedWorks[j].Id == cArtId)
-                            {
-                                cArtname = gameManager.ownedWorks[j].Name;
-                                Debug.Log(cArtname);
-
-                                SelectedWorks s = new SelectedWorks();
-                                s.Name = cArtname;
-                                s.Id = gameManager.ownedWorks[j].Id;
-                                s.CreatorId = gameManager.ownedWorks[j].CreatorId;
-                                s.Year = gameManager.ownedWorks[j].Year;
-                                s.Category = gameManager.ownedWorks[j].Category;
-                                s.Price = gameManager.ownedWorks[j].Price;
-                                s.Movement = gameManager.ownedWorks[j].Movement;
-                                s.Reputation = gameManager.ownedWorks[j].Reputation;
-                                selectedWorks.Add(s);
-                            }
-                        }
-
-                        mAlertName.text = "New Artwork!";
-                        mAlertDesc.text = "Your client " + gameManager.events[i].name + " has created a new artwork " +  cArtname + " in " + gameManager.year + "." 
-                            + Environment.NewLine + "Would you keep the artwork on the wall?";
-                        mAlertPos.text = "Keep it";
-                        mAlertNeg.text = "Sell it";
-
+                        newArtWorkProcess();
                         selectLocationManager.receiveLData();
-                        UImNext.SetActive(true);
-                        pBookmark = i;
-                        openmAlert();
-                        mAlertNum = 3;
-                        pEvents = gameManager.events[i];
-                        break;
-
                     }
+                    openmAlert();
+
                 }
+                pEvents = gameManager.events[pBookmark];
             }
-        } else
-        {
-            Debug.Log("no offers sent.");
+
         }
     }
 
@@ -264,33 +153,30 @@ public class MainManager : MonoBehaviour
     }
     public void openAlert()
     {
-        UImAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UImAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+        UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
+        UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
         UIblurImg.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
         UIblurImg.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
     }
 
     public void onOKBtnClick()
     {
-
-        if (mAlertNum == 4)
+        if (openLocation == true)
         {
             UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
             UILocationsSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
             UILocationsSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-
-        }
-        else
+            openLocation = false;
+        } else
         {
-
             UIAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
             UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
             UILocationsSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
             UIblurImg.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
 
+            gameManager.eventCount -= 1;
             gameManager.events.Remove(pEvents);
-            checkEvents(0);
-
+            onNextBtnClick();
         }
 
     }
@@ -306,22 +192,13 @@ public class MainManager : MonoBehaviour
         {
             UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
         }
-
-        if (mAlertNum == 0)
+        int posEventId = pEvents.eventId + 1;
+        alertName.text = gameManager.dialogueList.dialogue[posEventId].alertName;
+        alertDesc.text = gameManager.dialogueList.dialogue[posEventId].alertDesc;
+        if (posEventId == 1)
         {
-            alertName.text = "Offer Rejected";
-            alertDesc.text = "You accepted the rejection.";
-            gameManager.events.Remove(pEvents);
-
-        }
-
-        else if (mAlertNum == 1)
-        {
-            alertName.text = "Offer Accepted";
-            alertDesc.text = "You have reached a deal." + Environment.NewLine + "(You paid " + pEvents.offeredValue + ")";
-
             gameManager.money = gameManager.money - pEvents.offeredValue;
-            foreach(var clients in gameManager.currClients)
+            foreach (var clients in gameManager.currClients)
             {
                 if (clients.Id == pEvents.id)
                 {
@@ -329,28 +206,23 @@ public class MainManager : MonoBehaviour
                 }
             }
             gameManager.protegeList.Add(pEvents.id);
-
-            gameManager.events.Remove(pEvents);
             gameManager.payments = gameManager.payments + pEvents.offeredWage;
 
-        }
-        else if (mAlertNum == 2)
+        } else if (posEventId == 10)
         {
-            alertName.text = "At the Funeral";
-            alertDesc.text = "You have paid respects to " + sDeath + Environment.NewLine + "(You paid 10 golds)";
-            gameManager.events.Remove(pEvents);
+            alertDesc.text = alertDesc.text + pEvents.name;
             gameManager.money = gameManager.money - 10;
-
-        }
-        else if (mAlertNum == 3)
+        } else if (posEventId == 13)
         {
-            alertName.text = "This is masterpiece";
-            alertDesc.text = "You decided to keep the work.";
-            mAlertNum = 4;
-            gameManager.events.Remove(pEvents);
-
+            if (noPlaceEventNum > 0)
+            {
+                locationAttempt = true;
+                onNegBtnClick();
+                return;
+            }
+            openLocation = true;
         }
-
+        gameManager.events.Remove(pEvents);
         UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
         UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
 
@@ -367,48 +239,20 @@ public class MainManager : MonoBehaviour
         {
             UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
         }
+        int negEventId = pEvents.eventId + 2;
+        alertName.text = gameManager.dialogueList.dialogue[negEventId].alertName;
+        alertDesc.text = gameManager.dialogueList.dialogue[negEventId].alertDesc;
 
-        if (mAlertNum == 0)
+        if (negEventId == 14)
         {
-            alertName.text = "Offer Rejected";
-            alertDesc.text = "You accepted the rejection.";
-            gameManager.events.Remove(pEvents);
-
-        }
-
-        else if (mAlertNum == 1)
-        {
-            alertName.text = "Offer Denied";
-            alertDesc.text = "You decided not to continue with the deal.";
-
-            gameManager.events.Remove(pEvents);
-
-        }
-        else if (mAlertNum == 2)
-        {
-            alertName.text = "I Don't Have Time";
-            alertDesc.text = "You did not attend " + sDeath + "'s funeral." + Environment.NewLine + "(People started gossiping about you)";
-            gameManager.events.Remove(pEvents);
-
-        }
-        else if (mAlertNum == 3)
-        {
-            int rnd = UnityEngine.Random.Range(1, 5);
-            int price = rnd * 100;
-            alertName.text = "Sold the hearts and soul of your client";
-            alertDesc.text = "You decided to sell the artwork and auctioned off at the price of " + price + Environment.NewLine + "(You gained " + price + ")";
-            gameManager.money = gameManager.money + price;
-            foreach (var works in gameManager.ownedWorks.ToList())
+            if (locationAttempt)
             {
-                if (works.Id == cArtId)
-                {
-                    Debug.Log("Artwork sold.");
-                    gameManager.ownedWorks.Remove(works);
-                }
+                alertDesc.text = "You have insufficient slot";
+                locationAttempt = false;
             }
-            gameManager.events.Remove(pEvents);
+            workSold();
         }
-
+        gameManager.events.Remove(pEvents);
         UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
         UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
     }
@@ -433,18 +277,11 @@ public class MainManager : MonoBehaviour
     {
         if (noPlaceEventNum == 1)
         {
-
-            selectedWorks.Clear();
-            mAlertNum = 3;
-            noplaceText.SetActive(false);
-
             noPlaceEventNum = 0;
-            UILocationsSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-            onNegBtnClick();
+            workSold();
         }
         else
         {
-
             int data = gameManager.ownedLands.Count;
             for (int i = 0; i < data; i++)
             {
@@ -452,21 +289,53 @@ public class MainManager : MonoBehaviour
                 {
                     gameManager.addWorktoLandProcess(gameManager.streetNum,
                         gameManager.streetName,
-                        selectedWorks[0].Name,
-                        selectedWorks[0].Id,
-                        selectedWorks[0].CreatorId,
-                        selectedWorks[0].Year,
-                        selectedWorks[0].Category,
-                        selectedWorks[0].Price,
-                        selectedWorks[0].Movement,
-                        selectedWorks[0].Reputation);
+                        newWork);
 
                 }
             }
-            selectedWorks.Clear();
-            mAlertNum = 0;
-            noplaceText.SetActive(false);
-            onOKBtnClick();
+        }
+        UILocationsSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
+        noplaceText.SetActive(false);
+    }
+
+    public void newArtWorkProcess()
+    {
+
+        cArtId = gameManager.events[pBookmark].id;
+        for (int j = 0; j < gameManager.ownedWorks.Count; j++)
+        {
+            if (gameManager.ownedWorks[j].Id == cArtId)
+            {
+                newWork = gameManager.mWork;
+                cArtname = gameManager.ownedWorks[j].Name;
+                Debug.Log(cArtname);
+
+                newWork.Name = cArtname;
+                newWork.Id = gameManager.ownedWorks[j].Id;
+                newWork.CreatorId = gameManager.ownedWorks[j].CreatorId;
+                newWork.Year = gameManager.ownedWorks[j].Year;
+                newWork.Category = gameManager.ownedWorks[j].Category;
+                newWork.Price = gameManager.ownedWorks[j].Price;
+                newWork.Movement = gameManager.ownedWorks[j].Movement;
+                newWork.Reputation = gameManager.ownedWorks[j].Reputation;
+            }
+        }
+    }
+
+    public void workSold()
+    {
+        int rnd = UnityEngine.Random.Range(1, 5);
+        int price = rnd * 100;
+        alertDesc.text =
+        alertDesc.text = gameManager.dialogueList.dialogue[14].alertDesc + price + " due to insufficient slot." + Environment.NewLine + "(You gained " + price + ")";
+        gameManager.money = gameManager.money + price;
+        foreach (var works in gameManager.ownedWorks.ToList())
+        {
+            if (works.Id == cArtId)
+            {
+                Debug.Log("Artwork sold.");
+                gameManager.ownedWorks.Remove(works);
+            }
         }
 
     }
@@ -475,7 +344,11 @@ public class MainManager : MonoBehaviour
     {
 
         Debug.Log("Next Button Clicked.");
-        checkEvents(pBookmark + 1);
+        if (gameManager.events.Count > 0)
+        {
+            pBookmark = (pBookmark + 1) % gameManager.events.Count;
+            checkEvents();
+        }
     }
 
     public void onBusinessBtnClick()

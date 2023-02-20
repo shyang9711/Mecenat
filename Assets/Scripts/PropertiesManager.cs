@@ -9,6 +9,7 @@ public class PropertiesManager : MonoBehaviour
 {
     public GameManager gameManager;
     public PropertiesPanelManager propertiesPanelManager;
+    public CollectionManager collectionManager;
 
     public GameObject UIPropertyMarketSet;
 
@@ -25,6 +26,8 @@ public class PropertiesManager : MonoBehaviour
 
     public GameObject UIInfoSet;
     public GameObject UIConstructSet;
+
+    public GameObject UICollectionSet;
 
     public int buildingPrice;
     public int workSlot;
@@ -164,6 +167,27 @@ public class PropertiesManager : MonoBehaviour
 
         gameManager.buildingCategory = "";
         onMeBtnClick();
+    }
+
+    public void onCollectionBtnClick()
+    {
+        for (int i = 0; i < gameManager.ownedLands.Count; i++)
+        {
+            if (gameManager.ownedLands[i].streetNum == gameManager.streetNum && gameManager.ownedLands[i].streetName == gameManager.streetName)
+            {
+                collectionManager.receiveCData(gameManager.ownedLands[i]);
+            }
+        }
+        UIInfoSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
+        UICollectionSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
+        UICollectionSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+    }
+
+    public void onCloseBtnClick()
+    {
+        UICollectionSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
+        UIInfoSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
+        UIInfoSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
     }
 
     public void setBuildingPrice(int price)

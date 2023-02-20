@@ -25,6 +25,8 @@ public class MarketManager : MonoBehaviour
     [SerializeField] private InputField offerValue;
     [SerializeField] private InputField offerWage;
 
+    public GameManager.CurrClients cClient;
+
     //Alert UI
     public GameObject UIAlertSet;
     public Text alertName;
@@ -86,6 +88,7 @@ public class MarketManager : MonoBehaviour
         {
             if (clients.Id.Equals(gameManager.id))
             {
+                cClient = clients;
                 if (clients.ctdWork.Count() != 0)
                 {
                     CreatedWorksCountInfo.text = clients.ctdWork.Count().ToString();
@@ -150,12 +153,9 @@ public class MarketManager : MonoBehaviour
 
     public void onSendBtnClick()
     {
-        int.TryParse(offerValue.text, out int value);
-        int.TryParse(offerWage.text, out int wage);
-        string name = clientManager.infoName.text;
 
-        Debug.Log(value);
-        if (value > gameManager.money)
+        Debug.Log(cClient.Value);
+        if (cClient.Value > gameManager.money)
         {
             notEnoughMoney();
         } else
@@ -164,34 +164,23 @@ public class MarketManager : MonoBehaviour
             {
                 foreach (var transfers in gameManager.events.ToList())
                 {
-                    if (transfers.id.Equals(gameManager.id))
+                    if (transfers.id.Equals(cClient.Id))
                     {
                         Debug.Log(transfers.name);
                         gameManager.events.Remove(transfers);
                     }
                     
                 }
-                gameManager.transferProcess(name, value, wage);
-
-                UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-                UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-                onExitBtnClick();
-
-                alertName.text = "Offer Sent";
-                alertDesc.text = "You have successfully sent an offer to " + clientManager.infoName.text;
             }
 
-            else
-            {
-                gameManager.transferProcess(name, value, wage);
+            gameManager.transferProcess(cClient);
 
-                UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-                UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-                onExitBtnClick();
+            UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
+            UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+            onExitBtnClick();
 
-                alertName.text = "Offer Sent";
-                alertDesc.text = "You have successfully sent an offer to " + clientManager.infoName.text;
-            }
+            alertName.text = "Offer Sent";
+            alertDesc.text = "You have successfully sent an offer to " + clientManager.infoName.text;
         }
     }
 

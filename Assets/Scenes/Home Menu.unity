@@ -1937,7 +1937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddeaf3ef176b6004c8f4561d5944b14c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainManager: {fileID: 0}
   money: 1000
   reputation: 0
   year: 1300
@@ -1957,9 +1956,11 @@ MonoBehaviour:
   landPrice: 0
   landbuyStatus: 0
   buildingCategory: 
+  eventCount: 0
   clientDB: {fileID: 4900000, guid: 9fd33bdfb3ea6d2448342bf6e12c10e4, type: 3}
   workDB: {fileID: 4900000, guid: 75d07b044c451c6479507623aedc20b8, type: 3}
-  landDB: {fileID: 0}
+  landDB: {fileID: 4900000, guid: bf5f9c0d688bab940910af5b75889f2c, type: 3}
+  dialogueDB: {fileID: 4900000, guid: 8930b3ebeccd82541a3e86f50509cb4b, type: 3}
   clientList:
     client: []
   mClient:
@@ -1991,6 +1992,15 @@ MonoBehaviour:
   mLand:
     name: 
     city: 
+  dialogueList:
+    dialogue: []
+  mDialogue:
+    eventId: 0
+    alertType: 0
+    alertName: 
+    alertDesc: 
+    posBtn: 
+    negBtn: 
   events: []
   currClients: []
   currWorks: []
@@ -1998,6 +2008,8 @@ MonoBehaviour:
   ownedWorks: []
   currLands: []
   ownedLands: []
+  oLWorks: []
+  oBuildings: []
   protegeList: 
   creatorIDList: 
   createdWIDList: 

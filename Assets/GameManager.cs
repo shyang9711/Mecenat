@@ -8,6 +8,7 @@ using UnityEditor.PackageManager;
 using UnityEditorInternal.Profiling;
 using UnityEngine;
 using static ClientManager;
+using static GameManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,9 +43,12 @@ public class GameManager : MonoBehaviour
 
     public string buildingCategory;
 
+    public int eventCount;
+
     public TextAsset clientDB;
     public TextAsset workDB;
     public TextAsset landDB;
+    public TextAsset dialogueDB;
     [System.Serializable]
     public class Client
     {
@@ -80,6 +84,7 @@ public class GameManager : MonoBehaviour
         public string Name;
         public int Id;
         public int CreatorId;
+        public string CreatorName;
         public int Year;
         public string Category;
         public int Price;
@@ -114,6 +119,25 @@ public class GameManager : MonoBehaviour
 
     public Land mLand;
 
+    [System.Serializable]
+    public class Dialogue
+    {
+        public int eventId;
+        public int alertType;
+        public String alertName;
+        public String alertDesc;
+        public String posBtn;
+        public String negBtn;
+    }
+
+    [System.Serializable]
+    public class DialogueList
+    {
+        public Dialogue[] dialogue;
+    }
+    public DialogueList dialogueList = new DialogueList();
+    public Dialogue mDialogue;
+
     //Event List
     [System.Serializable]
     public class Events
@@ -129,6 +153,14 @@ public class GameManager : MonoBehaviour
         public int price;
         public string movement;
         public int reputation;
+
+        public int alertType;
+        public String alertName;
+        public String alertDesc;
+        public String posBtn;
+        public String negBtn;
+        public int staffId;
+        public int waitTime;
     }
 
     [System.Serializable]
@@ -157,6 +189,7 @@ public class GameManager : MonoBehaviour
         public string Name;
         public int Id;
         public int CreatorId;
+        public string CreatorName;
         public int Year;
         public string Category;
         public int Price;
@@ -170,6 +203,7 @@ public class GameManager : MonoBehaviour
         public string Name;
         public int Id;
         public int CreatorId;
+        public string CreatorName;
         public int Year;
         public string Category;
         public int Price;
@@ -183,6 +217,7 @@ public class GameManager : MonoBehaviour
         public string Name;
         public int Id;
         public int CreatorId;
+        public string CreatorName;
         public int Year;
         public string Category;
         public int Price;
@@ -198,6 +233,7 @@ public class GameManager : MonoBehaviour
         public string Name;
         public int Id;
         public int CreatorId;
+        public string CreatorName;
         public int Year;
         public string Category;
         public int Price;
@@ -269,7 +305,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -278,31 +314,33 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void transferProcess(string name, int value, int wage)
+    public void transferProcess(CurrClients cClient)
     {
-
-        if (selectedCV > value || selectedWage > wage)
+        Events e = new Events();
+        e.name = cClient.Name;
+        e.year = year;
+        e.staffId = 0;
+        e.id = id;
+        e.waitTime = year + 2;
+        e.offeredValue = cClient.Value;
+        e.offeredWage = cClient.Wage;
+        if (selectedCV <= cClient.Value && selectedWage <= cClient.Wage)
         {
-            Events e = new Events();
-            e.name = name;
-            e.year = year;
-            e.eventId = 1;
-            e.offeredValue = value;
-            e.id = id;
-            e.offeredWage = wage;
-            events.Add(e);
-        }
-        else if (selectedCV <= value)
-        {
-            Events e = new Events();
-            e.name = name;
-            e.year = year;
             e.eventId = 0;
-            e.offeredValue = value;
-            e.id = id;
-            e.offeredWage = wage;
-            events.Add(e);
+            e.alertDesc = cClient.Name + dialogueList.dialogue[e.eventId].alertDesc + cClient.Value + ".";
         }
+        else
+        {
+            e.eventId = 3;
+            e.alertDesc = cClient.Name + dialogueList.dialogue[e.eventId].alertDesc;
+        }
+
+        e.alertType = dialogueList.dialogue[e.eventId].alertType;
+        e.alertName = dialogueList.dialogue[e.eventId].alertName;
+        e.posBtn = dialogueList.dialogue[e.eventId].posBtn;
+        e.negBtn = dialogueList.dialogue[e.eventId].negBtn;
+        events.Add(e);
+        eventCount += 1;
     }
 
     public void eventProcess(string name)
@@ -310,24 +348,38 @@ public class GameManager : MonoBehaviour
         Events e = new Events();
         e.name = name;
         e.year = year;
-        e.eventId = 2;
+        e.eventId = 9;
         e.id = id;
+
+        e.alertType = dialogueList.dialogue[e.eventId].alertType;
+        e.alertName = dialogueList.dialogue[e.eventId].alertName;
+        e.alertDesc = name + dialogueList.dialogue[e.eventId].alertDesc;
+        e.posBtn = dialogueList.dialogue[e.eventId].posBtn;
+        e.negBtn = dialogueList.dialogue[e.eventId].negBtn;
         events.Add(e);
+        eventCount += 1;
     }
 
-    public void workEventProcess(string name, int Id, int creatorId, string category, int price, string movement, int reputation)
+    public void workEventProcess(CurrWorks currWorks)
     {
         Events e = new Events();
         e.name = name;
         e.year = year;
-        e.eventId = 3;
-        e.id = Id;
-        e.creatorId = creatorId;
-        e.category = category;
-        e.price = price;
-        e.movement = movement;
-        e.reputation = reputation;
+        e.eventId = 12;
+        e.id = currWorks.Id;
+        e.creatorId = currWorks.CreatorId;
+        e.category = currWorks.Category;
+        e.price = currWorks.Price;
+        e.movement = currWorks.Movement;
+        e.reputation = currWorks.Reputation;
+
+        e.alertType = dialogueList.dialogue[e.eventId].alertType;
+        e.alertName = dialogueList.dialogue[e.eventId].alertName;
+        e.alertDesc = currWorks.CreatorName + dialogueList.dialogue[e.eventId].alertDesc + Environment.NewLine + "New work: " + currWorks.Name;
+        e.posBtn = dialogueList.dialogue[e.eventId].posBtn;
+        e.negBtn = dialogueList.dialogue[e.eventId].negBtn;
         events.Add(e);
+        eventCount += 1;
     }
 
     public void receiveCDB()
@@ -386,20 +438,21 @@ public class GameManager : MonoBehaviour
     {
         string[] data = workDB.text.Split(new String[] { ",", "\n" }, StringSplitOptions.None);
 
-        int tableSize = data.Length / 8 - 1;
+        int tableSize = data.Length / 9 - 1;
         workList.work = new Work[tableSize];
 
         for (int i = 0; i < tableSize; i++)
         {
             workList.work[i] = new Work();
-            workList.work[i].Name = data[8 * (i + 1)];
-            workList.work[i].Id = int.Parse(data[8 * (i + 1) + 1]);
-            workList.work[i].CreatorId = int.Parse(data[8 * (i + 1) + 2]);
-            workList.work[i].Year = int.Parse(data[8 * (i + 1) + 3]);
-            workList.work[i].Category = data[8 * (i + 1) + 4];
-            workList.work[i].Price = int.Parse(data[8 * (i + 1) + 5]);
-            workList.work[i].Movement = data[8 * (i + 1) + 6];
-            workList.work[i].Reputation = int.Parse(data[8 * (i + 1) + 7]);
+            workList.work[i].Name = data[9 * (i + 1)];
+            workList.work[i].Id = int.Parse(data[9 * (i + 1) + 1]);
+            workList.work[i].CreatorId = int.Parse(data[9 * (i + 1) + 2]);
+            workList.work[i].CreatorName = data[9 * (i + 1) + 3];
+            workList.work[i].Year = int.Parse(data[9 * (i + 1) + 4]);
+            workList.work[i].Category = data[9 * (i + 1) + 5];
+            workList.work[i].Price = int.Parse(data[9 * (i + 1) + 6]);
+            workList.work[i].Movement = data[9 * (i + 1) + 7];
+            workList.work[i].Reputation = int.Parse(data[9 * (i + 1) + 8]);
 
             if (creatorIDList.Contains(workList.work[i].CreatorId))
             {
@@ -421,6 +474,7 @@ public class GameManager : MonoBehaviour
         cWorks.Name = mWork.Name;
         cWorks.Id = mWork.Id;
         cWorks.CreatorId = mWork.CreatorId;
+        cWorks.CreatorName = mWork.CreatorName;
         cWorks.Year = mWork.Year;
         cWorks.Category = mWork.Category;
         cWorks.Price = mWork.Price;
@@ -465,6 +519,7 @@ public class GameManager : MonoBehaviour
             cdWorks.Name = currWorks[rnd].Name;
             cdWorks.Id = currWorks[rnd].Id;
             cdWorks.CreatorId = currWorks[rnd].CreatorId;
+            cdWorks.CreatorName = currWorks[rnd].CreatorName;
             cdWorks.Year = year;
             cdWorks.Category = currWorks[rnd].Category;
             cdWorks.Price = currWorks[rnd].Price;
@@ -479,6 +534,7 @@ public class GameManager : MonoBehaviour
                     odWorks.Name = currWorks[rnd].Name;
                     odWorks.Id = currWorks[rnd].Id;
                     odWorks.CreatorId = currWorks[rnd].CreatorId;
+                    odWorks.CreatorName = currWorks[rnd].CreatorName;
                     odWorks.Year = year;
                     odWorks.Category = currWorks[rnd].Category;
                     odWorks.Price = currWorks[rnd].Price;
@@ -486,16 +542,7 @@ public class GameManager : MonoBehaviour
                     odWorks.Reputation = currWorks[rnd].Reputation;
 
                     ownedWorks.Add(odWorks);
-
-                    foreach (var clients in currClients)
-                    {
-                        if (clients.Id == currWorks[rnd].CreatorId)
-                        {
-                            string creatorName = clients.Name;
-
-                            workEventProcess(creatorName, currWorks[rnd].Id, currWorks[rnd].CreatorId, currWorks[rnd].Category, currWorks[rnd].Price, currWorks[rnd].Movement, currWorks[rnd].Reputation);
-                        }
-                    }
+                    workEventProcess(currWorks[rnd]);
                 }
                 createdWIDList.Add(cdWorks.Id);
                 currentYClient.Add(cdWorks.CreatorId);
@@ -586,7 +633,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void addWorktoLandProcess(int streetNum, string streetName, string name, int id, int creatorid, int year, string category, int price, string movement, int reputation)
+    public void addWorktoLandProcess(int streetNum, string streetName, Work newWork)
     {
 
         int olData = ownedLands.Count;
@@ -608,14 +655,15 @@ public class GameManager : MonoBehaviour
             {
                 OwnedLandWorks ow = new OwnedLandWorks();
 
-                ow.Name = name;
-                ow.Id = id;
-                ow.CreatorId = creatorid;
-                ow.Year = year;
-                ow.Category = category;
-                ow.Price = price;
-                ow.Movement = movement;
-                ow.Reputation = reputation;
+                ow.Name = newWork.Name;
+                ow.Id = newWork.Id;
+                ow.CreatorId = newWork.CreatorId;
+                ow.CreatorName = newWork.CreatorName;
+                ow.Year = newWork.Year;
+                ow.Category = newWork.Category;
+                ow.Price = newWork.Price;
+                ow.Movement = newWork.Movement;
+                ow.Reputation = newWork.Reputation;
                 ow.locNum = streetNum;
                 ow.locName = streetName;
 
@@ -644,6 +692,29 @@ public class GameManager : MonoBehaviour
                 ownedLands[i].workSlots += slots;
             }
 
+        }
+    }
+
+
+    public void receiveDDB()
+    {
+        string[] data = dialogueDB.text.Split(new String[] { ",", "\n" }, StringSplitOptions.None);
+
+        int tableSize = data.Length / 6 - 1;
+        dialogueList.dialogue = new Dialogue[tableSize];
+
+
+        for (int i = 0; i < tableSize; i++)
+        {
+            dialogueList.dialogue[i] = new Dialogue();
+            dialogueList.dialogue[i].eventId = int.Parse(data[6 * (i + 1)]);
+            dialogueList.dialogue[i].alertType = int.Parse(data[6 * (i + 1) + 1]);
+            dialogueList.dialogue[i].alertName = data[6 * (i + 1) + 2];
+            dialogueList.dialogue[i].alertDesc = data[6 * (i + 1) + 3];
+            dialogueList.dialogue[i].posBtn = data[6 * (i + 1) + 4];
+            dialogueList.dialogue[i].negBtn = data[6 * (i + 1) + 5];
+
+            mDialogue = dialogueList.dialogue[i];
         }
     }
 }

@@ -662,6 +662,20 @@ MonoBehaviour:
   CreatedWorksCountInfo: {fileID: 319244665}
   offerValue: {fileID: 1176777617}
   offerWage: {fileID: 984523826}
+  cClient:
+    Id: 0
+    Name: 
+    Occupation: 
+    Birth: 0
+    Start: 0
+    Death: 0
+    Potential: 0
+    Nationality: 
+    Affiliation: 
+    Value: 0
+    Wage: 0
+    Age: 0
+    ctdWork: 
   UIAlertSet: {fileID: 1737567404}
   alertName: {fileID: 1993437488}
   alertDesc: {fileID: 954578226}
@@ -1591,9 +1605,11 @@ MonoBehaviour:
   landPrice: 0
   landbuyStatus: 0
   buildingCategory: 
+  eventCount: 0
   clientDB: {fileID: 4900000, guid: 9fd33bdfb3ea6d2448342bf6e12c10e4, type: 3}
   workDB: {fileID: 4900000, guid: 75d07b044c451c6479507623aedc20b8, type: 3}
   landDB: {fileID: 4900000, guid: bf5f9c0d688bab940910af5b75889f2c, type: 3}
+  dialogueDB: {fileID: 4900000, guid: 8930b3ebeccd82541a3e86f50509cb4b, type: 3}
   clientList:
     client: []
   mClient:
@@ -1625,6 +1641,15 @@ MonoBehaviour:
   mLand:
     name: 
     city: 
+  dialogueList:
+    dialogue: []
+  mDialogue:
+    eventId: 0
+    alertType: 0
+    alertName: 
+    alertDesc: 
+    posBtn: 
+    negBtn: 
   events: []
   currClients: []
   currWorks: []
@@ -1633,6 +1658,7 @@ MonoBehaviour:
   currLands: []
   ownedLands: []
   oLWorks: []
+  oBuildings: []
   protegeList: 
   creatorIDList: 
   createdWIDList: 
