@@ -8,286 +8,105 @@ using UnityEditor.PackageManager;
 using UnityEditorInternal.Profiling;
 using UnityEngine;
 using static ClientManager;
-using static GameManager;
 
 public class GameManager : MonoBehaviour
 {
 
     static public GameManager instance;
 
+    public AIPlayerManager aiPlayerManager;
+
     public int money;
     public int reputation;
     public int year;
+    public int playerId = 1;
 
     public string givenName;
     public string surname;
-    public string nationality;
-    public string religion;
-    public int dob;
+    public string residency;
 
-    public int id;
+    // Profit and Loss
+    public int expense;
+    public int income;
+    private int tradingIncome;
+    private int max_allocation = 8;
+    private int initial_trade_price = 7;
+    private int monopoly_bonus = 400;
 
-    public int selectedCV;
-    public int selectedWage;
+    public int Income
+    {
+        get { return income; }
+        private set { income = value; }
+    }
 
-    public int recursionNum;
-
-    public int payments;
-
-    public int streetNum;
-    public string streetName;
-    public string city;
-    public int landPrice;
+    public int Expense
+    {
+        get { return expense; }
+        private set { expense = value; }
+    }
 
     public int landbuyStatus;
 
     public string buildingCategory;
 
-    public int eventCount;
-
-    public TextAsset clientDB;
-    public TextAsset workDB;
+    // Databases
     public TextAsset landDB;
-    public TextAsset dialogueDB;
-    [System.Serializable]
-    public class Client
-    {
-        public int Id;
-        public string Name;
-        public string Occupation;
-        public int Birth;
-        public int Start;
-        public int Death;
-        public int Potential;
-        public string Nationality;
-        public string Affiliation;
-
-        public int Value;
-        public int Wage;
-        public int Age;
-
-    }
-
-    [System.Serializable]
-    public class ClientList
-    {
-        public Client[] client;
-    }
 
     public ClientList clientList = new ClientList();
 
-    public Client mClient;
-
-    [System.Serializable]
-    public class Work
-    {
-        public string Name;
-        public int Id;
-        public int CreatorId;
-        public string CreatorName;
-        public int Year;
-        public string Category;
-        public int Price;
-        public string Movement;
-        public int Reputation;
-    }
-
-    [System.Serializable]
-    public class WorkList
-    {
-        public Work[] work;
-    }
-
     public WorkList workList = new WorkList();
-
-    public Work mWork;
-
-    [System.Serializable]
-    public class Land
-    {
-        public string name;
-        public string city;
-    }
-
-    [System.Serializable]
-    public class LandList
-    {
-        public Land[] land;
-    }
 
     public LandList landList = new LandList();
 
-    public Land mLand;
+    public CourtierList courtierList = new CourtierList();
+    public CitiesList citiesList = new CitiesList();
 
-    [System.Serializable]
-    public class Dialogue
-    {
-        public int eventId;
-        public int alertType;
-        public String alertName;
-        public String alertDesc;
-        public String posBtn;
-        public String negBtn;
-    }
-
-    [System.Serializable]
-    public class DialogueList
-    {
-        public Dialogue[] dialogue;
-    }
-    public DialogueList dialogueList = new DialogueList();
-    public Dialogue mDialogue;
-
-    //Event List
-    [System.Serializable]
-    public class Events
-    {
-        public string name;
-        public int year;
-        public int eventId;
-        public int offeredValue;
-        public int id;
-        public int offeredWage;
-        public int creatorId;
-        public string category;
-        public int price;
-        public string movement;
-        public int reputation;
-
-        public int alertType;
-        public String alertName;
-        public String alertDesc;
-        public String posBtn;
-        public String negBtn;
-        public int staffId;
-        public int waitTime;
-    }
-
-    [System.Serializable]
-    public class CurrClients
-    {
-        public int Id;
-        public string Name;
-        public string Occupation;
-        public int Birth;
-        public int Start;
-        public int Death;
-        public int Potential;
-        public string Nationality;
-        public string Affiliation;
-
-        public int Value;
-        public int Wage;
-        public int Age;
-
-        public List<int> ctdWork = new List<int>();
-    }
-
-    [System.Serializable]
-    public class CurrWorks
-    {
-        public string Name;
-        public int Id;
-        public int CreatorId;
-        public string CreatorName;
-        public int Year;
-        public string Category;
-        public int Price;
-        public string Movement;
-        public int Reputation;
-    }
-
-    [System.Serializable]
-    public class CreatedWorks
-    {
-        public string Name;
-        public int Id;
-        public int CreatorId;
-        public string CreatorName;
-        public int Year;
-        public string Category;
-        public int Price;
-        public string Movement;
-        public int Reputation;
-    }
-
-    [System.Serializable]
-    public class OwnedWorks
-    {
-        public string Name;
-        public int Id;
-        public int CreatorId;
-        public string CreatorName;
-        public int Year;
-        public string Category;
-        public int Price;
-        public string Movement;
-        public int Reputation;
-        public int locNum;
-        public string locName;
-    }
-
-    [System.Serializable]
-    public class OwnedLandWorks
-    {
-        public string Name;
-        public int Id;
-        public int CreatorId;
-        public string CreatorName;
-        public int Year;
-        public string Category;
-        public int Price;
-        public string Movement;
-        public int Reputation;
-        public int locNum;
-        public string locName;
-    }
-
-    [System.Serializable]
-    public class OwnedBuildings
-    {
-        public string name;
-        public string creator;
-        public int slots;
-        public int income;
-    }
-
-    [System.Serializable]
-    public class CurrLands
-    {
-        public int streetNum;
-        public string streetName;
-        public string city;
-        public int price;
-    }
-
-    [System.Serializable]
-    public class OwnedLands
-    {
-        public int streetNum;
-        public string streetName;
-        public string city;
-        public int price;
-        public int year;
-        public string buildingType;
-        public int workSlots;
-        public List<OwnedLandWorks> oLWorks;
-        public List<OwnedBuildings> oBuildings;
-    }
-
+    // Events
     public List<Events> events;
-    public List<CurrClients> currClients;
-    public List<CurrWorks> currWorks;
-    public List<CreatedWorks> createdWorks;
-    public List<OwnedWorks> ownedWorks;
-    public List<CurrLands> currLands;
-    public List<OwnedLands> ownedLands;
-    public List<OwnedLandWorks> oLWorks;
-    public List<OwnedBuildings> oBuildings;
-    public List<int> protegeList = new List<int>();
-    public List<int> creatorIDList = new List<int>();
-    public List<int> createdWIDList = new List<int>();
-    public List<int> currentYClient = new List<int>();
+    public List<Events> currentEvents;
+
+    public List<Client> currClients = new List<Client>();
+    public List<Work> ownedWorks;
+    public List<Land> currLands;
+    public List<Land> ownedLands;
+
+    // Courtier
+    public List<Courtier> currCourtiers;
+    public List<Courtier> hiredCourtiers;
+
+
+    public List<Client> protegeList = new List<Client>();
+    public List<int> creatorIdList = new List<int>();
+
+    // Regions
+    public List<string> explorableRegion = new List<string>();
+    public Dictionary<string, List<(string, int)>> adjacencyRegion = new Dictionary<string, List<(string, int)>>();
+
+    public Dictionary<string, List<string>> nationRegion = new Dictionary<string, List<string>>();
+    public Dictionary<string, string> nationToRegion = new Dictionary<string, string>();
+    public List<string> exploredNations = new List<string>();
+    public List<string> scoutRegion = new List<string>();
+    public List<string> placedRegion = new List<string>();
+    public List<ScoutOccupationEntry> scoutOccupation = new List<ScoutOccupationEntry>();
+
+    // Auction
+    public List<Work> auctionWorks = new List<Work>();
+
+    // Movement
+    public List<MovementEntry> movementList = new List<MovementEntry>();
+
+    // Ships
+    public int commissionedShips = 0;
+    public List<Ship> shipList = new List<Ship>();
+    public List<Ship> shipBuildList = new List<Ship>();
+    public List<Ship> shipBuyList = new List<Ship>();
+
+    // Trading
+    public List<TradeData> trades = new List<TradeData>();
+
+    // AI players
+    public List<Player> aiPlayers = new List<Player>();
+    public List<Player> currentPlayers = new List<Player>();
 
     void Awake()
     {
@@ -314,407 +133,678 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void transferProcess(CurrClients cClient)
+    public void transferProcess(Client client, int value, int wage)
     {
         Events e = new Events();
-        e.name = cClient.Name;
-        e.year = year;
-        e.staffId = 0;
-        e.id = id;
-        e.waitTime = year + 2;
-        e.offeredValue = cClient.Value;
-        e.offeredWage = cClient.Wage;
-        if (selectedCV <= cClient.Value && selectedWage <= cClient.Wage)
+        e.client = client;
+        e.id = client.id;
+        e.year = 2;
+        e.offeredValue = value;
+        e.offeredWage = wage;
+        // Reject
+        if (client.value > value || client.wage > wage)
         {
-            e.eventId = 0;
-            e.alertDesc = cClient.Name + dialogueList.dialogue[e.eventId].alertDesc + cClient.Value + ".";
+            e.eventId = 1;
+            events.Add(e);
         }
+        // Accept
         else
         {
-            e.eventId = 3;
-            e.alertDesc = cClient.Name + dialogueList.dialogue[e.eventId].alertDesc;
+            e.eventId = 2;
+            events.Add(e);
         }
-
-        e.alertType = dialogueList.dialogue[e.eventId].alertType;
-        e.alertName = dialogueList.dialogue[e.eventId].alertName;
-        e.posBtn = dialogueList.dialogue[e.eventId].posBtn;
-        e.negBtn = dialogueList.dialogue[e.eventId].negBtn;
-        events.Add(e);
-        eventCount += 1;
     }
 
-    public void eventProcess(string name)
+    public void deathEventProcess(Client client)
     {
         Events e = new Events();
-        e.name = name;
-        e.year = year;
-        e.eventId = 9;
-        e.id = id;
-
-        e.alertType = dialogueList.dialogue[e.eventId].alertType;
-        e.alertName = dialogueList.dialogue[e.eventId].alertName;
-        e.alertDesc = name + dialogueList.dialogue[e.eventId].alertDesc;
-        e.posBtn = dialogueList.dialogue[e.eventId].posBtn;
-        e.negBtn = dialogueList.dialogue[e.eventId].negBtn;
+        e.client = client;
+        e.year = 0;
+        e.eventId = 3;
+        e.id = client.id;
         events.Add(e);
-        eventCount += 1;
     }
 
-    public void workEventProcess(CurrWorks currWorks)
+    public void workEventProcess(Client client, Work work)
     {
         Events e = new Events();
-        e.name = name;
-        e.year = year;
-        e.eventId = 12;
-        e.id = currWorks.Id;
-        e.creatorId = currWorks.CreatorId;
-        e.category = currWorks.Category;
-        e.price = currWorks.Price;
-        e.movement = currWorks.Movement;
-        e.reputation = currWorks.Reputation;
-
-        e.alertType = dialogueList.dialogue[e.eventId].alertType;
-        e.alertName = dialogueList.dialogue[e.eventId].alertName;
-        e.alertDesc = currWorks.CreatorName + dialogueList.dialogue[e.eventId].alertDesc + Environment.NewLine + "New work: " + currWorks.Name;
-        e.posBtn = dialogueList.dialogue[e.eventId].posBtn;
-        e.negBtn = dialogueList.dialogue[e.eventId].negBtn;
+        e.client = client;
+        e.work = work;
+        e.year = 0;
+        e.eventId = 4;
+        e.id = work.id;
         events.Add(e);
-        eventCount += 1;
     }
 
-    public void receiveCDB()
+    public void shpiBuildProcess(Ship ship)
     {
-        string[] data = clientDB.text.Split(new String[] { ",", "\n" }, StringSplitOptions.None);
+        Events e = new Events();
+        e.ship = ship;
+        e.year = ship.constructionTime;
+        e.eventId = 5;
+        events.Add(e);
+    }
 
-        int tableSize = data.Length / 9 - 1;
-        clientList.client = new Client[tableSize];
+    public void UpdateProfitLoss()
+    {
+        money -= expense;
+        money += income;
+    }
 
-        for (int i = 0; i < tableSize; i++)
+    public void UpdateSalary(int salary, bool hired)
+    {
+        if (hired)
         {
-            clientList.client[i] = new Client();
-            clientList.client[i].Id = int.Parse(data[9 * (i + 1)]);
-            clientList.client[i].Name = data[9 * (i + 1) + 1];
-            clientList.client[i].Occupation = data[9 * (i + 1) + 2];
-            clientList.client[i].Birth = int.Parse(data[9 * (i + 1) + 3]);
-            clientList.client[i].Start = int.Parse(data[9 * (i + 1) + 4]);
-            clientList.client[i].Death = int.Parse(data[9 * (i + 1) + 5]);
-            clientList.client[i].Potential = int.Parse(data[9 * (i + 1) + 6]);
-            clientList.client[i].Value = int.Parse(data[9 * (i + 1) + 6]) * 100;
-            clientList.client[i].Wage = int.Parse(data[9 * (i + 1) + 6]);
-            clientList.client[i].Nationality = data[9 * (i + 1) + 7];
-            clientList.client[i].Affiliation = data[9 * (i + 1) + 8];
-            clientList.client[i].Age = year - clientList.client[i].Birth;
-
-            mClient = clientList.client[i];
-            currClientProcess(mClient);
-
+            expense += salary;
+        }
+        else {
+            expense -= salary;
         }
     }
 
-    public void currClientProcess(Client mClient)
+    public void UpdateEvents()
     {
-        if (year - mClient.Start >= 0 && year - mClient.Death <= 0)
+        for (int i = events.Count - 1; i >= 0; i--)
         {
-            CurrClients cClients = new CurrClients();
-            cClients.Name = mClient.Name;
-            cClients.Id = mClient.Id;
-            cClients.Age = mClient.Age;
-            cClients.Occupation = mClient.Occupation;
-            cClients.Birth = mClient.Birth;
-            cClients.Start = mClient.Start;
-            cClients.Death = mClient.Death;
-            cClients.Potential = mClient.Potential;
-            cClients.Nationality = mClient.Nationality;
-            cClients.Affiliation = mClient.Affiliation;
-            cClients.Wage = mClient.Wage;
-            cClients.Value = mClient.Value;
-
-            currClients.Add(cClients);
-            creatorIDList.Add(cClients.Id);
-        }
-    }
-
-    public void receiveWDB()
-    {
-        string[] data = workDB.text.Split(new String[] { ",", "\n" }, StringSplitOptions.None);
-
-        int tableSize = data.Length / 9 - 1;
-        workList.work = new Work[tableSize];
-
-        for (int i = 0; i < tableSize; i++)
-        {
-            workList.work[i] = new Work();
-            workList.work[i].Name = data[9 * (i + 1)];
-            workList.work[i].Id = int.Parse(data[9 * (i + 1) + 1]);
-            workList.work[i].CreatorId = int.Parse(data[9 * (i + 1) + 2]);
-            workList.work[i].CreatorName = data[9 * (i + 1) + 3];
-            workList.work[i].Year = int.Parse(data[9 * (i + 1) + 4]);
-            workList.work[i].Category = data[9 * (i + 1) + 5];
-            workList.work[i].Price = int.Parse(data[9 * (i + 1) + 6]);
-            workList.work[i].Movement = data[9 * (i + 1) + 7];
-            workList.work[i].Reputation = int.Parse(data[9 * (i + 1) + 8]);
-
-            if (creatorIDList.Contains(workList.work[i].CreatorId))
+            events[i].year -= 1;
+            if (events[i].year <= 0)
             {
-                if (!createdWIDList.Contains(workList.work[i].Id))
-                {
-
-                    mWork = workList.work[i];
-                    currWorkProcess(mWork);
-
-                }
-
+                currentEvents.Add(events[i]);
+                events.RemoveAt(i);
             }
         }
     }
 
-    public void currWorkProcess(Work mWork)
+    public void UpdateClients()
     {
-        CurrWorks cWorks = new CurrWorks();
-        cWorks.Name = mWork.Name;
-        cWorks.Id = mWork.Id;
-        cWorks.CreatorId = mWork.CreatorId;
-        cWorks.CreatorName = mWork.CreatorName;
-        cWorks.Year = mWork.Year;
-        cWorks.Category = mWork.Category;
-        cWorks.Price = mWork.Price;
-        cWorks.Movement = mWork.Movement;
-        cWorks.Reputation = mWork.Reputation;
-
-        if (cWorks.Year <= year)
+        List<Client> clientsToRemove = new List<Client>();
+        foreach (var client in currClients)
         {
-            currWorks.Add(cWorks);
+            client.age = year - client.birth;
+            if (year - client.death > 0)
+            {
+                clientsToRemove.Add(client);
+            }
         }
 
+        foreach (var client in clientsToRemove)
+        {
+            currClients.Remove(client);
+            creatorIdList.Remove(client.id);
+        }
+
+        foreach (var client in clientList.client)
+        {
+            if (year - client.start >= 0 && year - client.death <= 0 && !creatorIdList.Contains(client.id))
+            {
+                currClients.Add(client);
+                creatorIdList.Add(client.id);
+            }
+        }
+    }
+
+    public void UpdateWorks()
+    {
+        // Create a dictionary for quick lookup of clients by creatorId
+        Dictionary<int, Client> clientDictionary = currClients.ToDictionary(client => client.id);
+        Dictionary<int, Client> protegeDictionary = protegeList.ToDictionary(client => client.id);
+
+        foreach (Work work in workList.work)
+        {
+            if (creatorIdList.Contains(work.creatorId) && work.year == year)
+            {
+                // Use the dictionary to find the client with the same creatorId
+                if (clientDictionary.TryGetValue(work.creatorId, out Client client))
+                {
+                    client.potWork.Add(work);
+                }
+
+                else if (protegeDictionary.TryGetValue(work.creatorId, out client))
+                {
+                    client.potWork.Add(work);
+                }
+            }
+        }
     }
 
     public void createWorks()
     {
-        int maxC = currClients.Count() + 1;
-        int rec = UnityEngine.Random.Range(0, maxC);
-        recursionNum = rec;
-
-        if (recursionNum > 0)
-        {
-            while (recursionNum > 0)
+        foreach (Client client in currClients) {
+            if (client.affiliation.Trim().ToLower() != "none" && client.progress == 0)
             {
-                createWs();
-                recursionNum -= 1;
-            }
-        }
-
-        checkCtdWorks();
-
-    }
-
-    public void createWs()
-    {
-        if (currWorks.Count() != 0)
-        {
-            int maxW = currWorks.Count();
-            int rnd = UnityEngine.Random.Range(0, maxW);
-
-            Debug.Log(currWorks[rnd].Name);
-            CreatedWorks cdWorks = new CreatedWorks();
-            cdWorks.Name = currWorks[rnd].Name;
-            cdWorks.Id = currWorks[rnd].Id;
-            cdWorks.CreatorId = currWorks[rnd].CreatorId;
-            cdWorks.CreatorName = currWorks[rnd].CreatorName;
-            cdWorks.Year = year;
-            cdWorks.Category = currWorks[rnd].Category;
-            cdWorks.Price = currWorks[rnd].Price;
-            cdWorks.Movement = currWorks[rnd].Movement;
-            cdWorks.Reputation = currWorks[rnd].Reputation;
-            if (!currentYClient.Contains(currWorks[rnd].CreatorId))
-            {
-                createdWorks.Add(cdWorks);
-                if (protegeList.Contains(cdWorks.CreatorId))
+                if (client.potWork.Count > 0)
                 {
-                    OwnedWorks odWorks = new OwnedWorks();
-                    odWorks.Name = currWorks[rnd].Name;
-                    odWorks.Id = currWorks[rnd].Id;
-                    odWorks.CreatorId = currWorks[rnd].CreatorId;
-                    odWorks.CreatorName = currWorks[rnd].CreatorName;
-                    odWorks.Year = year;
-                    odWorks.Category = currWorks[rnd].Category;
-                    odWorks.Price = currWorks[rnd].Price;
-                    odWorks.Movement = currWorks[rnd].Movement;
-                    odWorks.Reputation = currWorks[rnd].Reputation;
-
-                    ownedWorks.Add(odWorks);
-                    workEventProcess(currWorks[rnd]);
+                    workHelper(client);
                 }
-                createdWIDList.Add(cdWorks.Id);
-                currentYClient.Add(cdWorks.CreatorId);
-                currWorks.Remove(currWorks[rnd]);
+                else
+                {
+                    client.progress = UnityEngine.Random.Range(1, 10);
+                }
             }
             else
             {
-                createWs();
+                client.ability -= 1;
             }
         }
-
+        foreach (Client protege in protegeList)
+        {
+            if (protege.potWork.Count > 0)
+            {
+                Work work = workHelper(protege);
+                workEventProcess(protege, work);
+                UpdateMovement(work);
+            }
+            else
+            {
+                protege.progress = UnityEngine.Random.Range(1, 10);
+            }
+        }
     }
 
-    public void checkCtdWorks()
+    private Work workHelper(Client client)
     {
-        for (int i = 0; i < createdWorks.Count(); i++)
+        int random = UnityEngine.Random.Range(0, client.potWork.Count);
+        Work work = client.potWork[random];
+        work.year = year;
+        client.ctdWork.Add(work);
+        client.potWork.Remove(work);
+        client.progress = UnityEngine.Random.Range(1, 10);
+        return work;
+    }
+
+    public void workBeforeGameplay()
+    {
+        // Add potWork
+        foreach (Work work in workList.work)
         {
-            for (int j = 0; j < currClients.Count(); j++)
+            if (creatorIdList.Contains(work.creatorId) && work.year <= year)
             {
-                if (createdWorks[i].CreatorId == currClients[j].Id)
+                // Find the client with the same CreatorId and add the work to their potWork list
+                foreach (Client client in currClients)
                 {
-                    currClients[j].ctdWork.Add(createdWorks[i].Id);
+                    if (client.id == work.creatorId)
+                    {
+                        client.potWork.Add(work);
+                        break;
+                    }
                 }
             }
         }
+
+        foreach (Client client in currClients)
+        {
+            var worksToRemove = new List<Work>();
+
+            foreach (Work work in client.potWork)
+            {
+                if (work.year < year)
+                {
+                    worksToRemove.Add(work);
+                    client.ctdWork.Add(work);
+                    client.ability += work.reputation;
+                }
+            }
+            client.value = client.ability * 10;
+            client.wage = client.ability / 10;
+
+            foreach (var work in worksToRemove)
+            {
+                client.potWork.Remove(work);
+            }
+        }
+
+        // Initialize the list with data
+        movementList.Add(new MovementEntry("Gothic", new SerializableDictionary<int, int>(), 100));
+        movementList.Add(new MovementEntry("Byzantine", new SerializableDictionary<int, int>(), 100));
     }
+
+    public void UpdateMovement(Work work)
+    {
+        bool updated = false;
+        for (int i = 0; i < movementList.Count; i++)
+        {
+            if (movementList[i].totalReputation < 100)
+            {
+                if (movementList[i].movement == work.movement)
+                {
+                    var dict = movementList[i].reputationDict;
+                    int oldValue = dict.ContainsKey(playerId) ? dict[playerId] : 0;
+                    int newValue = oldValue + work.reputation;
+                    dict[playerId] = newValue;
+
+                    int newSum = Math.Min(movementList[i].totalReputation + work.reputation, 100);
+                    movementList[i].totalReputation = newSum;
+                    updated = true;
+                    break;
+                }
+            }
+        }
+
+        if (!updated)
+        {
+            var newDict = new SerializableDictionary<int, int> { { playerId, work.reputation } };
+            movementList.Add(new MovementEntry(work.movement, newDict, work.reputation));
+        }
+    }
+
+    public void progressClients()
+    {
+        // Combine currClients and protegeList into a single collection
+        var allClients = currClients.Concat(protegeList);
+
+        // Iterate through the combined collection and call the helper method
+        foreach (Client client in allClients)
+        {
+            progressClientsHelper(client);
+        }
+    }
+
+    void progressClientsHelper(Client client)
+    {
+        client.progress -= 1;
+        if (client.affiliation.Trim().ToLower() == "none" && client.progress <= 0) {
+            client.progress = UnityEngine.Random.Range(1, 10);
+        }
+    }
+
+    public void progressCourtiers()
+    {
+        HashSet<string> newScoutRange = new HashSet<string>();
+        foreach (Courtier courtier in hiredCourtiers) {
+            if (courtier.inAction > 1)
+            {
+                courtier.inAction -= 1;
+            }
+            else if (courtier.inAction == 1)
+            {
+                courtier.inAction -= 1;
+                if (courtier.action == "Moving")
+                {
+                    courtier.location = courtier.newLocation;
+                    courtier.newLocation = "";
+                    courtier.action = "Moved to " + courtier.location;
+                    UpdateMoveRegion();
+                }
+                if (courtier.action == "Preparing to Scout")
+                {
+                    string region = GetRegionByNation(courtier.location);
+                    if (nationRegion.ContainsKey(region))
+                    {
+                        foreach (string nation in nationRegion[region])
+                        {
+                            newScoutRange.Add(nation);
+                        }
+                    }
+                    UpdateSelectedOccupations();
+                    courtier.action = "Scouting";
+                }
+            }
+            else if (courtier.inAction == 0)
+            {
+                if (courtier.action == "Scouting")
+                {
+                    string region = GetRegionByNation(courtier.location);
+                    if (nationRegion.ContainsKey(region))
+                    {
+                        foreach (string nation in nationRegion[region])
+                        {
+                            newScoutRange.Add(nation);
+                        }
+                    }
+                }
+                else
+                {
+                    courtier.action = "Idling";
+                }
+            }
+        }
+        newScoutRange.Add(residency);
+        scoutRegion = new List<string>(newScoutRange);
+    }
+
+    public void UpdateMoveRegion()
+    {
+        HashSet<string> newMoveRegionSet = new HashSet<string>(hiredCourtiers.Select(courtier => courtier.location));
+        newMoveRegionSet.Add(residency);
+
+        placedRegion = newMoveRegionSet.ToList();
+    }
+
     public void receiveLDB()
     {
-        string[] data = landDB.text.Split(new String[] { ",", "\n" }, StringSplitOptions.None);
+        string[] data = landDB.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
 
         int tableSize = data.Length / 2 - 1;
         landList.land = new Land[tableSize];
 
         for (int i = 0; i < tableSize; i++)
         {
-            landList.land[i] = new Land();
-            landList.land[i].name = data[2 * (i + 1)];
-            landList.land[i].city = data[2 * (i + 1) + 1];
+            var land = new Land();
+            land.name = data[2 * (i + 1)];
+            land.city = data[2 * (i + 1) + 1];
 
-            mLand = landList.land[i];
-            currLandList(mLand);
-        }
-    }
-
-    public void currLandList(Land mLand)
-    {
-        CurrLands cLands = new CurrLands();
-        int ran = UnityEngine.Random.Range(1, 300);
-        for (int i = 0; i < ownedLands.Count(); i++)
-        {
-            while (ownedLands[i].streetNum == ran && ownedLands[i].streetName == mLand.name)
+            int ran;
+            bool uniqueStreetNum;
+            do
             {
-                ran = UnityEngine.Random.Range(1, 200);
-            }
+                uniqueStreetNum = true;
+                ran = UnityEngine.Random.Range(1, 300);
+                foreach (var ownedLand in ownedLands)
+                {
+                    if (ownedLand.streetNum == ran && ownedLand.streetName == land.name)
+                    {
+                        uniqueStreetNum = false;
+                        break;
+                    }
+                }
+            } while (!uniqueStreetNum);
+
+            land.streetNum = ran;
+            land.streetName = land.name;
+
+            int rec = UnityEngine.Random.Range(10, 25);
+            land.price = rec * 100;
+
+            landList.land[i] = land;
+            currLands.Add(land);
         }
-        cLands.streetNum = ran;
-        cLands.streetName = mLand.name;
-        cLands.city = mLand.city;
-
-        int rec = UnityEngine.Random.Range(10, 25);
-        int price = rec * 100;
-        cLands.price = price;
-
-        currLands.Add(cLands);
-
     }
 
-    public void ownedLandProcess(int streetNum, string streetName, string city, int landPrice, string buildingType = "No Buildings")
+    public void ownedLandProcess(Land land)
     {
-
-        OwnedLands o = new OwnedLands();
-        o.streetNum = streetNum;
-        o.streetName = streetName;
-        o.city = city;
-        o.price = landPrice;
-        o.year = year;
-        o.buildingType = buildingType;
-        o.workSlots = 0;
-        o.oLWorks = new List<OwnedLandWorks>();
-        o.oBuildings = new List<OwnedBuildings>();
-        ownedLands.Add(o);
-        for (int i = 0; i < currLands.Count(); i++)
+        land.year = year;
+        ownedLands.Add(land);
+        for (int i = 0; i < currLands.Count; i++)
         {
-            if (currLands[i].streetNum == streetNum && currLands[i].streetName == streetName)
+            if (currLands[i].streetNum == land.streetNum && currLands[i].streetName == land.streetName)
             {
                 currLands.Remove(currLands[i]);
             }
         }
     }
 
-    public void addWorktoLandProcess(int streetNum, string streetName, Work newWork)
+    public void addWorktoLandProcess(Land land, Work work)
     {
+        work.locNum = land.streetNum;
+        work.locName = land.streetName;
 
+        land.works.Add(work);
+    }
+
+    public void createBuilding(Land land, string name, string creator, int slots)
+    {
+        Building building = new Building();
+        building.creator = creator;
+        building.name = name;
+
+        land.buildings.Add(building);
+        land.workSlots += slots;
         int olData = ownedLands.Count;
-        int owData = ownedWorks.Count;
-
-        for (int i = 0; i < owData; i++)
-        {
-            Debug.Log(" working through owned works . ");
-            if (id == ownedWorks[i].Id)
-            {
-                ownedWorks[i].locNum = streetNum;
-                ownedWorks[i].locName = streetName;
-            }
-        }
-
-        for (int j = 0; j < olData; j++)
-        {
-            if (streetNum == ownedLands[j].streetNum && streetName == ownedLands[j].streetName)
-            {
-                OwnedLandWorks ow = new OwnedLandWorks();
-
-                ow.Name = newWork.Name;
-                ow.Id = newWork.Id;
-                ow.CreatorId = newWork.CreatorId;
-                ow.CreatorName = newWork.CreatorName;
-                ow.Year = newWork.Year;
-                ow.Category = newWork.Category;
-                ow.Price = newWork.Price;
-                ow.Movement = newWork.Movement;
-                ow.Reputation = newWork.Reputation;
-                ow.locNum = streetNum;
-                ow.locName = streetName;
-
-                Debug.Log(ow.Name);
-                ownedLands[j].oLWorks.Add(ow);
-            }
-        }
-        oLWorks.Clear();
     }
 
-    public void createBuilding(int streetNum, string streetName, string name, string creator, int slots, int income)
+    public void UpdateCourtier()
     {
-        int olData = ownedLands.Count;
-        for (int i = 0; i < olData; i++)
+        currCourtiers.Clear();
+        int courtierCount = courtierList.courtier.Length;
+        int count = 0;
+        List<int> newCourtierList = new List<int>();
+        while (currCourtiers.Count < 10 && count < 20)
         {
-            if (streetNum == ownedLands[i].streetNum && streetName == ownedLands[i].streetName)
+            int rand = UnityEngine.Random.Range(0, courtierCount);
+            if (!newCourtierList.Contains(rand)) {
+                newCourtierList.Add(rand);
+                Courtier newCourtier = courtierList.courtier[rand];
+                bool alreadyHired = false;
+                foreach (Courtier courtier in hiredCourtiers)
+                {
+                    if (courtier.name == newCourtier.name)
+                    {
+                        alreadyHired = true;
+                        break;
+                    }
+                }
+                if (!alreadyHired)
+                {
+                    newCourtier.location = newCourtier.nationality;
+                    newCourtier.salary = UnityEngine.Random.Range(2, 10);
+                    currCourtiers.Add(newCourtier);
+                }
+                count++;
+            }
+        }
+    }
+
+    public string GetRegionByNation(string nation)
+    {
+        if (nationToRegion.ContainsKey(nation))
+        {
+            return nationToRegion[nation];
+        }
+        else
+        {
+            Debug.Log("Nation not found");
+            return "";
+        }
+    }
+
+    public List<string> GetExplorableRegions(List<string> exploredNations)
+    {
+        HashSet<string> explorableRegions = new HashSet<string>();
+
+        foreach (string exploredNation in exploredNations)
+        {
+            string exploredRegion = GetRegionByNation(exploredNation);
+            if (!string.IsNullOrEmpty(exploredRegion) && adjacencyRegion.ContainsKey(exploredRegion))
             {
-                OwnedBuildings ob = new OwnedBuildings();
-                ob.name = name;
-                ob.creator = creator;
-                ob.slots = slots;
-                ob.income = income;
+                foreach ((string adjacentRegion, int weight) in adjacencyRegion[exploredRegion])
+                {
+                    explorableRegions.Add(adjacentRegion);
+                }
+            }
+        }
+        return new List<string>(explorableRegions);
+    }
 
-                ownedLands[i].oBuildings.Add(ob);
+    public void UpdateRegions()
+    {
 
-                ownedLands[i].workSlots += slots;
+    }
+
+    public void UpdateSelectedOccupations()
+    {
+        List<ScoutOccupationEntry> newScoutOccupation = new List<ScoutOccupationEntry>();
+
+        // Create a temporary dictionary to help with checking and adding occupations
+        Dictionary<string, List<string>> tempOccupationDict = new Dictionary<string, List<string>>();
+
+        foreach (Courtier courtier in hiredCourtiers)
+        {
+            if (courtier.action != "Scouting" || courtier.inAction == 0)
+            {
+                if (!tempOccupationDict.ContainsKey(courtier.location))
+                {
+                    tempOccupationDict[courtier.location] = new List<string>();
+                }
+
+                foreach (string occupation in courtier.scoutOccupation)
+                {
+                    if (!tempOccupationDict[courtier.location].Contains(occupation))
+                    {
+                        tempOccupationDict[courtier.location].Add(occupation);
+                    }
+                }
+            }
+        }
+
+        // Add all occupations in scout region for player's region
+        List<string> occupationsList = new List<string> { "Artist", "Writer", "Scholar", "Explorer" };
+
+        if (!tempOccupationDict.ContainsKey(residency))
+        {
+            tempOccupationDict[residency] = new List<string>();
+        }
+
+        foreach (string occupation in occupationsList)
+        {
+            if (!tempOccupationDict[residency].Contains(occupation))
+            {
+                tempOccupationDict[residency].Add(occupation);
+            }
+        }
+
+        // Convert the temporary dictionary to the list structure required
+        foreach (var kvp in tempOccupationDict)
+        {
+            newScoutOccupation.Add(new ScoutOccupationEntry { Key = kvp.Key, Value = kvp.Value });
+        }
+
+        scoutOccupation = newScoutOccupation;
+    }
+
+    public void shipConditionUpdate()
+    {
+        List<Ship> shipsToRemove = new List<Ship>();
+        if (shipList.Count > 0)
+        {
+            foreach (Ship ship in shipList)
+            {
+                ship.condition -= 5;
+                if (ship.hasMaintanence)
+                {
+                    money -= ship.size / 10;
+                    ship.condition += 3;
+                }
+                ship.cost = (int)Math.Round((double)(ship.size * 10 * ship.condition) / 100);
+                ship.hasMaintanence = false;
+                if (ship.condition <= 0)
+                {
+                    shipsToRemove.Add(ship);
+                }
+            }
+        }
+
+        foreach (Ship ship in shipsToRemove)
+        {
+            shipSink(ship);
+        }
+    }
+
+    public void shipSink(Ship ship)
+    {
+        if (ship.isTrading)
+        {
+            DecreaseTradeItem(ship.trade);
+            ship.isTrading = false;
+            ship.trade = "None";
+            UpdateTradingIncome();
+        }
+        ship.isExploring = false;
+        ship.isSearching = false;
+        ship.action = "None";
+        ship.city = null;
+        ship.inCargo = true;
+        ship.hired = false;
+        if (ship.explorer != null)
+        {
+            ship.explorer.ship = null;
+            ship.explorer.isHired = false;
+            ship.explorer = null;
+        }
+        shipList.Remove(ship);
+    }
+    public void UpdateTradingIncome()
+    {
+        income -= tradingIncome;
+        tradingIncome = 0;
+        foreach (Ship ship in shipList)
+        {
+            if (ship.isTrading)
+            {
+                foreach (TradeData trade in trades)
+                {
+                    if (trade.itemName == ship.trade.Trim())
+                    {
+                        double tradeIncome;
+
+                        if (trade.allocation <= max_allocation)
+                        {
+                            tradeIncome = initial_trade_price * ship.size;
+                        }
+                        else if (trade.allocation > max_allocation)
+                        {
+                            tradeIncome = (80 / trade.allocation) * ship.size;
+                        }
+                        else if (trade.allocation == max_allocation && trade.situation == max_allocation)
+                        {
+                            tradeIncome = initial_trade_price * ship.size + monopoly_bonus;
+                        }
+                        else
+                        {
+                            tradeIncome = 0;
+                        }
+
+                        tradingIncome += (int)tradeIncome / 10;
+                        Debug.Log(tradingIncome);
+                    }
+                }
             }
 
         }
+        income += tradingIncome;
     }
-
-
-    public void receiveDDB()
+    public void IncreaseTradeItem(string itemName)
     {
-        string[] data = dialogueDB.text.Split(new String[] { ",", "\n" }, StringSplitOptions.None);
-
-        int tableSize = data.Length / 6 - 1;
-        dialogueList.dialogue = new Dialogue[tableSize];
-
-
-        for (int i = 0; i < tableSize; i++)
+        itemName = itemName.Trim();
+        var trade = trades.Find(t => t.itemName == itemName);
+        if (trade != null)
         {
-            dialogueList.dialogue[i] = new Dialogue();
-            dialogueList.dialogue[i].eventId = int.Parse(data[6 * (i + 1)]);
-            dialogueList.dialogue[i].alertType = int.Parse(data[6 * (i + 1) + 1]);
-            dialogueList.dialogue[i].alertName = data[6 * (i + 1) + 2];
-            dialogueList.dialogue[i].alertDesc = data[6 * (i + 1) + 3];
-            dialogueList.dialogue[i].posBtn = data[6 * (i + 1) + 4];
-            dialogueList.dialogue[i].negBtn = data[6 * (i + 1) + 5];
-
-            mDialogue = dialogueList.dialogue[i];
+            Debug.Log($"Found trade item: {trade.itemName}");
+            trade.allocation += 1;
+            trade.situation += 1;
+            Debug.Log($"Updated trade item: {trade.itemName}, Allocation: {trade.allocation}, Situation: {trade.situation}");
+        }
+        else
+        {
+            Debug.Log($"Trade item not found: {itemName}");
         }
     }
+
+    public void DecreaseTradeItem(string itemName)
+    {
+        itemName = itemName.Trim();
+        var trade = trades.Find(t => t.itemName == itemName);
+        if (trade != null)
+        {
+            trade.allocation = Mathf.Max(trade.allocation - 1, 0);
+            trade.situation = Mathf.Max(trade.situation - 1, 0);
+            income -= 50;
+        }
+    }
+    public void takeTurn()
+    {
+        List<Player> playersToMove = new List<Player>();
+
+        foreach (Player player in aiPlayers)
+        {
+            if (player.foundationYear <= year)
+            {
+                playersToMove.Add(player);
+            }
+        }
+
+        foreach (Player player in playersToMove)
+        {
+            currentPlayers.Add(player);
+            aiPlayers.Remove(player);
+        }
+
+        int i = 0;
+        while (i < currentPlayers.Count)
+        {
+            Player currentPlayer = currentPlayers[i];
+            currentPlayer.performAction();
+            i++;
+        }
+    }
+
 }

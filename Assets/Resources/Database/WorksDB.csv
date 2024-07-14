@@ -1,25 +1,518 @@
-Work,Work Id,Creator Id,Creator Name,Year,Category,Price,Movement,Reputation
-Castelfiorentino Madonna,2000005,20000,Cimabue,1284,Art,500,B,1
-Christ Mocked,2000003,20000,Cimabue,1280,Art,500,B,1
-Crucifix at Arezzo,2000002,20000,Cimabue,1271,Art,250,B,0
-Crucifix at Santa Croce,2000001,20000,Cimabue,1265,Art,500,B,1
-MaestÃ ,2000008,20000,Cimabue,1295,Art,1000,B,2
-Santa Trinita MaestÃ ,2000007,20000,Cimabue,1291,Art,1000,B,2
-The Flagellation of Christ,2000004,20000,Cimabue,1280,Art,500,B,1
-Virgin and Child with Two Angels,2000006,20000,Cimabue,1285,Art,750,B,1
-Crevole Madonna,2000202,20001,Duccio,1284,Art,500,R,1
-Gualino Madonna,2000201,20001,Duccio,1283,Art,250,R,0
-Madonna and Child,2000204,20001,Duccio,1300,Art,500,R,1
-Madonna and Child with Saints Polyptych,2000207,20001,Duccio,1318,Art,1000,R,2
-Madonna with Child and Six Angels,2000205,20001,Duccio,1305,Art,250,R,0
-MaestÃ ,2000206,20001,Duccio,1311,Art,1000,R,2
-Rucellai Madonna,2000203,20001,Duccio,1286,Art,750,R,1
-Badia Polyptych,2000102,20002,Giotto,1302,Art,500,R,1
-Berlin Crucifixion,2000107,20002,Giotto,1320,Art,250,R,0
-Lamentation,2000104,20002,Giotto,1306,Art,1500,R,2
-Ognissanti Madonna,2000105,20002,Giotto,1310,Art,500,R,1
-Padua Crucifix,2000103,20002,Giotto,1305,Art,250,R,0
-Saint Francis Receiving the Stigmata,2000101,20002,Giotto,1300,Art,1000,R,2
-Saint Stephen,2000109,20002,Giotto,1335,Art,500,R,1
-Stefaneschi Triptych,2000108,20002,Giotto,1320,Art,750,R,1
-Strasbourg Crucifixion,2000106,20002,Giotto,1315,Art,250,R,0
+20,Maestà,Cenni di Pepo,2959,1285,Art,Byzantine,3
+182,Nativity,Taddeo Gaddi,2976,1325,Art,Gothic,2
+1,Crucifix at Arezzo,Cenni di Pepo,2959,1268,Art,Byzantine,2
+2,Madonna Enthroned with the Child Saint Francis Saint Domenico and Two Angels,Cenni di Pepo,2959,1272,Art,Byzantine,2
+3,Cruficixion,Cenni di Pepo,2959,1277,Art,Byzantine,2
+4,Cruficixion of Saint Peter,Cenni di Pepo,2959,1277,Art,Byzantine,1
+5,Scenes from the Apocalypse,Cenni di Pepo,2959,1277,Art,Byzantine,2
+6,The Virgin Beside Christ on the Heavenly Throne,Cenni di Pepo,2959,1277,Art,Byzantine,2
+7,Madonna Enthroned with the Child Saint Francis and Four Angels,Cenni di Pepo,2959,1278,Art,Byzantine,2
+8,Flagellation,Cenni di Pepo,2959,1280,Art,Byzantine,1
+9,Virgin and Child with Two Angels,Cenni di Pepo,2959,1280,Art,Byzantine,1
+10,Crevole Madonna,Duccio di Buoninsegna,2961,1280,Art,Gothic,1
+11,Madonna and Child at Castelfiorentino,Duccio di Buoninsegna,2961,1280,Art,Gothic,1
+12,Madonna and Child at Siena,Duccio di Buoninsegna,2961,1280,Art,Gothic,1
+13,Maestà at Bologna,Duccio di Buoninsegna,2961,1280,Art,Gothic,1
+14,Storie della Genesi,Gaddo Gaddi,2964,1280,Art,Byzantine,1
+15,Storie di Giuseppe,Gaddo Gaddi,2964,1280,Art,Byzantine,1
+16,Storie di Maria e Gesù,Gaddo Gaddi,2964,1280,Art,Byzantine,1
+17,Storie del Battista,Gaddo Gaddi,2964,1280,Art,Byzantine,1
+18,Plato,Giovanni Pisano,2960,1280,Sculpture,Gothic,1
+19,Haggai,Giovanni Pisano,2960,1284,Sculpture,Gothic,1
+21,Gualino Madonna,Duccio di Buoninsegna,2961,1285,Art,Gothic,1
+22,Rucellai Madonna,Duccio di Buoninsegna,2961,1285,Art,Gothic,3
+23,Miriam,Giovanni Pisano,2960,1285,Sculpture,Gothic,1
+24,Sibyl,Giovanni Pisano,2960,1285,Sculpture,Gothic,1
+25,Crucifix at Santa Croce,Cenni di Pepo,2959,1287,Art,Byzantine,2
+26,Maestà at Bern,Duccio di Buoninsegna,2961,1288,Art,Gothic,1
+27,Stained-glass Window,Duccio di Buoninsegna,2961,1288,Art,Gothic,1
+28,Virgin Enthroned with Angels,Cenni di Pepo,2959,1290,Art,Byzantine,2
+29,Madonna and Child at New York,Duccio di Buoninsegna,2961,1290,Art,Gothic,1
+30,Abdia,Gaddo Gaddi,2964,1290,Art,Byzantine,1
+31,Crucifix at Santa Maria Novella,Giotto di Bondone,2965,1290,Art,Gothic,2
+32,Scenes from the New Testament,Giotto di Bondone,2965,1290,Art,Gothic,2
+33,Crucifix at Pistoia,Giovanni Pisano,2960,1290,Sculpture,Gothic,1
+34,Crucifix at Siena,Giovanni Pisano,2960,1290,Sculpture,Gothic,1
+35,Moses,Giovanni Pisano,2960,1290,Sculpture,Gothic,1
+36,The Crucified Christ,Giovanni Pisano,2960,1290,Sculpture,Gothic,1
+37,Madonna and Child at Buonconvento,Duccio di Buoninsegna,2961,1295,Art,Gothic,1
+38,Madonna Enthroned with Child and Two Angels,Giotto di Bondone,2965,1295,Art,Gothic,2
+39,Mosaics in Santa Maria in Trastevere,Pietro Cavallini,2963,1296,Art,Byzantine,3
+40,Legend of Saint Francis,Giotto di Bondone,2965,1297,Art,Gothic,2
+41,Madonna and Child at Rome,Giotto di Bondone,2965,1297,Art,Gothic,1
+42,Virgin and Child at Opera del Duomo,Giovanni Pisano,2960,1298,Sculpture,Gothic,1
+43,Madonna of the Franciscans,Duccio di Buoninsegna,2961,1300,Art,Gothic,1
+44,Polyptych No. 28,Duccio di Buoninsegna,2961,1300,Art,Gothic,1
+45,Christ in Glory,Filippo Rusuti,2962,1300,Art,Byzantine,1
+46,Madonna with Child,Filippo Rusuti,2962,1300,Art,Byzantine,2
+47,Badia Polypych,Giotto di Bondone,2965,1300,Art,Gothic,1
+48,Crucifix at Ognissanti,Giotto di Bondone,2965,1300,Art,Gothic,2
+49,Stigmatization of Saint Francis,Giotto di Bondone,2965,1300,Art,Gothic,2
+50,Angel Pietà,Giovanni Pisano,2960,1300,Sculpture,Gothic,1
+51,Virgin and Child with Saints,Giovanni Pisano,2960,1300,Sculpture,Gothic,1
+52,Virgin of the Colloquy,Giovanni Pisano,2960,1300,Sculpture,Gothic,1
+53,Wolf,Giovanni Pisano,2960,1300,Sculpture,Gothic,1
+54,Esau Appears to Isaac,Pietro Cavallini,2963,1300,Art,Gothic,2
+55,Jacob's Dream,Pietro Cavallini,2963,1300,Art,Gothic,2
+56,Last Judgment,Pietro Cavallini,2963,1300,Art,Gothic,3
+57,The Second Coming of Christ,Pietro Cavallini,2963,1300,Art,Gothic,2
+58,Christ Enthroned between the Virgin and Saint John the Evangelist,Cenni di Pepo,2959,1301,Art,Byzantine,2
+59,Lectern,Giovanni Pisano,2960,1301,Sculpture,Gothic,1
+60,Pulpit in Sant'Andrea,Giovanni Pisano,2960,1301,Sculpture,Gothic,2
+61,Pulpit in Pisa,Giovanni Pisano,2960,1302,Sculpture,Gothic,2
+62,Vault,Giotto di Bondone,2965,1303,Art,Gothic,1
+63,Madonna and Child with Six Angels,Duccio di Buoninsegna,2961,1304,Art,Gothic,1
+64,Scenes from the Life of Christ,Giotto di Bondone,2965,1304,Art,Gothic,2
+65,Scenes from the Life of Joachim,Giotto di Bondone,2965,1304,Art,Gothic,2
+66,Scenes from the Life of the Virgin,Giotto di Bondone,2965,1304,Art,Gothic,2
+67,Scenes with Decorative Bands,Giotto di Bondone,2965,1304,Art,Gothic,1
+68,Triptych at Windsor,Duccio di Buoninsegna,2961,1305,Art,Gothic,1
+69,Navicella,Giotto di Bondone,2965,1305,Art,Gothic,2
+70,Crucifix at Berlin,Giovanni Pisano,2960,1305,Sculpture,Gothic,1
+71,Madonna and Child,Giovanni Pisano,2960,1305,Sculpture,Gothic,1
+72,Virgin and Child Between Two Deacons,Giovanni Pisano,2960,1305,Sculpture,Gothic,1
+73,Virgin and Child with Angels,Ugolino di Nerio,2969,1305,Art,Gothic,2
+74,God Sends Gabriel to the Virgin,Giotto di Bondone,2965,1306,Art,Gothic,1
+75,Last Judgment,Giotto di Bondone,2965,1306,Art,Gothic,3
+76,The Seven Vices,Giotto di Bondone,2965,1306,Art,Gothic,1
+77,The Seven Virtues,Giotto di Bondone,2965,1306,Art,Gothic,1
+78,Coronation of the Virgin,Gaddo Gaddi,2964,1307,Art,Byzantine,3
+79,Maestà at Siena,Duccio di Buoninsegna,2961,1308,Art,Gothic,3
+80,Crucifixion,Pietro Cavallini,2963,1308,Art,Gothic,2
+81,Madonna and Child at Siena,Simone Martini,2973,1308,Art,Gothic,2
+82,Madonna in Mercy,Simone Martini,2973,1308,Art,Gothic,2
+83,Crucifixion,Duccio di Buoninsegna,2961,1310,Art,Gothic,1
+84,Polyptych No. 47,Duccio di Buoninsegna,2961,1310,Art,Gothic,1
+85,Crucifix at Rimini,Giotto di Bondone,2965,1310,Art,Gothic,1
+86,Ognissanti Madonna,Giotto di Bondone,2965,1310,Art,Gothic,3
+87,Pentecost,Giotto di Bondone,2965,1310,Art,Gothic,1
+88,Deacons Holding Candles,Giovanni Pisano,2960,1310,Sculpture,Gothic,1
+89,Reliefs on the Piers,Lorenzo Maitani,2968,1310,Sculpture,Gothic,2
+90,Triptych at Boston,Duccio di Buoninsegna,2961,1311,Art,Gothic,1
+91,Virgin Mourning,Giotto di Bondone,2965,1311,Art,Gothic,1
+92,Head of Fortitude,Giovanni Pisano,2960,1311,Sculpture,Gothic,1
+93,Tomb of Margaret of Luxembourg,Giovanni Pisano,2960,1311,Sculpture,Gothic,1
+94,Virgin and Child at Genoa,Giovanni Pisano,2960,1311,Sculpture,Gothic,1
+95,Madonna in Glory with Musician Angels,Simone Martini,2973,1311,Art,Gothic,2
+96,Triptych at London,Duccio di Buoninsegna,2961,1312,Art,Gothic,1
+97,Head of a Beared Man,Giovanni Pisano,2960,1312,Sculpture,Gothic,1
+98,Madona della Cintola,Giovanni Pisano,2960,1313,Sculpture,Gothic,1
+99,Virgin and Child at Porta di San Ranieri,Giovanni Pisano,2960,1313,Sculpture,Gothic,1
+100,Virgin and Child at Berlin,Giovanni Pisano,2960,1314,Sculpture,Gothic,1
+101,North Transept of the Lower Church,Giotto di Bondone,2965,1315,Art,Gothic,1
+102,Scenes from the Life of Saint John the Baptist,Giotto di Bondone,2965,1315,Art,Gothic,2
+103,Scenes from the Life of Saint John the Evangelist,Giotto di Bondone,2965,1315,Art,Gothic,2
+104,Maestà,Simone Martini,2973,1315,Art,Gothic,3
+105,Virgin and Child,Ugolino di Nerio,2969,1315,Art,Gothic,2
+106,Maestà,Lippo Memmi,2977,1317,Art,Gothic,3
+107,Altar of Saint Louis of Toulouse,Simone Martini,2973,1317,Art,Gothic,2
+108,Blessing Christ,Simone Martini,2973,1317,Art,Gothic,1
+109,Virgin and Child with Saints,Ugolino di Nerio,2969,1317,Art,Gothic,2
+110,Madonna of Vico l'Abate,Ambrogio Lorenzetti,2975,1319,Art,Gothic,2
+111,Polyptych of Santa Caterina,Simone Martini,2973,1319,Art,Gothic,2
+112,Virgin with Child Enthroned and Two Saints,Gaddo Gaddi,2964,1320,Art,Gothic,2
+113,Crucifix at Munich,Giotto di Bondone,2965,1320,Art,Gothic,1
+114,Descent into Limbo,Giotto di Bondone,2965,1320,Art,Gothic,2
+115,Entombment,Giotto di Bondone,2965,1320,Art,Gothic,2
+116,Franciscan Allegories,Giotto di Bondone,2965,1320,Art,Gothic,1
+117,Last Supper,Giotto di Bondone,2965,1320,Art,Gothic,2
+118,Madonna and Child at Washington,Giotto di Bondone,2965,1320,Art,Gothic,1
+119,Presentation in the Temple,Giotto di Bondone,2965,1320,Art,Gothic,1
+120,Saint John the Evangelist,Giotto di Bondone,2965,1320,Art,Gothic,1
+121,SAint Lawrence,Giotto di Bondone,2965,1320,Art,Gothic,1
+122,Saint Stephen,Giotto di Bondone,2965,1320,Art,Gothic,1
+123,Scenes from the Life of Mary Magdalen,Giotto di Bondone,2965,1320,Art,Gothic,1
+124,The Epiphany,Giotto di Bondone,2965,1320,Art,Gothic,1
+125,Formelle con Teste di Vecchio e di Giovane,Giovanni di Agostino,2985,1320,Sculpture,Gothic,1
+126,Saint Ansanus,Giovanni di Agostino,2985,1320,Sculpture,Gothic,1
+127,Madonna and Child Enthroned with Angels Saints and Donors,Jacopo del Casentino,2979,1320,Art,Gothic,2
+128,Christ Blessing,Lippo Memmi,2977,1320,Art,Gothic,1
+129,Virgin and Child,Lippo Memmi,2977,1320,Art,Gothic,2
+130,Virgin and Child,Lorenzo Maitani,2968,1320,Sculpture,Gothic,2
+131,Capture of Christ,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+132,Crucifix,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+133,Crucifixion at Lower Church,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+134,Crucifixion at San Francesco,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+135,Deposition of Christ from the Cross,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+136,Entombment,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+137,Entry of Christ into Jerusalem,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+138,Flagellation of Christ,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+139,Last Supper,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+140,Madonna and Child with Saint Francis and Saint John the Baptist,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+141,Madonna with Saint Francis and Saint John the Evangelist,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+142,Polyptych,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+143,Resurrection,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+144,Road to Calvary,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+145,Stigmata of Saint Francis,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+146,The Resurrected Christ,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+147,Virgin Enthroned with Child and Four Angels,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+148,Washing of the Feet,Pietro Lorenzetti,2970,1320,Art,Gothic,1
+149,Madonna and Child at Cologne,Simone Martini,2973,1320,Art,Gothic,2
+150,Madonna and Child from Castiglione d'Orcia,Simone Martini,2973,1320,Art,Gothic,2
+151,Madonna and Child with Angels and the Saviour,Simone Martini,2973,1320,Art,Gothic,2
+152,Polyptych,Simone Martini,2973,1320,Art,Gothic,1
+153,Saint Catherine and Saint Lucy,Simone Martini,2973,1320,Art,Gothic,2
+154,Scenes from the Life of Saint Martin,Simone Martini,2973,1320,Art,Gothic,2
+155,Saint Louis of Toulouse,Ugolino di Nerio,2969,1320,Art,Gothic,1
+156,Saint Mary Magdalen at Boston,Ugolino di Nerio,2969,1320,Art,Gothic,1
+157,Saint Mary Magdalen at San Francisco,Ugolino di Nerio,2969,1320,Art,Gothic,1
+158,Virgin Annunciate,Giovanni di Agostino,2985,1321,Sculpture,Gothic,2
+159,Boston Polyptych,Simone Martini,2973,1321,Art,Gothic,2
+160,Crucifix,Simone Martini,2973,1321,Art,Gothic,2
+161,Madonna and Child from Lucignano d'Arbia,Simone Martini,2973,1321,Art,Gothic,2
+162,Orvieto Polyptych,Simone Martini,2973,1321,Art,Gothic,2
+163,Martyrdom of the Franciscans,Ambrogio Lorenzetti,2975,1324,Art,Gothic,2
+247,Baroncelli Polyptych,Giotto di Bondone,2965,1334,Art,Gothic,2
+164,Pope Boniface VIII Receiving Saint Louis of Toulouse as a Novice,Ambrogio Lorenzetti,2975,1324,Art,Gothic,2
+165,The Martyrdom of Saint Stephen,Bernardo Daddi,2971,1324,Art,Gothic,1
+166,Coronation of the Virgin,Paolo Veneziano,2980,1324,Art,Byzantine,2
+167,Blessed Agostino Novello Altarpiece,Simone Martini,2973,1324,Art,Gothic,2
+168,Madonna and Child with Mary Magdalene and Saint Dorothea,Ambrogio Lorenzetti,2975,1325,Art,Gothic,2
+169,Scenes from the Life of Saint Francis,Giotto di Bondone,2965,1325,Art,Gothic,2
+170,The Virgin Annunciate,Giovanni di Agostino,2985,1325,Sculpture,Gothic,1
+171,Saint John the Baptist at Altenburg,Lippo Memmi,2977,1325,Art,Gothic,1
+172,Saint John the Baptist at Washington,Lippo Memmi,2977,1325,Art,Gothic,1
+173,Saint Mary Magdalen,Lippo Memmi,2977,1325,Art,Gothic,1
+174,Vallombrosan Saint,Lippo Memmi,2977,1325,Art,Gothic,1
+175,The Angel: Symbol of Saint Matthew,Lorenzo Maitani,2968,1325,Sculpture,Gothic,2
+176,The Eagle: Symbol of Saint John,Lorenzo Maitani,2968,1325,Sculpture,Gothic,2
+177,The Lion: Symbol of Saint Mark,Lorenzo Maitani,2968,1325,Sculpture,Gothic,2
+178,The Winged Bull: Symbol of Saint Luke,Lorenzo Maitani,2968,1325,Sculpture,Gothic,2
+179,Madonna and Child with two Votaries,Paolo Veneziano,2980,1325,Art,Byzantine,2
+180,Madonna of the Poppy,Paolo Veneziano,2980,1325,Art,Byzantine,2
+181,Shaped Cross,Pietro Lorenzetti,2970,1325,Art,Gothic,1
+183,Daniel,Ugolino di Nerio,2969,1325,Art,Gothic,1
+184,David,Ugolino di Nerio,2969,1325,Art,Gothic,1
+185,Isaiah,Ugolino di Nerio,2969,1325,Art,Gothic,1
+186,Moses,Ugolino di Nerio,2969,1325,Art,Gothic,1
+187,Saints Bartholomew and Andrew,Ugolino di Nerio,2969,1325,Art,Gothic,1
+188,Saints Simon and Thaddeus,Ugolino di Nerio,2969,1325,Art,Gothic,1
+189,Spandrel Angels,Ugolino di Nerio,2969,1325,Art,Gothic,2
+190,The Betrayal of Christ,Ugolino di Nerio,2969,1325,Art,Gothic,2
+191,The Deposition,Ugolino di Nerio,2969,1325,Art,Gothic,2
+192,The Entombment,Ugolino di Nerio,2969,1325,Art,Gothic,2
+193,The Flagellation,Ugolino di Nerio,2969,1325,Art,Gothic,2
+194,The Last Supper,Ugolino di Nerio,2969,1325,Art,Gothic,2
+195,The Resurrection,Ugolino di Nerio,2969,1325,Art,Gothic,2
+196,The Way to Cavalry,Ugolino di Nerio,2969,1325,Art,Gothic,2
+197,Three panels from the Santa Croce Altarpiece,Ugolino di Nerio,2969,1325,Art,Gothic,2
+198,Madonna and Child at New York,Simone Martini,2973,1326,Art,Gothic,2
+199,Saint Andrew,Simone Martini,2973,1326,Art,Gothic,1
+200,Saint Ansanus,Simone Martini,2973,1326,Art,Gothic,1
+201,Saint Ladislaus King of Hungary,Simone Martini,2973,1326,Art,Gothic,1
+202,Saint Luke,Simone Martini,2973,1326,Art,Gothic,1
+203,Saint Peter,Simone Martini,2973,1326,Art,Gothic,1
+204,Triptych at Uffizi,Bernardo Daddi,2971,1328,Art,Gothic,2
+205,Madonna with Angels between Saint Nicholas and Prophet Elijah,Pietro Lorenzetti,2970,1328,Art,Gothic,1
+206,Predella Panel,Pietro Lorenzetti,2970,1328,Art,Gothic,1
+207,Madonna and Child at Paris,Ambrogio Lorenzetti,2975,1330,Art,Gothic,2
+208,Nursing Madonna,Ambrogio Lorenzetti,2975,1330,Art,Gothic,2
+209,Rofeno Abbey Polyptych,Ambrogio Lorenzetti,2975,1330,Art,Gothic,1
+210,South Doors,Andrea Pisano,2978,1330,Sculpture,Gothic,2
+211,Virgin and Child at Cleveland,Andrea Pisano,2978,1330,Sculpture,Gothic,1
+212,Crucifix at San Felice,Giotto di Bondone,2965,1330,Art,Gothic,1
+213,Crucifixion,Giotto di Bondone,2965,1330,Art,Gothic,2
+214,Polyptych,Giotto di Bondone,2965,1330,Art,Gothic,1
+215,Stefaneschi Triptych,Giotto di Bondone,2965,1330,Art,Gothic,2
+216,Madonna and Child,Giovanni di Agostino,2985,1330,Sculpture,Gothic,2
+217,Monument to Bishop Guido Tarlati,Giovanni di Agostino,2985,1330,Sculpture,Gothic,2
+218,San Paolo,Giovanni di Agostino,2985,1330,Sculpture,Gothic,1
+219,Vierge de l'Annonciation,Giovanni di Agostino,2985,1330,Sculpture,Gothic,1
+220,Saint John the Baptist,Jacopo del Casentino,2979,1330,Art,Gothic,2
+221,Saint Peter,Lippo Memmi,2977,1330,Art,Gothic,1
+222,Man of Sorrow,Pietro Lorenzetti,2970,1330,Art,Gothic,1
+223,Equestrian Portrait of Guidoriccio da Fogliano,Simone Martini,2973,1330,Art,Gothic,3
+224,Saint John the Evangelist,Simone Martini,2973,1330,Art,Gothic,1
+225,Adoration of the Magi,Taddeo Gaddi,2976,1330,Art,Gothic,2
+226,Allegory of the Cross,Taddeo Gaddi,2976,1330,Art,Gothic,1
+227,Annunciation to the Shepherds,Taddeo Gaddi,2976,1330,Art,Gothic,2
+228,David,Taddeo Gaddi,2976,1330,Art,Gothic,1
+229,Isaiah,Taddeo Gaddi,2976,1330,Art,Gothic,1
+230,Joachim and Anne Meeting at the Golden Gate,Taddeo Gaddi,2976,1330,Art,Gothic,2
+231,Life of the Virgin,Taddeo Gaddi,2976,1330,Art,Gothic,2
+232,Marriage of the Virgin,Taddeo Gaddi,2976,1330,Art,Gothic,2
+233,Presentation of the Virgin,Taddeo Gaddi,2976,1330,Art,Gothic,2
+234,Stigmatization of Saint Francis,Taddeo Gaddi,2976,1330,Art,Gothic,2
+235,Crucifixion with the Virgin and Saint John the Evangelist at Madrid,Ugolino di Nerio,2969,1330,Art,Gothic,1
+236,Madonna del Ricamo,Vitale da Bologna,2984,1330,Art,Gothic,1
+237,Altarpiece of Saint Proculus,Ambrogio Lorenzetti,2975,1332,Art,Gothic,1
+238,Scenes from the Life of Saint Nicholas,Ambrogio Lorenzetti,2975,1332,Art,Gothic,2
+239,Redentore Benedicente,Giovanni di Agostino,2985,1332,Sculpture,Gothic,1
+240,Triptych at Loggia del Bigallo,Bernardo Daddi,2971,1333,Art,Gothic,2
+241,The Annunciation and Two Saints,Lippo Memmi,2977,1333,Art,Gothic,2
+242,Annunciation and Two Saints,Simone Martini,2973,1333,Art,Gothic,3
+243,The Angel of the Annunciation,Simone Martini,2973,1333,Art,Gothic,3
+244,The Virgin of the Annunciation,Simone Martini,2973,1333,Art,Gothic,3
+245,Triptych,Taddeo Gaddi,2976,1333,Art,Gothic,1
+246,Saint Catherine of Alexandria,Bernardo Daddi,2971,1334,Art,Gothic,2
+248,Design Sketch for the Campanile,Giotto di Bondone,2965,1334,Art,Gothic,2
+249,Maestà,Ambrogio Lorenzetti,2975,1335,Art,Gothic,3
+250,Small Maestà,Ambrogio Lorenzetti,2975,1335,Art,Gothic,2
+251,Madonna with Child,Andrea Pisano,2978,1335,Sculpture,Gothic,1
+252,Virgin and Child at Berlin,Andrea Pisano,2978,1335,Sculpture,Gothic,1
+253,Virgin and Child at Berlin,Andrea Pisano,2978,1335,Sculpture,Gothic,1
+254,Madonna and Child,Bernardo Daddi,2971,1335,Art,Gothic,2
+255,Virgin and Child,Bernardo Daddi,2971,1335,Art,Gothic,2
+256,Madonna and Child,Jacopo del Casentino,2979,1335,Art,Gothic,2
+257,Saint Humility and Scenes from Her Life,Pietro Lorenzetti,2970,1335,Art,Gothic,1
+258,Saint Sabinus Before the Roman Governor of Tuscany,Pietro Lorenzetti,2970,1335,Art,Gothic,1
+259,Entombment,Taddeo Gaddi,2976,1335,Art,Gothic,2
+260,Pentecost,Taddeo Gaddi,2976,1335,Art,Gothic,1
+261,Saint Francis Restoring a Boy to Life,Taddeo Gaddi,2976,1335,Art,Gothic,1
+262,Scene from the Life of Saint Francis,Taddeo Gaddi,2976,1335,Art,Gothic,1
+263,Crucifixion with the Virgin and Saint John the Evangelist Polyptych,Ugolino di Nerio,2969,1335,Art,Gothic,2
+264,Crucifixion,Vitale da Bologna,2984,1335,Art,Gothic,2
+265,A Group of Four Poor Clares,Ambrogio Lorenzetti,2975,1336,Art,Gothic,1
+266,Virgin and Child Enthroned with Saint Matthias Saint George and a Donor,Andrea di Cione di Arcangelo,2982,1336,Art,Gothic,2
+267,A Female Saint,Pietro Lorenzetti,2970,1336,Art,Gothic,1
+268,Crowned Female Figure,Pietro Lorenzetti,2970,1336,Art,Gothic,1
+269,Saint John the Baptist,Ambrogio Lorenzetti,2975,1337,Art,Gothic,1
+270,King Solomon,Andrea Pisano,2978,1337,Sculpture,Gothic,1
+271,Virgin and Child at Florence,Andrea Pisano,2978,1337,Sculpture,Gothic,1
+272,Singing Gallery,Puccio Capanna,2990,1337,Art,Gothic,1
+273,Diptych,Puccio Capanna,2990,1337,Art,Gothic,1
+274,Allegory of  the Bad Government,Ambrogio Lorenzetti,2975,1338,Art,Gothic,3
+275,Allegory of the Good Government,Ambrogio Lorenzetti,2975,1338,Art,Gothic,3
+276,Effects of Bad Government on the City Life,Ambrogio Lorenzetti,2975,1338,Art,Gothic,3
+277,Effects of Bad Government on the Countryside,Ambrogio Lorenzetti,2975,1338,Art,Gothic,3
+278,Effects of Good Government on the City Life,Ambrogio Lorenzetti,2975,1338,Art,Gothic,3
+279,Effects of Good Government on the Countryside,Ambrogio Lorenzetti,2975,1338,Art,Gothic,3
+280,Polyptych of San Pancrazio,Bernardo Daddi,2971,1338,Art,Gothic,2
+281,The Temptation of Saint Thomas Aquinas,Bernardo Daddi,2971,1338,Art,Gothic,1
+282,Triptych at Berlin,Bernardo Daddi,2971,1338,Art,Gothic,1
+283,Martyrdom of Saint Stanislas,Puccio Capanna,2990,1338,Art,Gothic,1
+284,Saint Stanislas Raises a Body from the Dead,Puccio Capanna,2990,1338,Art,Gothic,1
+285,Monument to the Doge Francesco Dandolo,Paolo Veneziano,2980,1339,Art,Byzantine,2
+286,Christ on the Cross between the Virgin and Saint John the Evangelist,Allegretto Nuzi,2986,1340,Art,Gothic,1
+287,Madonna and Child at Milan,Ambrogio Lorenzetti,2975,1340,Art,Gothic,2
+288,Christ,Andrea Pisano,2978,1340,Sculpture,Gothic,1
+289,Equestrian Relief of Saint Martin,Andrea Pisano,2978,1340,Sculpture,Gothic,1
+290,Saint Stephen,Andrea Pisano,2978,1340,Sculpture,Gothic,1
+291,Santa Reparata,Andrea Pisano,2978,1340,Sculpture,Gothic,1
+292,Crucifixion at Venice,Bernardo Daddi,2971,1340,Art,Gothic,1
+293,Saint Catherine of Alexandria with Donor and Christ Blessing,Bernardo Daddi,2971,1340,Art,Gothic,2
+294,The Coronation of the Virgin at London,Bernardo Daddi,2971,1340,Art,Gothic,2
+295,The Nativity,Bernardo Daddi,2971,1340,Art,Gothic,2
+296,Ange Portant Deux Burettes,Evrard d'Orleans,2967,1340,Sculpture,Gothic,1
+297,Daniel un Prophète et Isaïe,Evrard d'Orleans,2967,1340,Sculpture,Gothic,1
+298,La Communion de Saint Denis,Evrard d'Orleans,2967,1340,Sculpture,Gothic,1
+299,The Last Supper,Evrard d'Orleans,2967,1340,Sculpture,Gothic,1
+300,Un Prophète le Roi David et Moïse,Evrard d'Orleans,2967,1340,Sculpture,Gothic,1
+301,Madonna and Child with Saints Catherine and John the Baptist,Giovanni di Agostino,2985,1340,Sculpture,Gothic,2
+302,Madonna col Bambino Tra i Ss. Caterina d'Alessandria e Giovanni Battista,Giovanni di Agostino,2985,1340,Sculpture,Gothic,1
+303,Crucifixion,Jacopo del Casentino,2979,1340,Art,Gothic,2
+304,Crucifixion,Lippo Memmi,2977,1340,Art,Gothic,2
+305,Madonna and Child,Lippo Memmi,2977,1340,Art,Gothic,2
+306,Mocking of Christ,Lippo Memmi,2977,1340,Art,Gothic,1
+307,Scenes from the Life of Christ,Lippo Memmi,2977,1340,Art,Gothic,2
+308,Triumph of Saint Thomas Aquinas,Lippo Memmi,2977,1340,Art,Gothic,2
+309,Bust of a Prophet,Andrea di Cione di Arcangelo,2982,1340,Art,Gothic,1
+310,Bust of a Saint,Andrea di Cione di Arcangelo,2982,1340,Art,Gothic,1
+311,Crucifixion at Santa Maria Novella,Andrea di Cione di Arcangelo,2982,1340,Art,Gothic,2
+312,Nativity and Annunciation to the Shepherds,Andrea di Cione di Arcangelo,2982,1340,Art,Gothic,2
+313,Nativity and Crucifixion,Andrea di Cione di Arcangelo,2982,1340,Art,Gothic,2
+314,Throne of Grace,Andrea di Cione di Arcangelo,2982,1340,Art,Gothic,2
+315,The Crucifixion,Paolo Veneziano,2980,1340,Art,Byzantine,2
+316,Adoration of the Magi,Pietro Lorenzetti,2970,1340,Art,Gothic,1
+317,Madonna Enthroned with Angels,Pietro Lorenzetti,2970,1340,Art,Gothic,1
+318,Virgin and Child,Pietro Lorenzetti,2970,1340,Art,Gothic,1
+319,Incoronazione della Vergine,Vitale da Bologna,2984,1340,Art,Gothic,2
+320,Beata Umiltà Heals a Sick Nun,Pietro Lorenzetti,2970,1341,Art,Gothic,1
+321,Beata Umiltà Transports Bricks to the Monastery,Pietro Lorenzetti,2970,1341,Art,Gothic,1
+322,The Miracle of the Ice,Pietro Lorenzetti,2970,1341,Art,Gothic,1
+323,Saviour Blessing and Madonna of Humility at Avignon,Simone Martini,2973,1341,Art,Gothic,2
+324,The Presentation in the Temple,Ambrogio Lorenzetti,2975,1342,Art,Gothic,1
+325,The Birth of Mary,Pietro Lorenzetti,2970,1342,Art,Gothic,1
+326,Christ Returning to his Parents,Simone Martini,2973,1342,Art,Gothic,1
+327,Madonna del Latte,Andrea Pisano,2978,1343,Sculpture,Gothic,1
+328,Virgin and Child Enthroned with Saints,Bernardo Daddi,2971,1343,Art,Gothic,2
+329,The Expulsion of the Duke of Athens,Andrea di Cione di Arcangelo,2982,1343,Art,Gothic,2
+330,Annunciation,Ambrogio Lorenzetti,2975,1344,Art,Gothic,2
+331,Saint-Martial Chapelle Ceiling,Matteo Giovanetti,2988,1344,Art,Gothic,2
+332,Triumph of Death,Andrea di Cione di Arcangelo,2982,1344,Art,Gothic,3
+333,Crucifixion,Puccio Capanna,2990,1344,Art,Gothic,1
+334,Saint John the Baptist,Andrea Pisano,2978,1345,Sculpture,Gothic,1
+335,Saint Peter,Andrea Pisano,2978,1345,Sculpture,Gothic,1
+336,Virgin and Child at Santa Maria della Spina,Andrea Pisano,2978,1345,Sculpture,Gothic,1
+337,Crucifixion at Altenburg,Bernardo Daddi,2971,1345,Art,Gothic,1
+338,Four Musical Angels,Bernardo Daddi,2971,1345,Art,Gothic,2
+339,The Coronation of the Virgin at Florence,Bernardo Daddi,2971,1345,Art,Gothic,2
+340,Annunciation,Matteo Giovanetti,2988,1345,Art,Gothic,2
+341,Saint Hermagoras and a Donor; Saint Fortunatus,Matteo Giovanetti,2988,1345,Art,Gothic,1
+342,Hell,Andrea di Cione di Arcangelo,2982,1345,Art,Gothic,3
+343,Pala Feriale,Paolo Veneziano,2980,1345,Art,Byzantine,2
+344,Virgin and Child,Taddeo Gaddi,2976,1345,Art,Gothic,2
+345,Madonna and Child,Vitale da Bologna,2984,1345,Art,Gothic,2
+346,Virgin and Child with Saints Mary Magdalene James Major Stephen and a Bishop Saint,Allegretto Nuzi,2986,1346,Art,Gothic,2
+347,Orsanmichele Madonna and Child with Angels,Bernardo Daddi,2971,1346,Art,Gothic,3
+348,Virgin and Child with Saints,Allegretto Nuzi,2986,1347,Art,Gothic,2
+349,Virgin and Child at Pisa,Andrea Pisano,2978,1347,Sculpture,Gothic,1
+350,Saint-Jean Chapelle Ceiling,Matteo Giovanetti,2988,1347,Art,Gothic,2
+351,Madonna with Child and Four Saints; Crucifixion,Tommaso di Stefano,2989,1348,Art,Gothic,1
+352,Assumption of Saint John the Evangelist,Taddeo Gaddi,2976,1348,Art,Gothic,1
+353,Saint John the Evangelist Drinking from the Poisoned Cup,Taddeo Gaddi,2976,1348,Art,Gothic,1
+354,Busts of Five Apostles,Allegretto Nuzi,2986,1350,Art,Gothic,1
+355,Saints Catherine and Bartholomew,Allegretto Nuzi,2986,1350,Art,Gothic,1
+356,The Blessing Redeemer,Allegretto Nuzi,2986,1350,Art,Gothic,1
+357,Virgin and Child Enthroned with Saints,Allegretto Nuzi,2986,1350,Art,Gothic,2
+358,Last Judgment,Giusto de' Menabuoi,2987,1350,Art,Gothic,2
+359,Stories of Jacob and Isaac,Giusto de' Menabuoi,2987,1350,Art,Gothic,1
+360,Saint Mary Magdalen,Jean de Liege,2994,1350,Art,Gothic,1
+361,Madonna of the Recommended,Lippo Memmi,2977,1350,Art,Gothic,1
+362,Crucifixion at Baltimore,Andrea di Cione di Arcangelo,2982,1350,Art,Gothic,2
+363,Crucifixion at Santa Marta,Andrea di Cione di Arcangelo,2982,1350,Art,Gothic,2
+364,Pentecost,Andrea di Cione di Arcangelo,2982,1350,Art,Gothic,2
+365,Tomb of Tommaso Corsini,Andrea di Cione di Arcangelo,2982,1350,Sculpture,Gothic,2
+366,Polyptych at Venice,Paolo Veneziano,2980,1350,Art,Byzantine,2
+367,Polyptych at Worcester,Paolo Veneziano,2980,1350,Art,Byzantine,2
+368,Saint George's Battle with Dragon,Vitale da Bologna,2984,1350,Art,Gothic,2
+369,The Crucifixion with Saints,Andrea Vanni,2998,1353,Art,Gothic,1
+370,Crucifixion at Cenacolo di Santo Spirito,Andrea di Cione di Arcangelo,2982,1353,Art,Gothic,2
+371,Last Supper,Andrea di Cione di Arcangelo,2982,1353,Art,Gothic,2
+372,Madonna dell'Umiltà,Vitale da Bologna,2984,1353,Art,Gothic,1
+373,The Adoration of the Magi,Vitale da Bologna,2984,1353,Art,Gothic,2
+374,The Strozzi Altarpiece,Andrea di Cione di Arcangelo,2982,1354,Art,Gothic,3
+375,Polyptych at Paris,Paolo Veneziano,2980,1354,Art,Byzantine,2
+376,Ascension of Christ,Andrea Vanni,2998,1355,Art,Gothic,1
+377,Saint Francis of Assisi,Andrea Vanni,2998,1355,Art,Gothic,1
+378,Saint James the Greater,Andrea Vanni,2998,1355,Art,Gothic,1
+379,La Vierge de l'Annonciation,Bartolo di Fredi,2995,1355,Art,Gothic,1
+380,Madonna and Child with Saints,Jacopo di Cione,2991,1355,Art,Gothic,2
+381,Crucifix,Taddeo Gaddi,2976,1355,Art,Gothic,1
+382,Madonna and Child Enthroned with Angels and Saints,Taddeo Gaddi,2976,1355,Art,Gothic,2
+383,Madonna and Child Enthroned between Two Saints and Eight Angels,Tommaso di Stefano,2989,1356,Art,Gothic,2
+384,Madonna and Child with Four Angels Saint. John the Baptist and Saint Benedictus,Tommaso di Stefano,2989,1356,Art,Gothic,1
+385,Crucifixion at Pisa,Luca di Tomme,2996,1356,Art,Gothic,2
+386,The Crucifixion with the Virgin Mary and Saint John the Evangelist,Luca di Tomme,2996,1356,Art,Gothic,2
+387,Sant'Agostino Dottore della Chiesa,Vitale da Bologna,2984,1356,Art,Gothic,1
+388,Tabernacle,Andrea di Cione di Arcangelo,2982,1359,Sculpture,Gothic,2
+389,Virgin and Child,Allegretto Nuzi,2986,1360,Art,Gothic,2
+390,Saint Catherine,Andrea Vanni,2998,1360,Art,Gothic,1
+391,The Adoration of the Magi,Andrea Vanni,2998,1360,Art,Gothic,1
+392,Crucifixion at Lombard,Giusto de' Menabuoi,2987,1360,Art,Gothic,1
+393,Adoration of the Magi,Luca di Tomme,2996,1360,Art,Gothic,2
+394,Crucifixion,Taddeo Gaddi,2976,1360,Art,Gothic,2
+395,Last Supper Tree of Life and Four Miracle Scenes,Taddeo Gaddi,2976,1360,Art,Gothic,2
+396,Head of Bonne de France,Jean de Liege,2994,1361,Art,Gothic,1
+397,Assumption of the Virgin,Luca di Tomme,2996,1362,Art,Gothic,2
+398,Scenes from the Life of Saint Thomas,Luca di Tomme,2996,1362,Art,Gothic,1
+399,Virgin and Child with Saints,Luca di Tomme,2996,1362,Art,Gothic,2
+400,Saint Ambrose,Giusto de' Menabuoi,2987,1363,Art,Gothic,1
+401,Virgin and Child,Jean de Liege,2994,1364,Art,Gothic,2
+402,Pietà of San Remigio,Tommaso di Stefano,2989,1365,Art,Gothic,2
+403,Madonna dell'Umiltà,Jacopo di Cione,2991,1365,Art,Gothic,2
+404,Series of six angels,Jacopo di Cione,2991,1365,Art,Gothic,1
+405,The Crucifixion at New York,Jacopo di Cione,2991,1365,Art,Gothic,2
+406,The Man of Sorrows,Jacopo di Cione,2991,1365,Art,Gothic,1
+407,Tomb of Philippa Hainault,Jean de Liege,2994,1365,Art,Gothic,2
+408,Crucifixion at San Francisco,Luca di Tomme,2996,1365,Art,Gothic,2
+409,Flagellation,Luca di Tomme,2996,1365,Art,Gothic,2
+410,Crucifixion at New York,Andrea di Cione di Arcangelo,2982,1365,Art,Gothic,2
+411,Virgin and Child Enthroned with Two Angels and Saints,Andrea di Cione di Arcangelo,2982,1365,Art,Gothic,2
+412,Assumption of the Virgin,Silvestro dei Gherarducci,3001,1365,Art,Gothic,1
+413,The Crucifixion,Silvestro dei Gherarducci,3001,1365,Art,Gothic,2
+414,Madonna and Child for Devotion,Silvestro dei Gherarducci,3001,1365,Art,Gothic,1
+415,Man of Sorrows with the Virgin Mary Saint John and a Donor,Silvestro dei Gherarducci,3001,1365,Art,Gothic,1
+416,Portable Triptych with The Madonna and Child Flanked by Saints,Silvestro dei Gherarducci,3001,1365,Art,Gothic,1
+417,Diptych,Allegretto Nuzi,2986,1366,Art,Gothic,1
+418,Scenes from the Old Testament,Bartolo di Fredi,2995,1367,Art,Gothic,1
+419,Triptych,Giusto de' Menabuoi,2987,1367,Art,Gothic,1
+420,Christ Blessing,Luca di Tomme,2996,1367,Art,Gothic,1
+421,Polyptych,Luca di Tomme,2996,1367,Art,Gothic,2
+422,Saint Matthew and Scenes from His Life,Andrea di Cione di Arcangelo,2982,1367,Art,Gothic,2
+423,Entombment of Christ,Tommaso di Stefano,2989,1368,Art,Gothic,2
+424,Noli Me Tangere,Jacopo di Cione,2991,1368,Art,Gothic,2
+425,The Crucifixion at London,Jacopo di Cione,2991,1369,Art,Gothic,2
+426,Virgin Being Worshipped by Members of the Cavalli Family,Altichiero da Zevio,2997,1370,Art,Gothic,1
+427,Coronation of the Virgin,Jacopo di Cione,2991,1370,Art,Gothic,3
+428,Madonna and Child,Jacopo di Cione,2991,1370,Art,Gothic,2
+429,San Pier Maggiore Altarpiece,Jacopo di Cione,2991,1370,Art,Gothic,2
+430,Virgin and Child Enthroned with Music-Making Angels and Virtues,Jacopo di Cione,2991,1370,Art,Gothic,2
+431,Virgin and Child Enthroned with Saints,Jacopo di Cione,2991,1370,Art,Gothic,2
+432,Virgin and Child Enthroned with Six Angels,Jacopo di Cione,2991,1370,Art,Gothic,2
+433,Angel of the Annunciation,Jean de Liege,2994,1370,Art,Gothic,1
+434,Jeanne d'Évreux and Charles IV,Jean de Liege,2994,1370,Art,Gothic,2
+435,Beheading of Saint Paul,Luca di Tomme,2996,1370,Art,Gothic,1
+436,Virgin and Child with Saints Nicholas and Paul,Luca di Tomme,2996,1370,Art,Gothic,1
+437,Virgin and Child with Saints John the Baptist Dominic Peter and Paul,Niccolo di Pietro Gerini,3002,1370,Art,Gothic,1
+438,Gradual from Santa Maria degli Angeli,Silvestro dei Gherarducci,3001,1370,Art,Gothic,1
+439,Saint John the Evangelist,Silvestro dei Gherarducci,3001,1370,Art,Gothic,1
+440,Madonna of Humility,Silvestro dei Gherarducci,3001,1370,Art,Gothic,1
+441,Madonna and Child at San Francisco,Silvestro dei Gherarducci,3001,1370,Art,Gothic,1
+442,Annunciation,Jacopo di Cione,2991,1371,Art,Gothic,2
+443,The Adoration of the Shepherds,Bartolo di Fredi,2995,1374,Art,Gothic,1
+444,Saint Paul Preaching and Martyrdom of Saint Paul,Luca di Tomme,2996,1374,Art,Gothic,1
+445,The Presentation in the Temple,Bartolo di Fredi,2995,1375,Art,Gothic,1
+446,Seven Saints in Adoration,Bartolo di Fredi,2995,1375,Art,Gothic,1
+447,Paradise,Giusto de' Menabuoi,2987,1375,Art,Gothic,2
+448,Mystic Marriage of Saint Catherine of Alexandria,Jacopo di Cione,2991,1375,Art,Gothic,2
+449,Charles V,Jean de Liege,2994,1375,Art,Gothic,2
+450,Madonna and Child with Saints John Baptist and Paul,Silvestro dei Gherarducci,3001,1375,Art,Gothic,1
+451,Crucifixion at Sant'Antonio,Altichiero da Zevio,2997,1376,Art,Gothic,2
+452,King Ramiro Summons the Crown Council,Altichiero da Zevio,2997,1376,Art,Gothic,1
+453,Scenes from the Life of Saint James,Altichiero da Zevio,2997,1376,Art,Gothic,2
+454,The Wedding at Cana,Giusto de' Menabuoi,2987,1376,Art,Gothic,1
+455,Pietà,Niccolo di Pietro Gerini,3002,1377,Art,Gothic,1
+456,Adoration of the Magi,Altichiero da Zevio,2997,1378,Art,Gothic,2
+457,Crucifixion at San Giorgio,Altichiero da Zevio,2997,1378,Art,Gothic,2
+458,Saint George Slays the Dragon,Altichiero da Zevio,2997,1378,Art,Gothic,2
+459,The Beheading of Saint Catherine,Altichiero da Zevio,2997,1378,Art,Gothic,2
+460,The Beheading of Saint George,Altichiero da Zevio,2997,1378,Art,Gothic,2
+461,The Funeral of Saint Lucy,Altichiero da Zevio,2997,1378,Art,Gothic,2
+462,Crucifixion at Padua,Giusto de' Menabuoi,2987,1378,Art,Gothic,1
+463,Saint Luke between David and Jeremiah,Giusto de' Menabuoi,2987,1378,Art,Gothic,1
+464,Scenes from the Life of Christ,Giusto de' Menabuoi,2987,1378,Art,Gothic,1
+465,The Baptism of Christ,Giusto de' Menabuoi,2987,1378,Art,Gothic,1
+466,The Birth of John the Baptist,Giusto de' Menabuoi,2987,1378,Art,Gothic,1
+467,The Saviour's Transfiguration,Theophanes Grek,3003,1378,Art,Byzantine,2
+468,Holy Trinity,Theophanes Grek,3003,1378,Art,Byzantine,2
+469,Abel,Theophanes Grek,3003,1378,Art,Byzantine,1
+470,Daniel the Stylite,Theophanes Grek,3003,1378,Art,Byzantine,1
+471,Macarius of Egypt,Theophanes Grek,3003,1378,Art,Byzantine,1
+472,John the Baptist,Theophanes Grek,3003,1378,Art,Byzantine,1
+473,The Virgin and Child Enthroned,Altichiero da Zevio,2997,1380,Art,Gothic,2
+474,Saint John the Baptist,Luca di Tomme,2996,1380,Art,Gothic,1
+475,The Conversion of Saint Paul,Luca di Tomme,2996,1380,Art,Gothic,1
+476,Virgin and Child with Saints,Niccolo di Pietro Gerini,3002,1380,Art,Gothic,1
+477,Our Lady of the Don,Theophanes Grek,3003,1380,Art,Byzantine,2
+478,Tomb Effigy Bust of Marie de France,Jean de Liege,2994,1381,Art,Gothic,1
+479,Polyptych,Jacopo di Cione,2991,1382,Art,Gothic,2
+480,Annunciation,Bartolo di Fredi,2995,1383,Art,Gothic,2
+481,Nativity and Adoration of  the Shepherds,Bartolo di Fredi,2995,1383,Art,Gothic,1
+482,The Annunciation to Joachime,Bartolo di Fredi,2995,1383,Art,Gothic,1
+483,The Adoration of the Magi,Bartolo di Fredi,2995,1385,Art,Gothic,2
+484,Triptych,Niccolo di Pietro Gerini,3002,1387,Art,Gothic,1
+485,Annunciating Angel,Niccolo di Pietro Gerini,3002,1387,Art,Gothic,1
+486,Annunciate Virgin,Niccolo di Pietro Gerini,3002,1387,Art,Gothic,1
+487,The Blessing Redeemer,Niccolo di Pietro Gerini,3002,1387,Art,Gothic,1
+488,The Coronation of the Virgin,Bartolo di Fredi,2995,1388,Art,Gothic,2
+489,Saint Lawrence,Bartolo di Fredi,2995,1388,Art,Gothic,1
+490,Memorial to Philip the Bold,Claus Sluter,3004,1389,Sculpture,Early Netherlandish,3
+491,Saint Peter,Andrea Vanni,2998,1390,Art,Gothic,1
+492,Saint Paul,Andrea Vanni,2998,1390,Art,Gothic,1
+493,Madonna col Bambino,Andrea Vanni,2998,1390,Art,Gothic,2
+494,Tomb of Philip the Bold Duke of Burgundy,Claus Sluter,3004,1390,Sculpture,Early Netherlandish,3
+495,Three Mourners,Claus Sluter,3004,1390,Sculpture,Early Netherlandish,2
+496,Calvary,Claus Sluter,3004,1390,Sculpture,Early Netherlandish,2
+497,Female Saints,Jacopo di Cione,2991,1390,Art,Gothic,1
+498,Saint Zenobius with Annunciation,Jacopo di Cione,2991,1390,Art,Gothic,1
+499,Crucifixion with the Virgin and Saint John,Niccolo di Pietro Gerini,3002,1390,Art,Gothic,1
+500,Madonna and Child Enthroned Surrounded by Saint John the Baptist Margaret of Antioch Saint Laurence Saint Lucy and Angels the Predella Illustrated with the Deposition of Christ,Niccolo di Pietro Gerini,3002,1390,Art,Gothic,1
+501,Saint Bernard,Niccolo di Pietro Gerini,3002,1390,Art,Gothic,1
+502,Virgin and Child at Chicago,Niccolo di Pietro Gerini,3002,1390,Art,Gothic,1
+503,The Repose of the Virgin Mary,Theophanes Grek,3003,1392,Art,Byzantine,1
+504,Virgin and Child,Claus Sluter,3004,1393,Sculpture,Early Netherlandish,2
+505,Well of Moses,Claus Sluter,3004,1395,Sculpture,Early Netherlandish,3
+506,Christ on the Cross with the Virgin Saints John and Mary Magdalene,Niccolo di Pietro Gerini,3002,1395,Art,Gothic,2
+507,Crucifixion,Niccolo di Pietro Gerini,3002,1395,Art,Gothic,2
+508,Christ Crowned with Thorns,Claus Sluter,3004,1396,Sculpture,Early Netherlandish,2
+509,Retable de la Trinité,Bartolo di Fredi,2995,1397,Art,Gothic,1
+510,Icon from the Deësis Tier,Theophanes Grek,3003,1399,Art,Byzantine,2
+511,Agostino Vescovo e Dottore della Chiesa,Andrea Vanni,2998,1400,Art,Gothic,1
+512,Virgin and Child at Saint Petersburg,Niccolo di Pietro Gerini,3002,1400,Art,Gothic,1
+513,Virgin and Child at Cambridge,Niccolo di Pietro Gerini,3002,1400,Art,Gothic,1
+514,The Trinity,Niccolo di Pietro Gerini,3002,1400,Art,Gothic,1
+515,The Virgin Mary,Theophanes Grek,3003,1400,Art,Byzantine,1
+516,Virgin and Child Enthroned,Niccolo di Pietro Gerini,3002,1404,Art,Gothic,1
+517,Cristo in Pietà tra i Simboli della Passione,Niccolo di Pietro Gerini,3002,1405,Art,Gothic,1
+518,Transfiguration of Jesus,Theophanes Grek,3003,1408,Art,Byzantine,3

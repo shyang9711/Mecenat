@@ -4,40 +4,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PropertiesManager : MonoBehaviour
 {
+    // Managers
     public GameManager gameManager;
     public PropertiesPanelManager propertiesPanelManager;
-    public CollectionManager collectionManager;
+    public DialogueManager dialogueManager;
+    public CollectionsPanelManager collectionsPanelManager;
+    public LandManager landManager;
 
+    // Sets
     public GameObject UIPropertyMarketSet;
-
-    public GameObject UIBlurImg;
-    public GameObject UImAlertSet;
-    public Text mAlertName;
-    public Text mAlertDesc;
-    public Text alertPosTxt;
-    public Text alertNegTxt;
-
-    public GameObject UIAlertSet;
-    public Text alertName;
-    public Text alertDesc;
 
     public GameObject UIInfoSet;
     public GameObject UIConstructSet;
 
     public GameObject UICollectionSet;
 
-    public int buildingPrice;
-    public int workSlot;
-    public int income;
+    // Land Info Set
+    public Text infoName;
+    public Text infoCity;
+    public Text infoOwnedYears;
+    public Text infoValue;
+    public Text infoTax;
+    public Text infoReputation;
+    public Text infoCollections;
+
+    // Work Info Set
+    public GameObject UIWorkInfoSet;
+    public Text workName;
+    public Text workYear;
+    public Text workCreator;
+    public Text workPrice;
+    public Text workMovement;
+    public Text workReputation;
+
+    // Event Num
+    public int propertiesEventNum;
+
+    //Selected Objects
+    public Button selectButton;
+    public Land selectedLand;
+    public string selectedBuildingType;
+    public string selectedBuilding;
+
+    // Collection Works
+    public Transform workContent;
+
+    public Work selectedWork;
+
+    // Building Slots
+    public Dictionary<string, int> buildingSlots = new Dictionary<string, int>();
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager.landbuyStatus = 0;
         gameManager = GameManager.instance;
+        dialogueManager.closeAlert();
+        UpdateSelectButtonState();
+        InitializeBuildingSlots();
     }
 
     // Update is called once per frame
@@ -48,179 +76,266 @@ public class PropertiesManager : MonoBehaviour
 
     public void onNewLandBtnClick()
     {
-        UIPropertyMarketSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
+        dialogueManager.openBlurImg();
+        UIPropertyMarketSet.transform.DOMove(new Vector3(Screen.width / 2f, Screen.height / 2f, 0), 0.1f).SetEase(Ease.OutBack);
         UIPropertyMarketSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
     }
 
     public void onExitBtnClick()
     {
-        if (UIInfoSet.transform.localScale == Vector3.one)
-            UIInfoSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        if (UIPropertyMarketSet.transform.localScale == Vector3.one)
-            UIPropertyMarketSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        if (UIBlurImg.transform.localScale == Vector3.one)
-            UIBlurImg.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-
+        onBackgroundReset();
+        dialogueManager.closeAlert();
+        StartCoroutine(ActivateWorkPanel());
     }
 
-    public void onIndividualBtnClick()
+    public void onLandBtnClick(Land land)
     {
+        selectedLand = land;
         UIPropertyMarketSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        mAlertName.text = "Land Purchaes Agreement";
-        mAlertDesc.text = "The Buyer: " + gameManager.givenName + 
-            " agrees to purchase the property of " + gameManager.streetNum + " " + gameManager.streetName + 
-            " in the city of " + gameManager.city + 
-            " by payment of " + gameManager.landPrice + ".";
-        alertPosTxt.text = "Sign";
-        alertNegTxt.text = "Cancel the deal";
-        UImAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UImAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-        UIBlurImg.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIBlurImg.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+
+        propertiesEventNum = 1;
+        dialogueManager.landPurchase(selectedLand);
     }
 
     public void onPosBtnClick()
     {
-        if (gameManager.money >= gameManager.landPrice)
+            
+        dialogueManager.closeAlert();
+        switch (propertiesEventNum)
         {
-            gameManager.money = gameManager.money - gameManager.landPrice;
-            gameManager.ownedLandProcess(gameManager.streetNum, gameManager.streetName, gameManager.city, gameManager.landPrice);
-            gameManager.landbuyStatus = 1;
+            // Buy Land
+            case 1:
+                if (checkSufficientMoney(selectedLand.price))
+                {
+                    gameManager.money = gameManager.money - selectedLand.price;
+                    gameManager.ownedLandProcess(selectedLand);
+                    gameManager.currLands.Remove(selectedLand);
+                    gameManager.landbuyStatus = 1;
+                    dialogueManager.landPos();
+                }
+                break; // Add break here to prevent fall-through
+            
+            // Build New Building
+            case 2:
+                int buildingCost = buildingSlots[selectedBuilding] * 100;
+                if(checkSufficientMoney(buildingCost))
+                {
+                    dialogueManager.addBuildingPos();
+                    gameManager.money -= buildingCost;
+                    gameManager.createBuilding(selectedLand, selectedBuilding, "anonymous", buildingSlots[selectedBuilding]);
+                }
+                break;
 
-            UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-            UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-            UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-            alertName.text = "Catching up with Jews";
-            alertDesc.text = "You now own a place.";
-        }
-        else
-        {
-            UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-            UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-            UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-            alertName.text = "Not Enough Money";
-            alertDesc.text = "You tried to scam the seller but failed.";
         }
 
     }
 
     public void onNegBtnClick()
     {
-        UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-        alertName.text = "Deal called off";
-        alertDesc.text = "You wasted seller's time.";
-
+        dialogueManager.closeAlert();
+        switch (propertiesEventNum)
+        {
+            // Buy Land
+            case 1:
+                dialogueManager.landNeg();
+                selectedLand = null;
+                break;
+            
+            // Build New Building
+            case 2:
+                dialogueManager.addBuildingNeg();
+                break;
+        }
     }
 
     public void onOKBtnClick()
     {
-        UIAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        UIBlurImg.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        if (gameManager.landbuyStatus == 1)
-        {
-            onMeBtnClick();
-        }
+        selectedLand = null;
+        dialogueManager.closeAlert();
+        propertiesPanelManager.receiveData();
+        landManager.receiveData();
     }
 
-    public void onOwnedLandBtnClick()
+    bool checkSufficientMoney(int cost)
     {
+        if (gameManager.money < cost)
+        {
+            dialogueManager.landInsufficientMoney();
+            return false;
+        }
+        return true;
 
-        UIInfoSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIInfoSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-        UIBlurImg.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIBlurImg.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+    }
+
+    public void onPropertyItemClick(Land land)
+    {
+        int ownedY = gameManager.year - land.year;
+        infoName.text = land.streetNum + " " + land.streetName;
+        infoCity.text = land.city;
+        infoOwnedYears.text = ownedY.ToString();
+        infoValue.text = land.price.ToString();
+        infoTax.text = "15%";
+        if (land.price / 1000 * (1 + (ownedY / 100)) > 10)
+        {
+            infoReputation.text = "10";
+        }
+        else
+        {
+            infoReputation.text = (land.price / 1000 * (1 + (ownedY / 100))).ToString();
+        }
+        int count = land.works.Count;
+        int slots = land.workSlots;
+        infoCollections.text = count + " / " + slots;
+
+        propertiesPanelManager.checkBuildingType(land);
+        propertiesPanelManager.checkOwnedBuildings(land);
+
+        selectedLand = land;
+        dialogueManager.openBlurImg();
+        UIInfoSet.SetActive(true);
     }
 
     public void onNewConstructionBtnClick()
     {
-        UIInfoSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        UIConstructSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
+        UIInfoSet.SetActive(false);
+        UIConstructSet.transform.DOMove(new Vector3(Screen.width / 2f, Screen.height / 2f, 0), 0.1f).SetEase(Ease.OutBack);
         UIConstructSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
 
     }
 
     public void onBuildingCategoryClick()
     {
-        gameManager.buildingCategory = gameObject.transform.name; 
+
+        // Get the currently selected button
+        GameObject selectedButton = EventSystem.current.currentSelectedGameObject;
+
+        // Find the Text component within the button and get its text
+        Text buttonText = selectedButton.transform.GetChild(0).GetComponent<Text>();
+        if (buttonText != null)
+        {
+            selectedBuildingType = buttonText.text;
+        }
+        else
+        {
+            Debug.LogError("No Text component found within the button");
+        }
+        UpdateSelectButtonState(); // Update the button state
+    }
+
+    public void onBuildingClick()
+    {
+        propertiesEventNum = 2;
+
+        // Get the currently selected button
+        GameObject selectedButton = EventSystem.current.currentSelectedGameObject;
+
+        // Find the Text component within the button and get its text
+        Text buttonText = selectedButton.transform.GetChild(0).GetComponent<Text>();
+        if (buttonText != null)
+        {
+            selectedBuilding = buttonText.text;
+            dialogueManager.closeAlert();
+            dialogueManager.addBuilding(selectedBuilding, buildingSlots[selectedBuilding] * 100);
+        }
+        else
+        {
+            Debug.LogError("No Text component found within the button");
+        }
+    }
+
+    public void onBackgroundReset()
+    {
+        selectedBuildingType = "";
+        selectedBuilding = "";
+        UpdateSelectButtonState(); // Update the button state
+    }
+
+    // Method to update the select button state
+    private void UpdateSelectButtonState()
+    {
+        selectButton.interactable = !string.IsNullOrEmpty(selectedBuildingType);
     }
 
     public void onSelectBtnClick()
     {
-        for (int i = 0; i < gameManager.ownedLands.Count; i++)
-        {
-            if (gameManager.ownedLands[i].streetNum == gameManager.streetNum && gameManager.ownedLands[i].streetName == gameManager.streetName)
-            {
-                Debug.Log(gameManager.ownedLands[i].streetNum);
-                Debug.Log(gameManager.buildingCategory);
-
-                if (gameManager.buildingCategory != "")
-                {   
-                    gameManager.ownedLands[i].buildingType = gameManager.buildingCategory;
-                }
-            }
-            UIConstructSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-            UIBlurImg.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        }
-
+        selectedLand.buildingType = selectedBuildingType;
+        addInitialBuilding();
+        propertiesPanelManager.receiveData();
+        dialogueManager.closeAlert();
 
         gameManager.buildingCategory = "";
-        onMeBtnClick();
     }
 
-    public void onCollectionBtnClick()
+    public void InitializeBuildingSlots()
     {
-        for (int i = 0; i < gameManager.ownedLands.Count; i++)
-        {
-            if (gameManager.ownedLands[i].streetNum == gameManager.streetNum && gameManager.ownedLands[i].streetName == gameManager.streetName)
-            {
-                collectionManager.receiveCData(gameManager.ownedLands[i]);
-            }
+
+        buildingSlots.Add("Casa", 5);
+        buildingSlots.Add("Villa", 15);
+        buildingSlots.Add("Courtyard", 5);
+        buildingSlots.Add("Palace", 40);
+        buildingSlots.Add("Garden", 10);
+
+        buildingSlots.Add("Workshop", 5);
+        buildingSlots.Add("Academy", 15);
+        buildingSlots.Add("Library", 10);
+        buildingSlots.Add("University", 30);
+        buildingSlots.Add("Tech Institute", 40);
+        
+        buildingSlots.Add("Exhibition Hall", 10);
+        buildingSlots.Add("Gallery", 20);
+        buildingSlots.Add("Museum", 30);
+        buildingSlots.Add("Concert Hall", 30);
+        buildingSlots.Add("Exposition Pavilion", 40);
+    }
+
+    public void addInitialBuilding()
+    {
+        if (selectedLand.buildingType == "Residential") {
+            gameManager.createBuilding(selectedLand, "Casa", "anonymous", buildingSlots["Casa"]);
         }
-        UIInfoSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        UICollectionSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
+        else if (selectedLand.buildingType == "Cultural") {
+            gameManager.createBuilding(selectedLand, "Exhibition Hall", "anonymous", buildingSlots["Exhibition Hall"]);
+        }
+        else if (selectedLand.buildingType == "Academic") {
+            gameManager.createBuilding(selectedLand, "Workshop", "anonymous", buildingSlots["Workshop"]);
+        }
+    }
+
+    public void onViewCollectionClick()
+    {
+        collectionsPanelManager.receiveData();
+        dialogueManager.openBlurImg();
+        UICollectionSet.transform.DOMove(new Vector3(Screen.width / 2f, Screen.height / 2f, 0), 0.1f).SetEase(Ease.OutBack);
         UICollectionSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
     }
 
-    public void onCloseBtnClick()
+    public void onViewWorkClick(Work work)
     {
-        UICollectionSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        UIInfoSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIInfoSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+        Debug.Log(work.name);
+        workName.text = work.name;
+        workYear.text = $"{work.year}";
+        workCreator.text = work.creator;
+        workReputation.text = $"{work.reputation}";
+        // workPrice.text = $"{work.price}";
+        workMovement.text = work.movement;
+        UIWorkInfoSet.transform.DOMove(new Vector3(Screen.width / 2f, Screen.height / 2f, 0), 0.1f).SetEase(Ease.OutBack);
+        UIWorkInfoSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
     }
 
-    public void setBuildingPrice(int price)
+    public void onAuctionBtnClick()
     {
-        buildingPrice = price;
+        selectedLand.works.Remove(selectedWork);
+        gameManager.auctionWorks.Add(selectedWork);
+        dialogueManager.closeAlert();
     }
 
-    public void setWorkSlots(int slot)
+    private IEnumerator ActivateWorkPanel()
     {
-        workSlot = slot;
-    }
+        // Wait for 2 seconds
+        yield return new WaitForSeconds(1f);
 
-    public void setIncome(int money)
-    {
-        income = money;
-    }
-
-    public void onBuildingItemClick()
-    {
-        if (gameManager.money >= buildingPrice)
-        {
-            gameManager.money -= buildingPrice;
-            gameManager.createBuilding(gameManager.streetNum, gameManager.streetName, gameObject.transform.name, "anonymous", workSlot, income);
-            onExitBtnClick();
-        }
-        else
-        {
-            UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-            UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-            UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-            alertName.text = "Not Enough Money";
-            alertDesc.text = "You tried to scam the seller but failed.";
-        }
+        // Set the game object active
+        workContent.GetChild(0).gameObject.SetActive(true);
     }
 
     public void onMeBtnClick()

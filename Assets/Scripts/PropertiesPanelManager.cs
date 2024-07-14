@@ -3,19 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PropertiesPanelManager : MonoBehaviour
 {
     public GameManager gameManager;
     public PropertiesManager propertiesManager;
 
-    public Text infoName;
-    public Text infoCity;
-    public Text infoOwnedYears;
-    public Text infoValue;
-    public Text infoTax;
-    public Text infoReputation;
-    public Text infoCollections;
+    public Transform propertiesContent;
+    public GameObject propertiesItemPrefab;
     public GameObject newConstructBtn;
 
     public GameObject residentialTree;
@@ -30,54 +26,36 @@ public class PropertiesPanelManager : MonoBehaviour
     public GameObject courtyardBtn;
     public GameObject palaceBtn;
     public GameObject gardenBtn;
-    public GameObject rline1;
-    public GameObject rline2;
-    public GameObject rline3;
-    public GameObject rline4;
-    public GameObject rline5;
 
     public GameObject storeBtn;
     public GameObject officeBtn;
     public GameObject financialcenterBtn;
     public GameObject headquartersBtn;
     public GameObject foundationBtn;
-    public GameObject cline1;
-    public GameObject cline2;
-    public GameObject cline3;
-    public GameObject cline4;   
 
+    public GameObject exhibitionhallBtn;
     public GameObject galleryBtn;
     public GameObject concerthallBtn;
     public GameObject museumBtn;
-    public GameObject clline1;
-    public GameObject clline2;
+    public GameObject expositionpavilionBtn;
 
     public GameObject workshopBtn;
     public GameObject academyBtn;
     public GameObject libraryBtn;
     public GameObject universityBtn;
     public GameObject techinstituteBtn;
-    public GameObject aline1;
-    public GameObject aline2;
-    public GameObject aline3;
-    public GameObject aline4;
-    public GameObject aline5;
 
     public GameObject templeBtn;
     public GameObject churchBtn;
     public GameObject chapelBtn;
     public GameObject cathedralBtn;
     public GameObject basilicaBtn;
-    public GameObject rlline1;
-    public GameObject rlline2;
-    public GameObject rlline3;
-    public GameObject rlline4;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.instance;
-        receiveLData();
+        receiveData();
 
     }
 
@@ -87,256 +65,215 @@ public class PropertiesPanelManager : MonoBehaviour
         
     }
 
-    public void receiveLData()
+    public void receiveData()
     {
         int tableSize = gameManager.ownedLands.Count;
 
-        GameObject indivBtn = transform.GetChild(0).gameObject;
-        GameObject gameObj;
-        for (int i = 0; i < tableSize; i++)
+        propertiesContent.GetChild(0).gameObject.SetActive(true);
+
+        // Clear existing buttons
+        foreach (Transform child in propertiesContent)
         {
-
-            gameObj = Instantiate(indivBtn, transform);
-            gameObj.name = gameManager.ownedLands[i].streetNum + " " + gameManager.ownedLands[i].streetName;
-            gameObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = gameManager.ownedLands[i].streetNum + " " + gameManager.ownedLands[i].streetName;
-            gameObj.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = gameManager.ownedLands[i].buildingType;
-
-            gameObj.GetComponent<Button>().AddEventListener(i, ItemClicked);
+            if (child != propertiesContent.GetChild(0))
+            {
+                Destroy(child.gameObject);
+            }
         }
 
-        Destroy(indivBtn);
+        if (tableSize > 0) {
+            if (propertiesContent.childCount == 0) {
+                return;
+            }
+
+            GameObject gameObj;
+            for (int i = 0; i < tableSize; i++)
+            {
+                Land land = gameManager.ownedLands[i];
+                gameObj = Instantiate(propertiesItemPrefab, propertiesContent);
+                gameObj.name = land.streetNum + " " + land.streetName;
+                gameObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = land.streetNum + " " + land.streetName;
+                string buildingTypeText = string.IsNullOrEmpty(land.buildingType) ? "No Building" : land.buildingType;
+                gameObj.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = buildingTypeText;
+
+                gameObj.GetComponent<Button>().AddEventListener(i, ItemClicked);
+            }
+
+            propertiesItemPrefab.gameObject.SetActive(false);
+        }
     }
 
 
     void ItemClicked(int itemIndex)
     {
-        Debug.Log("item " + itemIndex + " cliked");
-        gameManager.streetNum = gameManager.ownedLands[itemIndex].streetNum;
-        gameManager.streetName = gameManager.ownedLands[itemIndex].streetName;
-        int ownedY = gameManager.year - gameManager.ownedLands[itemIndex].year;
-        infoName.text = gameManager.ownedLands[itemIndex].streetNum + " " + gameManager.ownedLands[itemIndex].streetName;
-        infoCity.text = gameManager.ownedLands[itemIndex].city;
-        infoOwnedYears.text = ownedY.ToString();
-        infoValue.text = gameManager.ownedLands[itemIndex].price.ToString();
-        infoTax.text = "15%";
-        if (gameManager.ownedLands[itemIndex].price / 1000 * (1 + (ownedY / 100)) > 10)
-        {
-            infoReputation.text = "10";
-        }
-        else
-        {
-            infoReputation.text = (gameManager.ownedLands[itemIndex].price / 1000 * (1 + (ownedY / 100))).ToString();
-        }
-        int count = gameManager.ownedLands[itemIndex].oLWorks.Count;
-        int slots = gameManager.ownedLands[itemIndex].workSlots;
-        infoCollections.text = count + " / " + slots;
-
-        checkBuildingType(gameManager.ownedLands[itemIndex]);
-        checkOwnedBuildings(gameManager.ownedLands[itemIndex]);
-
-        propertiesManager.onOwnedLandBtnClick();
+        propertiesManager.onPropertyItemClick(gameManager.ownedLands[itemIndex]);
     }
 
-    public void checkBuildingType(GameManager.OwnedLands item)
+    public void checkBuildingType(Land item)
     {
 
         if (item.buildingType == "Residential")
         {
             newConstructBtn.SetActive(false);
             residentialTree.SetActive(true);
-            casaBtn.SetActive(true);
+            culturalTree.SetActive(false);
+            academicTree.SetActive(false);
         }
-        if (item.buildingType == "Commercial")
+        else if (item.buildingType == "Commercial")
         {
             newConstructBtn.SetActive(false);
             commercialTree.SetActive(true);
-            storeBtn.SetActive(true);
         }
-        if (item.buildingType == "Cultural")
+        else if (item.buildingType == "Cultural")
         {
             newConstructBtn.SetActive(false);
+            residentialTree.SetActive(false);
             culturalTree.SetActive(true);
-            galleryBtn.SetActive(true);
+            academicTree.SetActive(false);
         }
-        if (item.buildingType == "Academic")
+        else if (item.buildingType == "Academic")
         {
             newConstructBtn.SetActive(false);
+            residentialTree.SetActive(false);
+            culturalTree.SetActive(false);
             academicTree.SetActive(true);
-            workshopBtn.SetActive(true);
         }
-        if (item.buildingType == "Religious")
+        else if (item.buildingType == "Religious")
         {
             newConstructBtn.SetActive(false);
             religiousTree.SetActive(true);
-            templeBtn.SetActive(true);
+        }
+        else{
+            newConstructBtn.SetActive(true);
+            residentialTree.SetActive(false);
+            culturalTree.SetActive(false);
+            academicTree.SetActive(false);
         }
 
     }
 
-    public void checkOwnedBuildings(GameManager.OwnedLands item)
+    public void checkOwnedBuildings(Land item)
     {
-        int buildingList = item.oBuildings.Count;
+        int buildingList = item.buildings.Count;
         for (int i = 0; i < buildingList; i++)
         {
-            Debug.Log(item.oBuildings[i].name);
-            if (item.oBuildings[i].name == "Casa")
+            if (item.buildings[i].name == "Casa")
             {
                 casaBtn.GetComponent<Button>().enabled = false;
+                casaBtn.SetActive(true);
                 villaBtn.SetActive(true);
-                rline1.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Villa")
+            if (item.buildings[i].name == "Villa")
             {
                 villaBtn.GetComponent<Button>().enabled = false;
                 courtyardBtn.SetActive(true);
                 palaceBtn.SetActive(true);
-                rline2.SetActive(true);
-                rline4.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Courtyard")
+            if (item.buildings[i].name == "Courtyard")
             {
                 courtyardBtn.GetComponent<Button>().enabled = false;
-                if ( i + 1 < buildingList)
-                {
-                    if (item.oBuildings[i + 1].name == "Palace")
-                    {
-                        rline3.SetActive(true);
-                        rline5.SetActive(true);
-                        gardenBtn.SetActive(true);
-                    }
-                }
+                gardenBtn.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Palace")
+            if (item.buildings[i].name == "Palace")
             {
                 palaceBtn.GetComponent<Button>().enabled = false;
-                if (i + 1 < buildingList)
-                {
-                    if (item.oBuildings[i + 1].name == "Courtyard")
-                    {
-                        rline3.SetActive(true);
-                        rline5.SetActive(true);
-                        gardenBtn.SetActive(true);
-                    }
-                }
+                gardenBtn.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Garden")
+            if (item.buildings[i].name == "Garden")
             {
                 gardenBtn.GetComponent<Button>().enabled = false;
             }
-            if (item.oBuildings[i].name == "Store")
+            if (item.buildings[i].name == "Store")
             {
                 storeBtn.GetComponent<Button>().enabled = false;
-                officeBtn.SetActive(true);
-                cline1.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Office")
+            if (item.buildings[i].name == "Office")
             {
                 officeBtn.GetComponent<Button>().enabled = false;
-                financialcenterBtn.SetActive(true);
-                cline2.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Financial Center")
+            if (item.buildings[i].name == "Financial Center")
             {
                 financialcenterBtn.GetComponent<Button>().enabled = false;
-                headquartersBtn.SetActive(true);
-                cline3.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Headquarters")
+            if (item.buildings[i].name == "Headquarters")
             {
                 headquartersBtn.GetComponent<Button>().enabled = false;
-                foundationBtn.SetActive(true);
-                cline4.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Foundation")
+            if (item.buildings[i].name == "Foundation")
             {
                 foundationBtn.GetComponent<Button>().enabled = false;
             }
-            if (item.oBuildings[i].name == "Gallery")
+            if (item.buildings[i].name == "Exhibition Hall")
+            {
+                exhibitionhallBtn.GetComponent<Button>().enabled = false;
+                exhibitionhallBtn.SetActive(true);
+                galleryBtn.SetActive(true);
+            }
+            if (item.buildings[i].name == "Gallery")
             {
                 galleryBtn.GetComponent<Button>().enabled = false;
                 concerthallBtn.SetActive(true);
                 museumBtn.SetActive(true);
-                clline1.SetActive(true);
-                clline2.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Concert Hall")
+            if (item.buildings[i].name == "Concert Hall")
             {
                 concerthallBtn.GetComponent<Button>().enabled = false;
             }
-            if (item.oBuildings[i].name == "Museum")
+            if (item.buildings[i].name == "Museum")
             {
                 museumBtn.GetComponent<Button>().enabled = false;
+                if (item.buildings.Any(building => building.name == "Concert Hall"))
+                {
+                    expositionpavilionBtn.SetActive(true);
+                }
             }
-            if (item.oBuildings[i].name == "Workshop")
+            if (item.buildings[i].name == "Exposition Pavilion")
+            {
+                expositionpavilionBtn.GetComponent<Button>().enabled = false;
+            }
+            if (item.buildings[i].name == "Workshop")
             {
                 workshopBtn.GetComponent<Button>().enabled = false;
+                workshopBtn.SetActive(true);
                 academyBtn.SetActive(true);
-                libraryBtn.SetActive(true);
-                aline1.SetActive(true);
-                aline2.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Academy")
+            if (item.buildings[i].name == "Academy")
             {
-
                 academyBtn.GetComponent<Button>().enabled = false;
-                if (i + 1 < buildingList)
-                {
-                    if (item.oBuildings[i + 1].name == "Library")
-                    {
-                        aline3.SetActive(true);
-                        aline4.SetActive(true);
-                        universityBtn.SetActive(true);
-                    }
-                }
             }
-            if (item.oBuildings[i].name == "Library")
+            if (item.buildings[i].name == "Library")
             {
                 libraryBtn.GetComponent<Button>().enabled = false;
-                if (i + 1 < buildingList)
+                if (item.buildings.Any(building => building.name == "Academy"))
                 {
-                    if (item.oBuildings[i + 1].name == "Academy")
-                    {
-                        aline3.SetActive(true);
-                        aline4.SetActive(true);
-                        universityBtn.SetActive(true);
-                    }
+                    universityBtn.SetActive(true);
                 }
             }
-            if (item.oBuildings[i].name == "University")
+            if (item.buildings[i].name == "University")
             {
                 universityBtn.GetComponent<Button>().enabled = false;
                 techinstituteBtn.SetActive(true);
-                aline5.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Tech Institute")
+            if (item.buildings[i].name == "Tech Institute")
             {
                 techinstituteBtn.GetComponent<Button>().enabled = false;
             }
-            if (item.oBuildings[i].name == "Temple")
+            if (item.buildings[i].name == "Temple")
             {
                 templeBtn.GetComponent<Button>().enabled = false;
-                churchBtn.SetActive(true);
-                rlline1.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Church")
+            if (item.buildings[i].name == "Church")
             {
                 churchBtn.GetComponent<Button>().enabled = false;
-                chapelBtn.SetActive(true);
-                rlline2.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Chapel")
+            if (item.buildings[i].name == "Chapel")
             {
                 chapelBtn.GetComponent<Button>().enabled = false;
-                cathedralBtn.SetActive(true);
-                rlline3.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Cathedral")
+            if (item.buildings[i].name == "Cathedral")
             {
                 cathedralBtn.GetComponent<Button>().enabled = false;
-                basilicaBtn.SetActive(true);
-                rlline4.SetActive(true);
             }
-            if (item.oBuildings[i].name == "Basilica")
+            if (item.buildings[i].name == "Basilica")
             {
                 basilicaBtn.GetComponent<Button>().enabled = false;
             }

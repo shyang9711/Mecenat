@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Protege.unity
     guid: b769324e3fbe9764382e4c1caf3e008e
+  - enabled: 1
+    path: Assets/Scenes/Courtier.unity
+    guid: c0fb2ccd63ea11a45bc55306f80d0eda
+  - enabled: 1
+    path: Assets/Scenes/Expedition.unity
+    guid: 16334a18e4a339443b096ccf0009601b
+  - enabled: 1
+    path: Assets/Scenes/Auction.unity
+    guid: b1233a9e92868224684240c0f24544f9
   m_configObjects: {}

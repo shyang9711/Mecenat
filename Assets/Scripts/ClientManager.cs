@@ -18,8 +18,11 @@ public static class ButtonExtension
 
 public class ClientManager : MonoBehaviour
 {
-    public MarketManager marketManager;
+    public ProtegeManager protegeManager;
     public GameManager gameManager;
+
+    public Transform clientContent;
+    public GameObject clientItemPrefab;
 
     //Info UI
     public Text infoName;
@@ -33,16 +36,24 @@ public class ClientManager : MonoBehaviour
     //Transfer UI
     public Text transferCV;
     public Text transferWage;
-
+    
     //Alert UI
     public GameObject UIAlertSet;
+
+    //Filter UI
+    public GameObject filterSet;
+    public Dropdown occupationDropdown;
+    // public Dropdown affiliationDropdown;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.instance;
-        receiveCData();
-
+        // Populate dropdowns with unique values from clients list
+        PopulateDropdowns();
+        // Add listener for dropdowns
+        occupationDropdown.onValueChanged.AddListener(delegate { FilterClients(); });
+        // affiliationDropdown.onValueChanged.AddListener(delegate { FilterClients(); });
         
         UIAlertSet.transform.DOScale(Vector3.zero, 0);
 
@@ -58,68 +69,186 @@ public class ClientManager : MonoBehaviour
         
     }
 
-    void receiveCData()
+    public void onFilterButtonClick()
     {
-        int tableSize = gameManager.currClients.Count;
-
-        GameObject indivBtn = transform.GetChild(0).gameObject;
-        GameObject gameObj;
-
-        for (int i = 0; i < tableSize; i++)
-        {
-
-            gameObj = Instantiate(indivBtn, transform);
-            gameObj.name = gameManager.currClients[i].Name;
-            gameObj.transform.GetChild(0).GetComponent<Text>().text = gameManager.currClients[i].Name;
-            gameObj.transform.GetChild(1).GetComponent<Text>().text = gameManager.currClients[i].Occupation;
-            gameObj.transform.GetChild(2).GetComponent<Text>().text = gameManager.currClients[i].Age.ToString();
-            gameObj.transform.GetChild(3).GetComponent<Text>().text = gameManager.currClients[i].Potential.ToString();
-            gameObj.transform.GetChild(4).GetComponent<Text>().text = gameManager.currClients[i].Value.ToString();
-            gameObj.transform.GetChild(5).GetComponent<Text>().text = gameManager.currClients[i].Affiliation;
-
-            gameObj.GetComponent<Button>().AddEventListener(i, ItemClicked);
-
-            if (gameManager.year - gameManager.currClients[i].Start < 0)
-            {
-                gameObj.SetActive(false);
-            } else if (gameManager.year - gameManager.currClients[i].Death > 0)
-            {
-                gameObj.SetActive(false);
-            }
-
-            foreach (var protege in gameManager.protegeList)
-            {
-                if (protege == gameManager.currClients[i].Id)
-                {
-                    gameObj.SetActive(false);
-                }
-            }
-
-        }
-
-        Destroy(indivBtn);
+        filterSet.SetActive(true);
     }
 
-    void ItemClicked(int itemIndex)
+    public void onCloseButtonClick()
+    {
+        filterSet.SetActive(false);
+    }
+    public void receivePData()
+    {
+        int tableSize = gameManager.protegeList.Count;
+        clientContent.GetChild(0).gameObject.SetActive(true);
+
+        // Clear existing buttons
+        foreach (Transform child in clientContent)
+        {
+            if (child != clientContent.GetChild(0))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        GameObject gameObj;
+        for (int i = 0; i < tableSize; i++)
+        {
+            Client client = gameManager.protegeList[i];
+
+            gameObj = Instantiate(clientItemPrefab, clientContent);
+            gameObj.name = client.name;
+            gameObj.transform.GetChild(0).GetComponent<Text>().text = client.name;
+            gameObj.transform.GetChild(1).GetComponent<Text>().text = client.occupation;
+            gameObj.transform.GetChild(2).GetComponent<Text>().text = client.age.ToString();
+            gameObj.transform.GetChild(3).GetComponent<Text>().text = (client.ability / 30).ToString();
+            gameObj.transform.GetChild(4).GetComponent<Text>().text = client.value.ToString();
+            gameObj.transform.GetChild(5).GetComponent<Text>().text = client.affiliation;
+
+            gameObj.GetComponent<Button>().AddEventListener(i, ProtegeItemClicked);
+        }
+
+        clientContent.GetChild(0).gameObject.SetActive(false);
+    }
+
+    void ProtegeItemClicked(int itemIndex)
     {
         Debug.Log("item " + itemIndex + " cliked");
-        infoName.text = gameManager.currClients[itemIndex].Name;
-        infoOccupation.text = gameManager.currClients[itemIndex].Occupation;
-        infoAge.text = gameManager.currClients[itemIndex].Age.ToString();
-        infoCV.text = gameManager.currClients[itemIndex].Value.ToString();
-        infoWage.text = gameManager.currClients[itemIndex].Wage.ToString();
-        infoReputation.text = gameManager.currClients[itemIndex].Potential.ToString();
-        infoCreations.text = 0.ToString();
+        Client client = gameManager.protegeList[itemIndex];
+        infoName.text = client.name;
+        infoOccupation.text = client.occupation;
+        infoAge.text = client.age.ToString();
+        infoCV.text = client.value.ToString();
+        infoWage.text = client.wage.ToString();
+        infoReputation.text = client.potential.ToString();
+        infoCreations.text = "0";
 
-        transferCV.text = gameManager.currClients[itemIndex].Value.ToString();
-        transferWage.text = gameManager.currClients[itemIndex].Wage.ToString();
+        transferCV.text = client.value.ToString();
+        transferWage.text = client.wage.ToString();
 
-        gameManager.id = gameManager.currClients[itemIndex].Id;
+        protegeManager.onIndividualBtnClick(client);
+    }
 
-        gameManager.selectedCV = gameManager.currClients[itemIndex].Value;
-        gameManager.selectedWage = gameManager.currClients[itemIndex].Wage;
+    public void receiveCData()
+    {
+        string selectedOccupation = occupationDropdown.options[occupationDropdown.value].text;
+        // string selectedAffiliation = affiliationDropdown.options[affiliationDropdown.value].text;
 
-        marketManager.onIndividualBtnClick();
+        int tableSize = gameManager.currClients.Count;
+
+        clientContent.GetChild(0).gameObject.SetActive(true);
+
+        // Clear existing buttons
+        foreach (Transform child in clientContent)
+        {
+            if (child != clientContent.GetChild(0))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        GameObject gameObj;
+        for (int i = 0; i < tableSize; i++)
+        {
+            Client client = gameManager.currClients[i];
+
+            if (selectedOccupation != "All" && client.occupation != selectedOccupation)
+            {
+                continue;
+            }
+
+            var occupationsForResidency = GetOccupationsForResidency(client.residency);
+            if (!gameManager.scoutRegion.Contains(client.residency) || 
+                occupationsForResidency == null || 
+                !occupationsForResidency.Contains(client.occupation))
+            {
+                continue;
+            }
+
+            gameObj = Instantiate(clientItemPrefab, clientContent);
+            gameObj.name = client.name;
+            gameObj.transform.GetChild(0).GetComponent<Text>().text = client.name;
+            gameObj.transform.GetChild(1).GetComponent<Text>().text = client.occupation;
+            gameObj.transform.GetChild(2).GetComponent<Text>().text = client.age.ToString();
+            gameObj.transform.GetChild(3).GetComponent<Text>().text = (client.ability / 30).ToString();
+            gameObj.transform.GetChild(4).GetComponent<Text>().text = client.value.ToString();
+            gameObj.transform.GetChild(5).GetComponent<Text>().text = client.affiliation;
+
+            gameObj.GetComponent<Button>().AddEventListener(i, ClientItemClicked);
+        }
+
+        clientContent.GetChild(0).gameObject.SetActive(false);
+    }
+
+    public List<string> GetOccupationsForResidency(string residency)
+    {
+        foreach (var entry in gameManager.scoutOccupation)
+        {
+            if (entry.Key == residency)
+            {
+                return entry.Value;
+            }
+        }
+        return null;
+    }
+
+    void ClientItemClicked(int itemIndex)
+    {
+        Debug.Log("item " + itemIndex + " cliked");
+        Client client = gameManager.currClients[itemIndex];
+        infoName.text = client.name;
+        infoOccupation.text = client.occupation;
+        infoAge.text = client.age.ToString();
+        infoCV.text = client.value.ToString();
+        infoWage.text = client.wage.ToString();
+        infoReputation.text = (client.ability / 30).ToString();
+        infoCreations.text = "0";
+
+        transferCV.text = client.value.ToString();
+        transferWage.text = client.wage.ToString();
+
+        protegeManager.onIndividualBtnClick(client);
+    }
+
+    void FilterClients()
+    {
+        // Clear existing buttons
+        foreach (Transform child in clientContent)
+        {
+            if (child != clientContent.GetChild(0)) // Keep the original template button
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        occupationDropdown.RefreshShownValue();
+
+        // Re-populate the list with filtered clients
+        if (protegeManager.isProtege)
+        {
+            receivePData();
+        }
+        else {
+            receiveCData();
+        }
+    }
+
+
+    void PopulateDropdowns()
+    {
+        List<string> occupations = new List<string> { "All" };
+        // List<string> affiliations = new List<string> { "All" };
+
+        foreach (var client in gameManager.currClients)
+        {
+            if (!occupations.Contains(client.occupation))
+                occupations.Add(client.occupation);
+            // if (!affiliations.Contains(client.affiliation))
+            //     affiliations.Add(client.affiliation);
+        }
+
+        occupationDropdown.AddOptions(occupations);
+        // affiliationDropdown.AddOptions(affiliations);
     }
 
     public void onAlertBtnClick()

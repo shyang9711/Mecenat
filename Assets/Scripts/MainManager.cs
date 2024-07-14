@@ -1,19 +1,18 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
-using System.Linq;
-using System;
-using static GameManager;
 
 public class MainManager : MonoBehaviour
 {
-
     public GameManager gameManager;
+    public DialogueManager dialogueManager;
+    public InitializationManager initializationManager;
     public SelectLocationManager selectLocationManager;
+    public ContributionManager contributionManager;
 
-    public Button turnBtn;
     public Text nameText;
     public Text houseText;
     public Text nationalityText;
@@ -23,338 +22,299 @@ public class MainManager : MonoBehaviour
     public GameObject UIblurImg;
 
     public GameObject UIAlertSet;
-    public Text alertName;
-    public Text alertDesc;
 
     public GameObject UImAlertSet;
-    public Text mAlertName;
-    public Text mAlertDesc;
     public GameObject UImNext;
-    public Text mAlertPos;
-    public Text mAlertNeg;
-    public int pBookmark;
-    GameManager.Events pEvents;
-    public int eventCount;
+    public int bookmark;
+    public Events gameEvent;
 
-    public string sDeath;
-    public string cName;
-    public string cArtname;
-    public int cArtId;
+    public int eventNum;
+    public string deadName;
 
-    Work newWork;
+    public GameObject UIMultiSelectSet;
 
-    public Boolean openLocation = false;
-    public Boolean locationAttempt = false;
+    public Button selectButton;
 
-    public GameObject UILocationsSet;
-
-    public GameObject noplaceText;
-    public GameObject selectBtn;
-
-    public int noPlaceEventNum;
+    public Work selectedWork;
+    public GameObject UIContributionSet;
 
     private void Awake()
     {
+        dialogueManager.closeAlert();
         UIAlertSet.transform.DOScale(Vector3.zero, 0);
-        gameManager.receiveCDB();
-        gameManager.receiveWDB();
+        UImNext.SetActive(false);
+        if (gameManager.currClients.Count == 0)
+        {
+            initializationManager.InitializeGame();
+            gameManager.UpdateSelectedOccupations();
+            
+            int ran = UnityEngine.Random.Range(1, 200);
+            Land land = new Land();
+            land.streetNum = ran;
+            land.streetName = "Piazza de " + gameManager.surname;
+            land.city = "Florence";
+            land.price = 1000;
+            land.buildingType = "Residential";
+
+            gameManager.ownedLandProcess(land);
+            gameManager.createBuilding(land, "Casa", "anonymous", 1);
+        }
         gameManager.receiveLDB();
-        gameManager.receiveDDB();
-        int ran = UnityEngine.Random.Range(1, 200);
-        gameManager.ownedLandProcess(ran, "Piazza de " + gameManager.surname, "Florence", 1000, "Residential");
-        gameManager.createBuilding(ran, "Piazza de " + gameManager.surname, "Casa", "anonymous", 1, -10);
+        gameManager.scoutRegion.Add("Italy");
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         gameManager = GameManager.instance;
-
-        nameText.text = gameManager.givenName;
-        houseText.text = gameManager.surname;
-        nationalityText.text = gameManager.nationality;
-        religionText.text = gameManager.religion;
-        ageText.text = (gameManager.year - gameManager.dob).ToString();
-
+        UpdateClientInfo();
+        UpdateSelectButtonState();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+    }
 
+    private void UpdateClientInfo()
+    {
+        nameText.text = gameManager.givenName;
+        houseText.text = gameManager.surname;
+        nationalityText.text = gameManager.residency;
     }
 
     public void onTurnBtnClick()
     {
-        gameManager.year = gameManager.year + 1;
-        checkEventD();
-        gameManager.money -= gameManager.payments;
-        gameManager.currClients.Clear();
-        gameManager.creatorIDList.Clear();
-        gameManager.currWorks.Clear();
+        gameManager.year += 1;
+        checkDeath();
+        gameManager.UpdateProfitLoss();
         gameManager.currLands.Clear();
-        gameManager.receiveCDB();
-        gameManager.receiveWDB();
+        gameManager.UpdateClients();
+        gameManager.UpdateWorks();
+        gameManager.UpdateRegions();
+        gameManager.UpdateCourtier();
         gameManager.receiveLDB();
-        calculateAge();
-        gameManager.currentYClient.Clear();
-        gameManager.recursionNum = 1;
+        gameManager.progressClients();
+        gameManager.progressCourtiers();
         gameManager.createWorks();
-        pBookmark = 0;
-        checkEvents();
+        gameManager.shipConditionUpdate();
+        gameManager.takeTurn();
+        gameManager.UpdateEvents();
+        checkEvents(0);
     }
-
-    public void calculateAge()
+    public void checkEvents(int i)
     {
-        ageText.text = (gameManager.year - gameManager.dob).ToString();
-    }
-
-    public void checkEvents()
-    {
-        if (gameManager.events.Count > 0)
+        if (gameManager.currentEvents.Count == 0)
         {
-            UImNext.SetActive(false);
-            if (gameManager.eventCount > 1) {
-                UImNext.SetActive(true);
-            }
-            if (gameManager.events[pBookmark].waitTime <= gameManager.year)
-            {
-                if (gameManager.events[pBookmark].alertType == 0)
-                {
-                    alertName.text = gameManager.events[pBookmark].alertName;
-                    alertDesc.text = gameManager.events[pBookmark].alertDesc;
-                    openAlert();
-                } else
-                {
-                    mAlertName.text = gameManager.events[pBookmark].alertName;
-                    mAlertDesc.text = gameManager.events[pBookmark].alertDesc;
-                    mAlertPos.text = gameManager.events[pBookmark].posBtn;
-                    mAlertNeg.text = gameManager.events[pBookmark].negBtn;
-                    if (gameManager.events[pBookmark].eventId == 12)
-                    {
-                        newArtWorkProcess();
-                        selectLocationManager.receiveLData();
-                    }
-                    openmAlert();
+            Debug.Log("no events.");
+            return;
+        }
 
-                }
-                pEvents = gameManager.events[pBookmark];
+        if (i > gameManager.currentEvents.Count - 1)
+        {
+            if (gameManager.currentEvents.Count > 0) {
+                checkEvents(0);
             }
+            return;
+        }
+        Events gameEvent = gameManager.currentEvents[i];
+        eventNum = gameEvent.eventId;
+        SetEventParameters(i, gameEvent.eventId, gameEvent);
+        switch(eventNum)
+        {
+            case 0:
+                break;
+            // Offer Reject
+            case 1:
+                gameEvent.client.offers.Remove(gameManager.playerId);
+                dialogueManager.offerDenied(gameEvent.client.name);
+                break;
+            // Offer Accept
+            case 2:
+                gameEvent.client.offers.Remove(gameManager.playerId);
+                dialogueManager.offerAccepted(gameEvent.client.name, gameEvent.offeredValue);
+                break;
+            // Client Death
+            case 3:
+                dialogueManager.clientDeath(gameEvent.client.name);
+                break;
+            // New Work
+            case 4:
+                selectedWork = gameEvent.work;
+                dialogueManager.newArtWork(gameEvent.client.name, selectedWork.name);
+                break;
+            // Build Ship
+            case 5:
+                gameManager.commissionedShips -= 1;
+                gameManager.shipList.Add(gameEvent.ship);
+                dialogueManager.newShipCompleted(gameEvent.ship.name);
+                break;
 
         }
     }
 
-    public void openmAlert()
+    private void SetEventParameters(int index, int eventInt, Events thisEvent)
     {
-        UImAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UImAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-        UIblurImg.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIblurImg.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-    }
-    public void openAlert()
-    {
-        UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-        UIblurImg.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIblurImg.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+        bookmark = index;
+        eventNum = eventInt;
+        gameEvent = thisEvent;
     }
 
     public void onOKBtnClick()
     {
-        if (openLocation == true)
-        {
-            UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-            UILocationsSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-            UILocationsSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-            openLocation = false;
-        } else
-        {
-            UIAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-            UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-            UILocationsSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-            UIblurImg.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-
-            gameManager.eventCount -= 1;
-            gameManager.events.Remove(pEvents);
-            onNextBtnClick();
-        }
-
+        dialogueManager.closeAlert();
+        gameManager.currentEvents.Remove(gameEvent);
+        checkEvents(0);
     }
-
     public void onPosBtnClick()
     {
-        if (UIAlertSet.transform.localScale == Vector3.one)
+        dialogueManager.closeAlert();
+        switch (eventNum)
         {
+            // Transfer Reject
+            case 1:
+                dialogueManager.rejectionPos();
+                break;
+            // Transfer Accept
+            case 2:
+                if (gameManager.money >= gameEvent.offeredValue) {
+                    gameManager.money -= gameEvent.offeredValue;
+                    foreach (var client in gameManager.currClients)
+                    {
+                        if (client.id == gameEvent.id)
+                        {
+                            client.affiliation = gameManager.surname;
+                        }
+                    }
+                    gameEvent.client.wage = gameEvent.offeredWage;
+                    gameManager.protegeList.Add(gameEvent.client);
+                    gameManager.currClients.Remove(gameEvent.client);
+                    gameManager.UpdateSalary(gameEvent.offeredWage, true);
+                    dialogueManager.dealPos(gameEvent.offeredValue);
 
-            UIAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        }
-        else if (UImAlertSet.transform.localScale == Vector3.one)
-        {
-            UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        }
-        int posEventId = pEvents.eventId + 1;
-        alertName.text = gameManager.dialogueList.dialogue[posEventId].alertName;
-        alertDesc.text = gameManager.dialogueList.dialogue[posEventId].alertDesc;
-        if (posEventId == 1)
-        {
-            gameManager.money = gameManager.money - pEvents.offeredValue;
-            foreach (var clients in gameManager.currClients)
-            {
-                if (clients.Id == pEvents.id)
-                {
-                    clients.Affiliation = gameManager.surname;
+                } else {
+                    dialogueManager.offerInsufficientMoney(gameEvent.client.name);
                 }
-            }
-            gameManager.protegeList.Add(pEvents.id);
-            gameManager.payments = gameManager.payments + pEvents.offeredWage;
+                break;
+            // Client Death
+            case 3:
+                gameManager.money -= 10;
+                dialogueManager.funeralPos(deadName);
+                break;
+            
+            // New Work
+            case 4:
+                UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
+                UIMultiSelectSet.SetActive(true);
+                break;
 
-        } else if (posEventId == 10)
-        {
-            alertDesc.text = alertDesc.text + pEvents.name;
-            gameManager.money = gameManager.money - 10;
-        } else if (posEventId == 13)
-        {
-            if (noPlaceEventNum > 0)
-            {
-                locationAttempt = true;
-                onNegBtnClick();
-                return;
-            }
-            openLocation = true;
+            // Build Ship
+            case 5:
+                break;
         }
-        gameManager.events.Remove(pEvents);
-        UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-
     }
 
     public void onNegBtnClick()
     {
-        if (UIAlertSet.transform.localScale == Vector3.one)
+        dialogueManager.closeAlert();
+        switch (eventNum)
         {
-
-            UIAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
+            // Transfer Reject
+            case 1:
+                dialogueManager.rejectionNeg();
+                break;
+            // Transfer Accept
+            case 2:
+                dialogueManager.dealNeg();
+                break;
+            // Client Death
+            case 3:
+                dialogueManager.funeralNeg(deadName);
+                break;
+            // New Work
+            case 4:
+                int price = UnityEngine.Random.Range(1, 3) * 100;
+                gameManager.money += price;
+                dialogueManager.workNeg(price);
+                break;
+            // Build Ship
+            case 5:
+                break;
         }
-        else if (UImAlertSet.transform.localScale == Vector3.one)
-        {
-            UImAlertSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        }
-        int negEventId = pEvents.eventId + 2;
-        alertName.text = gameManager.dialogueList.dialogue[negEventId].alertName;
-        alertDesc.text = gameManager.dialogueList.dialogue[negEventId].alertDesc;
-
-        if (negEventId == 14)
-        {
-            if (locationAttempt)
-            {
-                alertDesc.text = "You have insufficient slot";
-                locationAttempt = false;
-            }
-            workSold();
-        }
-        gameManager.events.Remove(pEvents);
-        UIAlertSet.transform.DOMove(new Vector3(960, 540, 0), 0.1f).SetEase(Ease.OutBack);
-        UIAlertSet.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
     }
 
-    public void checkEventD()
+    public void checkDeath()
     {
-        int tableSize = gameManager.currClients.Count;
-        for (int i = 0; i < tableSize; i++)
+        foreach (Client client in gameManager.protegeList)
         {
-            if (gameManager.protegeList.Contains(gameManager.currClients[i].Id))
+            if (client.death < gameManager.year)
             {
-                if (gameManager.currClients[i].Death < gameManager.year)
-                {
-                    gameManager.eventProcess(gameManager.currClients[i].Name);  
-                    gameManager.payments -= gameManager.currClients[i].Wage;
-                }
+                gameManager.protegeList.Remove(client);
+                gameManager.deathEventProcess(client);
+                gameManager.UpdateSalary(gameEvent.offeredWage, false);
             }
         }
     }
 
     public void onSelectBtnClick()
     {
-        if (noPlaceEventNum == 1)
+        selectedWork.owners.Add(gameManager.playerId);
+        gameManager.ownedWorks.Add(selectedWork);
+        foreach (Client client in gameManager.currClients)
         {
-            noPlaceEventNum = 0;
-            workSold();
-        }
-        else
-        {
-            int data = gameManager.ownedLands.Count;
-            for (int i = 0; i < data; i++)
-            {
-                if (gameManager.streetNum == gameManager.ownedLands[i].streetNum && gameManager.streetName == gameManager.ownedLands[i].streetName)
-                {
-                    gameManager.addWorktoLandProcess(gameManager.streetNum,
-                        gameManager.streetName,
-                        newWork);
-
-                }
+            if (client.id == selectedWork.creatorId) {
+                client.ability += selectedWork.reputation;
+                client.value = client.ability * 10;
+                client.wage = client.ability / 10;
+                break;
             }
         }
-        UILocationsSet.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack);
-        noplaceText.SetActive(false);
+        gameManager.addWorktoLandProcess(selectLocationManager.selectedLand, selectedWork);
+        UIMultiSelectSet.SetActive(false);
+        dialogueManager.workPos();
     }
 
-    public void newArtWorkProcess()
+    public void onSellBtnClick()
     {
-
-        cArtId = gameManager.events[pBookmark].id;
-        for (int j = 0; j < gameManager.ownedWorks.Count; j++)
-        {
-            if (gameManager.ownedWorks[j].Id == cArtId)
-            {
-                newWork = gameManager.mWork;
-                cArtname = gameManager.ownedWorks[j].Name;
-                Debug.Log(cArtname);
-
-                newWork.Name = cArtname;
-                newWork.Id = gameManager.ownedWorks[j].Id;
-                newWork.CreatorId = gameManager.ownedWorks[j].CreatorId;
-                newWork.Year = gameManager.ownedWorks[j].Year;
-                newWork.Category = gameManager.ownedWorks[j].Category;
-                newWork.Price = gameManager.ownedWorks[j].Price;
-                newWork.Movement = gameManager.ownedWorks[j].Movement;
-                newWork.Reputation = gameManager.ownedWorks[j].Reputation;
-            }
-        }
+        int price = UnityEngine.Random.Range(1, 3) * 100;
+        gameManager.money += price;
+        UIMultiSelectSet.SetActive(false);
+        dialogueManager.workNeg(price);
     }
 
-    public void workSold()
+    public void onBackgroundReset()
     {
-        int rnd = UnityEngine.Random.Range(1, 5);
-        int price = rnd * 100;
-        alertDesc.text =
-        alertDesc.text = gameManager.dialogueList.dialogue[14].alertDesc + price + " due to insufficient slot." + Environment.NewLine + "(You gained " + price + ")";
-        gameManager.money = gameManager.money + price;
-        foreach (var works in gameManager.ownedWorks.ToList())
-        {
-            if (works.Id == cArtId)
-            {
-                Debug.Log("Artwork sold.");
-                gameManager.ownedWorks.Remove(works);
-            }
-        }
+        selectLocationManager.selectedLand = null; // Reset the selected land
+        UpdateSelectButtonState(); // Update the button state
+    }
 
+    // Method to update the select button state
+    public void UpdateSelectButtonState()
+    {
+        selectButton.interactable = selectLocationManager.selectedLand != null;
+    }
+
+    public void onContributionBtnClick()
+    {
+        dialogueManager.openBlurImg();
+        contributionManager.receiveData();
+        UIContributionSet.SetActive(true);
+    }
+
+    public void onCancelBtnClick()
+    {
+        UIblurImg.SetActive(false);
+        UIContributionSet.SetActive(false);
     }
 
     public void onNextBtnClick()
     {
-
-        Debug.Log("Next Button Clicked.");
-        if (gameManager.events.Count > 0)
-        {
-            pBookmark = (pBookmark + 1) % gameManager.events.Count;
-            checkEvents();
-        }
+        checkEvents(bookmark + 1);
     }
 
     public void onBusinessBtnClick()
     {
         Invoke("BusinessScene", 0.2f);
     }
+
     public void onPropertiesBtnClick()
     {
         Invoke("PropertiesScene", 0.2f);
@@ -365,17 +325,43 @@ public class MainManager : MonoBehaviour
         Invoke("ProtegeScene", 0.2f);
     }
 
-    void BusinessScene()
+    public void onCourtierBtnClick()
+    {
+        Invoke("CourtierScene", 0.2f);
+    }
+
+    public void onAuctionBtnClick()
+    {
+        Invoke("AuctionScene", 0.2f);
+    }
+
+    public void onExpeditionBtnClick()
+    {
+        Invoke("ExpeditionScene", 0.2f);
+    }
+
+    private void BusinessScene()
     {
         SceneManager.LoadScene("Business");
     }
-    void PropertiesScene()
+    private void PropertiesScene()
     {
         SceneManager.LoadScene("Properties");
     }
-
-    void ProtegeScene()
+    private void ProtegeScene()
     {
         SceneManager.LoadScene("Protege");
+    }
+    private void CourtierScene()
+    {
+        SceneManager.LoadScene("Courtier");
+    }
+    private void AuctionScene()
+    {
+        SceneManager.LoadScene("Auction");
+    }
+    private void ExpeditionScene()
+    {
+        SceneManager.LoadScene("Expedition");
     }
 }

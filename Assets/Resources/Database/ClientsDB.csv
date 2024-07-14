@@ -1,153 +1,342 @@
-Id,Name,Occupation,Birth,Start,Death,Potential,Nationality,Affiliation
-20000,Cimabue,Artist,1240,1270,1302,6,Italy,None
-20001,Duccio di Buoninsegna,Artist,1255,1278,1319,6,Italy,None
-20002,Giotto,Artist,1267,1290,1337,7,Italy,None
-20003,Simone Martini,Artist,1284,1315,1344,7,Italy,None
-20004,Ambrogio Lorenzetti,Artist,1290,1317,1348,6,Italy,None
-20005,Paolo Veneziano,Artist,1300,1333,1365,6,Italy,None
-20006,Orcagna,Artist,1308,1343,1368,5,Italy,None
-20007,Jacopo di Cione,Artist,1325,1366,1398,5,Italy,None
-20008,Lorenzo di Bicci,Artist,1350,1370,1427,5,Italy,None
-20009,Agnolo Gaddi,Artist,1350,1374,1396,5,Italy,None
-20010,Andrei Rublev,Artist,1370,1400,1430,6,Russia,None
-20011,Donato di Niccolo,Artist,1386,1406,1466,7,Italy,None
-20012,Guido di Pietro,Artist,1395,1417,1455,7,Italy,None
-20013,Paolo Uccello,Artist,1397,1420,1475,6,Italy,None
-20014,Jan van Eyck,Artist,1390,1422,1441,7,Belgium,None
-20015,Masaccio,Artist,1401,1422,1428,6,Italy,None
-20016,Piero di Benedetto,Artist,1415,1432,1492,6,Italy,None
-20017,Filippo Lippi,Artist,1406,1434,1469,6,Italy,None
-20018,Andrea Mantegna,Artist,1431,1442,1506,6,Italy,None
-20019,Giovanni Bellini,Artist,1430,1450,1516,6,Italy,None
-20020,Leonardo da Vinci,Artist,1452,1466,1519,8,Italy,None
-20021,Alessandro di Mariano,Artist,1445,1467,1510,6,Italy,None
-20022,Hieronymus Bosch,Artist,1450,1470,1516,6,Netherlands,None
-20023,Piero di Cosimo,Artist,1462,1481,1522,6,Italy,None
-20024,Albrecht Durer,Artist,1471,1484,1528,6,Germany,None
-20025,Kamil ud-Din Behzad,Artist,1460,1486,1535,5,Afghanistan,None
-20026,Michelangelo,Artist,1475,1488,1564,7,Italy,None
-20027,Raffaello Sanzio,Artist,1483,1499,1520,8,Italy,None
-20028,Raphael,Artist,1483,1499,1520,8,Italy,None
-20029,Titian,Artist,1488,1510,1576,7,Italy,None
-20030,Hans Holbein II,Artist,1497,1517,1543,6,Germany,None
-20031,Rosso Fiorentino,Artist,1495,1521,1540,6,Italy,None
-20032,Giorgio Vasari,Artist,1511,1529,1574,6,Italy,None
-20033,Qiu Ying,Artist,1494,1530,1552,7,China,None
-20034,Jacopo Robusti,Artist,1518,1544,1594,6,Italy,None
-20035,Giuseppe Arcimboldo,Artist,1526,1548,1593,6,Italy,None
-20036,Sofonisba Anguissola,Artist,1532,1550,1625,6,Italy,None
-20037,Pieter Bruegel I,Artist,1530,1551,1569,6,Netherlands,None
-20038,Hasegawa T≈çhaku,Artist,1539,1559,1610,5,Japan,None
-20039,El Greco,Artist,1541,1563,1614,7,Greece,None
-20040,George Gower,Artist,1540,1573,1596,6,England,None
-20041,Annibale Carracci,Artist,1560,1582,1609,6,Italy,None
-20042,Pieter Bruegel II,Artist,1564,1584,1638,6,Netherlands,None
-20043,Caravaggio,Artist,1571,1593,1610,7,Italy,None
-20044,Peter Paul Rubens,Artist,1577,1598,1640,7,Belgium,None
-20045,Frans Hals,Artist,1582,1610,1666,6,Netherlands,None
-20046,Jusepe de Ribera,Artist,1591,1611,1652,7,Spain,None
-20047,Nicolas Poussin,Artist,1594,1612,1665,7,France,None
-20048,Anthony van Dyck,Artist,1599,1615,1641,7,Netherlands,None
-20049,Gian Lorenzo Bernini,Artist,1598,1615,1680,7,Italy,None
-20050,Diego Velazquez,Artist,1599,1617,1660,6,Spain,None
-20051,Rembrandt van Rijn,Artist,1606,1624,1669,7,Netherlands,None
-20052,Francisco de Zurbar√°n,Artist,1598,1626,1664,6,Spain,None
-20053,Cornelis de Wael,Artist,1592,1627,1667,5,Netherlands,None
-20054,Claude Lorrain,Artist,1600,1629,1682,7,France,None
-20055,Charles Le Brun,Artist,1619,1635,1690,7,France,None
-20056,Frans Post,Artist,1612,1637,1680,7,Netherlands,None
-20057,Aelbert Cuyp,Artist,1620,1639,1691,6,Netherlands,None
-20058,Bartolom√© Esteban Murillo,Artist,1617,1645,1682,7,Spain,None
-20059,Jan Steen,Artist,1626,1650,1679,7,Netherlands,None
-20060,Pieter de Hooch,Artist,1629,1650,1684,6,Netherlands,None
-20061,Johannes Vermeer,Artist,1632,1653,1675,6,Netherlands,None
-20062,Nicolaes Maes,Artist,1634,1653,1693,6,Netherlands,None
-20063,Claude Lefebvre,Artist,1632,1654,1675,6,France,None
-20064,Jan Weenix,Artist,1640,1664,1719,5,Netherlands,None
-20065,Francois de Troy,Artist,1645,1671,1730,6,France,None
-20066,Hyacinthe Rigaud,Artist,1659,1685,1743,6,France,None
-20067,Jean-Antoine Watteau,Artist,1684,1705,1721,6,France,None
-20068,Jeong Seon,Artist,1676,1711,1759,6,Korea,None
-20069,Giovanni Battista Tiepolo,Artist,1696,1715,1770,6,Italy,None
-20070,William Hogarth,Artist,1697,1720,1764,7,England,None
-20071,Jean-Baptiste-Simeon Chardin,Artist,1699,1724,1779,6,France,None
-20072,Thomas Gainsborough,Artist,1727,1746,1788,6,England,None
-20073,Jean-Honore Fragonard,Artist,1732,1752,1806,6,France,None
-20074,Angelica Kauffman,Artist,1741,1762,1807,6,Switzerland,None
-20075,Francisco Goya,Artist,1746,1763,1828,7,Spain,None
-20076,Gim Hongdo,Artist,1745,1766,1806,5,Korea,None
-20077,Marie-Anne Collot,Artist,1748,1766,1821,5,France,None
-20078,Johann Friedrich August Tischbein,Artist,1750,1768,1829,6,Germany,None
-20079,Jacques-Louis David,Artist,1748,1769,1825,7,France,None
-20080,√âlisabeth Vig√©e Le Brun,Artist,1755,1774,1842,7,France,None
-20081,Kim Deuk-sin,Artist,1754,1774,1822,5,Korea,None
-20082,Gilbert Stuart,Artist,1755,1777,1828,7,USA,None
-20083,Sin Yun-bok,Artist,1758,1778,1813,6,Korea,None
-20084,Katsushika Hokusai,Artist,1760,1779,1849,7,Japan,None
-20085,Joseph Mallord William Turner,Artist,1775,1790,1851,8,England,None
-20086,Sharaku,Artist,1770,1794,1825,6,Japan,None
-20087,Jean-Auguste-Dominique Ingres,Artist,1780,1797,1867,7,France,None
-20088,Caspar David Friedrich,Artist,1774,1798,1840,6,Germany,None
-20089,Francesco Hayez,Artist,1791,1809,1882,6,Italy,None
-20090,Theodore Gericault,Artist,1791,1810,1824,6,France,None
-20091,Boris Orlovsky,Artist,1793,1811,1837,5,Russia,None
-20092,Ferdinand Victor Eugene Delacroix,Artist,1798,1819,1863,7,France,None
-20093,Jean-Baptiste-Camille Corot,Artist,1796,1822,1875,6,France,None
-20094,Thomas Cole,Artist,1801,1822,1848,6,England,None
-20095,Th√©odore Chass√©riau,Artist,1819,1835,1856,5,France,None
-20096,Gustave Courbet,Artist,1819,1839,1877,6,France,None
-20097,Jean-Francois Millet,Artist,1814,1839,1875,6,France,None
-20098,Emanuel Leutze,Artist,1816,1840,1868,5,USA,None
-20099,Alexandre Cabanel,Artist,1823,1844,1889,6,France,None
-20100,Gustave Moreau,Artist,1826,1846,1898,6,France,None
-20101,William-Adolphe Bouguereau,Artist,1825,1848,1905,6,France,None
-20102,Dante Gabriel Rossetti,Artist,1828,1849,1882,6,England,None
-20103,Emily Mary Osborn,Artist,1828,1851,1925,6,England,None
-20104,Rosa Bonheur,Artist,1822,1851,1899,6,France,None
-20105,Camille Pissarro,Artist,1830,1854,1903,6,France,None
-20106,Edgar Degas,Artist,1834,1855,1917,7,France,None
-20107,Jules Joseph Lefebvre,Artist,1836,1855,1911,6,France,None
-20108,Edouard Manet,Artist,1832,1856,1883,7,France,None
-20109,Auguste Rodin,Artist,1840,1857,1917,7,France,None
-20110,Paul Cezanne,Artist,1839,1860,1906,7,France,None
-20111,Pierre-Auguste Renoir,Artist,1841,1860,1919,7,France,None
-20112,Jang Seung-eop,Artist,1843,1863,1897,4,Korea,None
-20113,Edmonia Lewis,Artist,1844,1864,1907,5,USA,None
-20114,Claude Monet,Artist,1840,1865,1926,8,France,None
-20115,Viktor Vasnetsov,Artist,1848,1867,1926,6,Russia,None
-20116,Mary Cassatt,Artist,1844,1868,1926,6,USA,None
-20117,Berthe Morisot,Artist,1841,1869,1895,6,France,None
-20118,Ilya Repin,Artist,1844,1870,1930,7,Russia,None
-20119,Paul Gauguin,Artist,1848,1873,1903,7,France,None
-20120,Raja Ravi Varma,Artist,1848,1873,1906,6,India,None
-20121,Vincent van Gogh,Artist,1853,1873,1890,8,Netherlands,None
-20122,John Collier,Artist,1850,1875,1934,6,England,None
-20123,Gustave Caillebotte,Artist,1848,1876,1894,6,France,None
-20124,Carl Larsson,Artist,1853,1877,1919,6,Sweden,None
-20125,Henri Rousseau,Artist,1844,1877,1910,7,France,None
-20126,Childe Hassam,Artist,1859,1879,1935,6,USA,None
-20127,Gustav Klimt,Artist,1862,1880,1918,7,Austria,None
-20128,Henri de Toulouse-Lautrec,Artist,1864,1881,1901,7,France,None
-20129,Camille Claudel,Artist,1864,1882,1943,7,France,None
-20130,Paul Signac,Artist,1863,1882,1935,6,France,None
-20131,Edvard Munch,Artist,1863,1883,1944,6,Norway,None
-20132,Georges Seurat,Artist,1859,1883,1891,6,France,None
-20133,Frederic Remington,Artist,1861,1886,1909,6,USA,None
-20134,Alfons Mucha,Artist,1860,1887,1939,7,Czech Republic,None
-20135,Paul S√©rusier,Artist,1864,1888,1927,5,France,None
-20136,Pablo Picasso,Artist,1881,1893,1973,8,Spain,None
-20137,Henri Matisse,Artist,1869,1894,1954,7,France,None
-20138,Paul Klee,Artist,1879,1901,1940,7,Germany,None
-20139,Wassily Kandinsky,Artist,1866,1901,1944,7,Russia,None
-20140,Robert Delaunay,Artist,1885,1904,1941,6,France,None
-20141,Ernst Ludwig Kirchner,Artist,1880,1905,1938,7,Germany,None
-20142,Piet Mondrian,Artist,1872,1905,1944,7,Netherlands,None
-20143,Amedeo Modigliani,Artist,1884,1907,1920,7,Italy,None
-20144,Egon Schiele,Artist,1890,1907,1918,7,Austria,None
-20145,Marc Chagall,Artist,1887,1907,1985,7,Belarus,None
-20146,Joan Miro,Artist,1893,1917,1983,7,Spain,None
-20147,Grant Wood,Artist,1891,1919,1942,7,USA,None
-20148,Salvador Dali,Artist,1904,1922,1989,8,Spain,None
-20149,Frida Kahlo,Artist,1907,1925,1954,7,Mexico,None
-20150,Max Beckmann,Artist,1884,1925,1950,6,Germany,None
-20151,Amrita Sher-Gil,Artist,1913,1932,1941,6,India,None
+2959,Cenni di Pepo,Artist,1240,1270,1302,137,Italy,None,Italy
+2960,Giovanni Pisano,Artist,1250,1269,1315,139,Italy,None,Italy
+2961,Duccio di Buoninsegna,Artist,1255,1278,1319,139,Italy,None,Italy
+2962,Filippo Rusuti,Artist,1255,1288,1325,78,Italy,None,Italy
+2963,Pietro Cavallini,Artist,1259,1277,1330,116,Italy,None,Italy
+2964,Gaddo Gaddi,Artist,1260,1280,1333,95,Italy,None,Italy
+2965,Giotto di Bondone,Artist,1267,1290,1337,153,Italy,None,Italy
+2966,Huang Gongwang,Artist,1269,1341,1354,97,China,None,China
+2967,Evrard d'Orleans,Artist,1270,1304,1357,119,France,None,France
+2968,Lorenzo Maitani,Artist,1275,1295,1330,101,Italy,None,Italy
+2969,Ugolino di Nerio,Artist,1280,1305,1349,94,Italy,None,Italy
+2970,Pietro Lorenzetti,Artist,1280,1306,1348,108,Italy,None,Italy
+2971,Bernardo Daddi,Artist,1280,1312,1348,103,Italy,None,Italy
+2972,Wu Zhen,Artist,1280,1335,1354,111,China,None,China
+2973,Simone Martini,Artist,1284,1308,1344,119,Italy,None,Italy
+2974,Ferrer Bassa,Artist,1285,1337,1348,106,Spain,None,Spain
+2975,Ambrogio Lorenzetti,Artist,1290,1317,1348,115,Italy,None,Italy
+2976,Taddeo Gaddi,Artist,1290,1325,1366,108,Italy,None,Italy
+2977,Lippo Memmi,Artist,1291,1317,1356,103,Italy,None,Italy
+2978,Andrea Pisano,Artist,1295,1320,1349,107,Italy,None,Italy
+2979,Jacopo del Casentino,Artist,1297,1320,1358,102,Italy,None,Italy
+2980,Paolo Veneziano,Artist,1300,1324,1365,100,Italy,None,Italy
+2981,Ni Zan,Artist,1301,1339,1374,109,China,None,China
+2982,Andrea di Cione di Arcangelo,Artist,1308,1343,1368,116,Italy,None,Italy
+2983,Wang Meng,Artist,1308,1350,1385,114,China,None,China
+2984,Vitale da Bologna,Artist,1309,1330,1360,94,Italy,None,Italy
+2985,Giovanni di Agostino,Artist,1310,1320,1370,100,Italy,None,Italy
+2986,Allegretto Nuzi,Artist,1315,1340,1373,111,Italy,None,Italy
+2987,Giusto de' Menabuoi,Artist,1320,1350,1391,98,Italy,None,Italy
+2988,Matteo Giovanetti,Artist,1322,1345,1368,104,Italy,None,Italy
+2989,Tommaso di Stefano,Artist,1324,1344,1369,107,Italy,None,Italy
+2990,Puccio Capanna,Artist,1325,1337,1348,100,Italy,None,Italy
+2991,Jacopo di Cione,Artist,1325,1366,1398,102,Italy,None,Italy
+2992,Tommaso da Modena,Artist,1326,1351,1379,96,Italy,None,Italy
+2993,Master Theodoric,Artist,1328,1359,1380,112,Czech Republic,None,Czech Republic
+2994,Jean de Liege,Artist,1330,1350,1381,116,France,None,France
+2995,Bartolo di Fredi,Artist,1330,1355,1410,100,Italy,None,Italy
+2996,Luca di Tomme,Artist,1330,1356,1389,104,Italy,None,Italy
+2997,Altichiero da Zevio,Artist,1330,1364,1390,103,Italy,None,Italy
+2998,Andrea Vanni,Artist,1332,1353,1414,94,Italy,None,Italy
+2999,Jean de Beaumetz,Artist,1335,1375,1396,92,France,None,France
+3000,Jaime Serra,Artist,1338,1356,1405,95,Spain,None,Spain
+3001,Silvestro dei Gherarducci,Artist,1339,1365,1399,88,Italy,None,Italy
+3002,Niccolo di Pietro Gerini,Artist,1340,1368,1414,102,Italy,None,Italy
+3003,Theophanes Grek,Artist,1340,1378,1410,115,Greece,None,Greece
+3004,Claus Sluter,Artist,1340,1379,1405,112,Netherlands,None,Netherlands
+3005,Paolo di Giovanni Fei,Artist,1345,1389,1411,121,Italy,None,Italy
+3006,Lorenzo di Bicci,Artist,1350,1370,1427,109,Italy,None,Italy
+3007,Agnolo Gaddi,Artist,1350,1374,1396,107,Italy,None,Italy
+3008,Spinello Aretino,Artist,1350,1384,1410,108,Italy,None,Italy
+3009,Lippo di Dalmasio,Artist,1352,1390,1410,90,Italy,None,Italy
+3010,Melchior Broederlam,Artist,1355,1381,1409,93,Netherlands,None,Netherlands
+3011,Jacquemart de Hesdin,Artist,1355,1386,1414,94,France,None,France
+3012,Andrea di Bartolo,Artist,1360,1389,1428,123,Italy,None,Italy
+3013,Taddeo di Bartolo,Artist,1360,1390,1422,108,Italy,None,Italy
+3014,LluÌs Borrass‡,Artist,1360,1400,1426,105,Spain,None,Spain
+3015,Jean Malouel,Artist,1365,1396,1415,92,Netherlands,None,Netherlands
+3016,Gentile da Fabriano,Artist,1370,1390,1427,104,Italy,None,Italy
+3017,NiccolÚ di Piero Lamberti,Artist,1370,1391,1451,101,Italy,None,Italy
+3018,Andrei Rublev,Artist,1370,1400,1430,120,Russia,None,Russia
+3019,Michelino da Besozzo,Artist,1370,1402,1455,95,Italy,None,Italy
+3020,Conrad von Soest,Artist,1370,1403,1422,119,Germany,None,Germany
+3021,Lorenzo Monaco,Artist,1370,1404,1425,136,Italy,None,Italy
+3022,Jacobello del Fiore,Artist,1370,1407,1439,95,Italy,None,Italy
+3023,Jacopino da Tradate,Artist,1371,1419,1445,91,Italy,None,Italy
+3024,Bicci di Lorenzo,Artist,1373,1400,1452,109,Italy,None,Italy
+3025,Jacopo della Quercia,Artist,1374,1400,1438,110,Italy,None,Italy
+3026,Robert Campin,Artist,1375,1406,1444,120,Netherlands,None,Netherlands
+3027,Lorenzo Ghiberti,Artist,1378,1400,1455,124,Italy,None,Italy
+3028,Antonio di Puccio Pisano,Artist,1380,1395,1450,128,Italy,None,Italy
+3029,Masolino da Panicale,Artist,1383,1403,1447,108,Italy,None,Italy
+3030,Nanni di Banco,Artist,1384,1406,1421,111,Italy,None,Italy
+3031,Hubert van Eyck,Artist,1385,1409,1426,118,Netherlands,None,Netherlands
+3032,Donatello,Artist,1386,1406,1466,153,Italy,None,Italy
+3033,Parri Spinelli,Artist,1387,1400,1453,113,Italy,None,Italy
+3034,Dai Jin,Artist,1388,1410,1462,120,China,None,China
+3035,Jan van Eyck,Artist,1390,1422,1441,134,Belgium,None,Belgium
+3036,Bernat Martorell,Artist,1390,1427,1452,118,Spain,None,Spain
+3037,Stefano di Giovanni,Artist,1392,1423,1450,111,Italy,None,Italy
+3038,Fra Angelico,Artist,1395,1417,1455,130,Italy,None,Italy
+3039,Michelozzo di Bartolomeo Michelozzi,Artist,1396,1420,1472,113,Italy,None,Italy
+3040,Borghese di Piero Borghese,Artist,1397,1420,1463,121,Italy,None,Italy
+3041,Paolo Uccello,Artist,1397,1420,1475,119,Italy,None,Italy
+3042,Luca della Robbia,Artist,1399,1431,1482,121,Italy,None,Italy
+3043,Rogier van der Weyden,Artist,1399,1432,1464,128,Netherlands,None,Netherlands
+3044,Jacopo Bellini,Artist,1400,1424,1470,118,Italy,None,Italy
+3045,Goncalo Velho Cabral,Explorer,1400,1431,1460,128,Portugal,None,Portugal
+3046,Tommaso di Ser Giovanni di Simone,Artist,1401,1422,1428,138,Italy,None,Italy
+3047,Giovanni di Paolo,Artist,1403,1420,1482,126,Italy,None,Italy
+3048,Jacques Daret,Artist,1404,1433,1470,114,Netherlands,None,Netherlands
+3049,Sano di Pietro,Artist,1405,1428,1481,125,Italy,None,Italy
+3050,Filippo Lippi,Artist,1406,1434,1469,125,Italy,None,Italy
+3051,Domenico Veneziano,Artist,1410,1430,1461,119,Italy,None,Italy
+3052,Konrad Witz,Artist,1410,1434,1446,117,Germany,None,Germany
+3053,Lorenzo di Pietro,Artist,1410,1435,1480,108,Italy,None,Italy
+3054,Enguerrand Quarton,Artist,1410,1444,1466,99,France,None,France
+3055,Joos van Wassenhove,Artist,1410,1460,1480,117,Netherlands,None,Netherlands
+3056,Zanobi Strozzi,Artist,1412,1434,1468,103,Italy,None,Italy
+3057,Piero della Francesca,Artist,1415,1432,1492,131,Italy,None,Italy
+3058,Dieric Bouts,Artist,1415,1445,1475,109,Netherlands,None,Netherlands
+3059,Gang Hui-an,Artist,1417,1441,1464,97,Korea,None,Korea
+3060,Domenico di Michelino,Artist,1417,1442,1491,109,Italy,None,Italy
+3061,Agostino di Duccio,Artist,1418,1449,1481,115,Italy,None,Italy
+3062,Andrea del Castagno,Artist,1419,1440,1457,117,Italy,None,Italy
+3063,BarthÈlemy d'Eyck,Artist,1420,1440,1470,103,Netherlands,None,France
+3064,Fra Carnevale,Artist,1420,1440,1484,127,Italy,None,Italy
+3065,Petrus Christus,Artist,1420,1444,1476,128,Netherlands,None,Netherlands
+3066,Benedetto Bonfigli,Artist,1420,1445,1496,102,Italy,None,Italy
+3067,Jean Fouquet,Artist,1420,1447,1481,114,France,None,France
+3068,Bartolomeo Caporali,Artist,1420,1450,1503,111,Italy,None,Italy
+3069,Bertoldo di Giovanni,Artist,1420,1460,1491,117,Italy,None,Italy
+3070,Nikolaus Gerhaert,Artist,1420,1462,1473,117,Netherlands,None,Netherlands
+3071,Joao Vaz Corte-Real,Explorer,1420,1474,1496,99,Portugal,None,Portugal
+3072,Benozzo Gozzoli,Artist,1421,1439,1497,120,Italy,None,Italy
+3073,Andreas Ritzos,Artist,1421,1451,1492,124,Greece,None,Greece
+3074,Antoine Le Moiturier,Artist,1425,1443,1495,113,France,None,France
+3075,Nuno Goncalves,Artist,1425,1450,1491,112,Portugal,None,Portugal
+3076,Alesso Baldovinetti,Artist,1427,1448,1499,99,Italy,None,Italy
+3077,Antonio Rossellino,Artist,1427,1455,1479,105,Italy,None,Italy
+3078,Vincenzo Foppa,Artist,1427,1456,1515,112,Italy,None,Italy
+3079,Shen Zhou,Artist,1427,1466,1509,112,China,None,China
+3080,Desiderio da Settignano,Artist,1428,1453,1464,104,Italy,None,Italy
+3081,Gentile Bellini,Artist,1429,1445,1507,124,Italy,None,Italy
+3082,Mino da Fiesole,Artist,1429,1453,1484,110,Italy,None,Italy
+3083,Antonello da Messina,Artist,1429,1455,1479,122,Italy,None,Italy
+3084,Giovanni Bellini,Artist,1430,1450,1516,139,Italy,None,Italy
+3085,Matteo di Giovanni,Artist,1430,1453,1495,108,Italy,None,Italy
+3086,Hans Memling,Artist,1430,1455,1494,126,Germany,None,Germany
+3087,CosmË Tura,Artist,1430,1456,1495,122,Italy,None,Italy
+3088,Carlo Crivelli,Artist,1430,1458,1495,109,Italy,None,Italy
+3089,Francesco Laurana,Artist,1430,1458,1502,114,Croatia,None,Croatia
+3090,Michel Colombe,Artist,1430,1462,1513,116,France,None,France
+3091,Andrea Mantegna,Artist,1431,1442,1506,130,Italy,None,Italy
+3092,Marco Zoppo,Artist,1433,1453,1498,119,Italy,None,Italy
+3093,Antonio del Pollaiuolo,Artist,1433,1459,1498,106,Italy,None,Italy
+3094,Michael Wolgemut,Artist,1434,1465,1519,110,Germany,None,Germany
+3095,Kano Masanobu,Artist,1434,1460,1530,102,Japan,None,Japan
+3096,Tosa Mitsunobu,Artist,1434,1469,1525,90,Japan,None,Japan
+3097,Nicolas Froment,Artist,1435,1461,1486,121,France,None,France
+3098,Michael Pacher,Artist,1435,1460,1498,123,Germany,None,Germany
+3099,Pietro Lombardo,Artist,1435,1460,1515,107,Italy,None,Italy
+3100,Andrea del Verrocchio,Artist,1435,1465,1488,115,Italy,None,Italy
+3101,Andrea della Robbia,Artist,1435,1466,1525,118,Italy,None,Italy
+3102,Giovanni Santi,Artist,1435,1480,1494,128,Italy,None,Italy
+3103,Benvenuto di Giovanni,Artist,1436,1453,1518,120,Italy,None,Italy
+3104,Baccio Baldini,Artist,1436,1460,1487,102,Italy,None,Italy
+3105,Melozzo da ForlÏ,Artist,1438,1464,1494,106,Italy,None,Italy
+3106,Francesco di Giorgio Martini,Artist,1439,1464,1501,121,Italy,None,Italy
+3107,Cosimo Rosselli,Artist,1439,1469,1507,114,Italy,None,Italy
+3108,Bernt Notke,Artist,1440,1463,1509,101,Germany,None,Germany
+3109,Hugo van der Goes,Artist,1440,1467,1482,140,Netherlands,None,Netherlands
+3110,Albertus Pictor,Artist,1440,1473,1507,111,Sweden,None,Sweden
+3111,Luca d'Egidio,Artist,1441,1470,1523,115,Italy,None,Italy
+3112,Sandro Botticelli,Artist,1445,1467,1510,141,Italy,None,Italy
+3113,Pietro Perugino,Artist,1446,1479,1523,115,Italy,None,Italy
+3114,Domenico Ghirlandaio,Artist,1448,1477,1494,118,Italy,None,Italy
+3115,Hieronymus Bosch,Artist,1450,1470,1516,148,Netherlands,None,Netherlands
+3116,Jan Polack,Artist,1450,1475,1519,103,Poland,None,Poland
+3117,Veit Stoss,Artist,1450,1477,1533,112,Germany,None,Germany
+3118,Juan de la Cosa,Explorer,1450,1488,1510,118,Spain,None,Spain
+3119,Giovanni Caboto,Explorer,1450,1496,1499,129,Italy,None,Italy
+3120,Gaspar Corte-Real,Explorer,1450,1500,1501,109,Portugal,None,Portugal
+3121,Christopher Columbus,Explorer,1451,1492,1506,162,Italy,None,Italy
+3122,Leonardo da Vinci,Artist,1452,1466,1519,166,Italy,None,Italy
+3123,Diogo Cao,Explorer,1452,1482,1486,134,Portugal,None,Portugal
+3124,Jean Hey,Artist,1455,1475,1505,99,Netherlands,None,Netherlands
+3125,Pedro Alonso NiÒo,Explorer,1455,1498,1505,117,Spain,None,Spain
+3126,Filippino Lippi,Artist,1457,1475,1504,116,Italy,None,Italy
+3127,Gerard David,Artist,1460,1483,1523,113,Netherlands,None,Netherlands
+3128,Kamal ud-Din Behzad,Artist,1460,1486,1535,114,Afghanistan,None,Afghanistan
+3129,Pero da Covilha,Explorer,1460,1487,1526,116,Portugal,None,Portugal
+3130,Nicolau Coelho,Explorer,1460,1497,1504,128,Portugal,None,Portugal
+3131,Vasco da Gama,Explorer,1460,1497,1524,131,Portugal,None,Portugal
+3132,Duarte Pacheco Pereira,Explorer,1460,1503,1533,103,Portugal,None,Portugal
+3133,Bernhard Strigel,Artist,1461,1480,1461,111,Germany,None,Germany
+3134,Piero di Cosimo,Artist,1462,1481,1522,112,Italy,None,Italy
+3135,Vicente Y·nez PinzÛn,Explorer,1462,1492,1514,106,Spain,None,Spain
+3136,Alonso de Ojeda,Explorer,1466,1493,1515,113,Spain,None,Spain
+3137,Matthias Grunewald,Artist,1470,1511,1528,119,Germany,None,Germany
+3138,Joao de Lisboa,Explorer,1470,1511,1525,132,Portugal,None,Portugal
+3139,Albrecht Durer,Artist,1471,1484,1528,148,Germany,None,Germany
+3140,Michelangelo di Buonarroti,Artist,1475,1488,1564,160,Italy,None,Italy
+3141,Giorgio Barbarelli,Artist,1477,1500,1510,121,Italy,None,Italy
+3142,Jan Gossaert,Artist,1478,1503,1532,111,Belgium,None,Belgium
+3143,Albrecht Altdorfer,Artist,1480,1506,1538,116,Germany,None,Germany
+3144,Joachim Patinir,Artist,1480,1515,1524,108,Belgium,None,Belgium
+3145,Raffaello Santi,Artist,1483,1499,1520,178,Italy,None,Italy
+3146,Andrea del Sarto,Artist,1486,1509,1530,116,Italy,None,Italy
+3147,Tiziano Vecelli,Artist,1488,1510,1576,152,Italy,None,Italy
+3148,Qiu Ying,Artist,1494,1530,1552,112,China,None,China
+3149,Rosso Fiorentino,Artist,1495,1521,1540,117,Italy,None,Italy
+3150,Hans Holbein II,Artist,1497,1517,1543,128,Germany,None,Germany
+3151,Agnolo di Cosimo,Artist,1503,1517,1572,134,Italy,None,Italy
+3152,Girolamo Francesco Maria Mazzola,Artist,1503,1524,1540,120,Italy,None,Italy
+3153,Jan Cornelisz Vermeyen,Artist,1504,1525,1559,99,Netherlands,None,Netherlands
+3154,Pieter Aertsen,Artist,1508,1550,1575,110,Netherlands,None,Netherlands
+3155,Jacopo Bassano,Artist,1510,1538,1592,113,Italy,None,Italy
+3156,Giorgio Vasari,Artist,1511,1529,1574,131,Italy,None,Italy
+3157,Lucas Cranach II,Artist,1515,1537,1586,116,Germany,None,Germany
+3158,Jacopo Robusti,Artist,1518,1544,1594,137,Italy,None,Italy
+3159,Giuseppe Arcimboldo,Artist,1526,1548,1593,122,Italy,None,Italy
+3160,Paolo Veronese,Artist,1528,1543,1588,127,Italy,None,Italy
+3161,Pieter Bruegel I,Artist,1530,1551,1569,137,Netherlands,None,Netherlands
+3162,Sofonisba Anguissola,Artist,1532,1550,1625,116,Italy,None,Italy
+3163,Joachim Beuckelaer,Artist,1533,1560,1570,105,Netherlands,None,Netherlands
+3164,Alessandro Allori,Artist,1535,1560,1607,118,Italy,None,Italy
+3165,Hasegawa Tohaku,Artist,1539,1559,1610,104,Japan,None,Japan
+3166,George Gower,Artist,1540,1573,1596,125,England,None,England
+3167,DomÈnikos TheotokÛpoulos,Artist,1541,1563,1614,145,Greece,None,Greece
+3168,Annibale Carracci,Artist,1560,1582,1609,122,Italy,None,Italy
+3169,Pieter Bruegel II,Artist,1564,1584,1638,106,Netherlands,None,Netherlands
+3170,Michelangelo Merisi da Caravaggio,Artist,1571,1593,1610,155,Italy,None,Italy
+3171,Peter Paul Rubens,Artist,1577,1598,1640,146,Netherlands,None,Netherlands
+3172,Frans Hals,Artist,1582,1610,1666,126,Netherlands,None,Netherlands
+3173,Jusepe de Ribera,Artist,1591,1611,1652,115,Spain,None,Spain
+3174,Cornelis de Wael,Artist,1592,1627,1667,101,Netherlands,None,Netherlands
+3175,Nicolas Poussin,Artist,1594,1612,1665,128,France,None,France
+3176,Pietro da Cortona,Artist,1596,1623,1669,122,Italy,None,Italy
+3177,Gian Lorenzo Bernini,Artist,1598,1615,1680,129,Italy,None,Italy
+3178,Francisco de Zurbar·n,Artist,1598,1626,1664,122,Spain,None,Spain
+3179,Anthony van Dyck,Artist,1599,1615,1641,128,Netherlands,None,Netherlands
+3180,Diego Velazquez,Artist,1599,1617,1660,136,Spain,None,Spain
+3181,Adriaen van Utrecht,Artist,1599,1625,1652,100,Netherlands,None,Netherlands
+3182,Claude Lorrain,Artist,1600,1629,1682,124,France,None,France
+3183,Rembrandt van Rijn,Artist,1606,1624,1669,155,Netherlands,None,Netherlands
+3184,Judith Leyster,Artist,1609,1628,1660,109,Netherlands,None,Netherlands
+3185,Frans Post,Artist,1612,1637,1680,106,Netherlands,None,Netherlands
+3186,BartolomÈ Esteban Murillo,Artist,1617,1645,1682,115,Spain,None,Spain
+3187,Charles Le Brun,Artist,1619,1635,1690,123,France,None,France
+3188,Aelbert Cuyp,Artist,1620,1639,1691,109,Netherlands,None,Netherlands
+3189,Jan Steen,Artist,1626,1650,1679,125,Netherlands,None,Netherlands
+3190,Pieter de Hooch,Artist,1629,1650,1684,114,Netherlands,None,Netherlands
+3191,Johannes Vermeer,Artist,1632,1653,1675,138,Netherlands,None,Netherlands
+3192,Claude Lefebvre,Artist,1632,1654,1675,114,France,None,France
+3193,Nicolaes Maes,Artist,1634,1653,1693,112,Netherlands,None,Netherlands
+3194,Jan Weenix,Artist,1640,1664,1719,109,Netherlands,None,Netherlands
+3195,Francois de Troy,Artist,1645,1671,1730,101,France,None,France
+3196,Hyacinthe Rigaud,Artist,1659,1685,1743,115,France,None,France
+3197,Yun Du-seo,Artist,1668,1692,1715,103,Korea,None,Korea
+3198,Jeong Seon,Artist,1676,1711,1759,114,Korea,None,Korea
+3199,Jean-Antoine Watteau,Artist,1684,1705,1721,114,France,None,France
+3200,Giovanni Battista Tiepolo,Artist,1696,1715,1770,120,Italy,None,Italy
+3201,Canaletto,Artist,1697,1719,1768,134,Italy,None,Italy
+3202,William Hogarth,Artist,1697,1720,1764,129,England,None,England
+3203,Jean-Baptiste-Simeon Chardin,Artist,1699,1724,1779,108,France,None,France
+3204,Francois Boucher,Artist,1703,1720,1770,120,France,None,France
+3205,Jean-Baptiste Lemoyne,Artist,1704,1738,1778,107,France,None,France
+3206,Thomas Gainsborough,Artist,1727,1746,1788,127,England,None,England
+3207,Jean-Honore Fragonard,Artist,1732,1752,1806,119,France,None,France
+3208,Angelica Kauffman,Artist,1741,1762,1807,109,Switzerland,None,Switzerland
+3209,Gim Hongdo,Artist,1745,1766,1806,121,Korea,None,Korea
+3210,Francisco Goya,Artist,1746,1763,1828,138,Spain,None,Spain
+3211,Marie-Anne Collot,Artist,1748,1766,1821,118,France,None,France
+3212,Jacques-Louis David,Artist,1748,1769,1825,134,France,None,France
+3213,Johann Friedrich August Tischbein,Artist,1750,1768,1829,107,Germany,None,Germany
+3214,Kim Deuk-sin,Artist,1754,1774,1822,94,Korea,None,Korea
+3215,…lisabeth VigÈe Le Brun,Artist,1755,1774,1842,105,France,None,France
+3216,Gilbert Stuart,Artist,1755,1777,1828,122,USA,None,USA
+3217,Antonio Canova,Artist,1757,1777,1822,114,Italy,None,Italy
+3218,Sin Yun-bok,Artist,1758,1778,1813,117,Korea,None,Korea
+3219,Pierre-Paul Prud'hon,Artist,1758,1785,1823,110,France,None,France
+3220,Katsushika Hokusai,Artist,1760,1779,1849,146,Japan,None,Japan
+3221,Anne-Louis Girodet de Roussy-Trioson,Artist,1767,1789,1824,103,France,None,France
+3222,Bertel Thorvaldsen,Artist,1770,1793,1844,117,Denmark,None,Denmark
+3223,Sharaku,Artist,1770,1794,1825,116,Japan,None,Japan
+3224,Caspar David Friedrich,Artist,1774,1798,1840,140,Germany,None,Germany
+3225,Joseph Mallord William Turner,Artist,1775,1790,1851,139,England,None,England
+3226,Pierre RÈvoil,Artist,1776,1802,1842,106,France,None,France
+3227,Fleury Francois Richard,Artist,1777,1796,1852,115,France,None,France
+3228,Philipp Otto Runge,Artist,1777,1801,1810,120,Germany,None,Germany
+3229,Jean-Auguste-Dominique Ingres,Artist,1780,1797,1867,125,France,None,France
+3230,Orest Kiprensky,Artist,1782,1804,1836,104,Russia,None,Russia
+3231,Johan Christian Dahl,Artist,1788,1812,1857,118,Norway,None,Norway
+3232,Francesco Hayez,Artist,1791,1809,1882,115,Italy,None,Italy
+3233,Theodore Gericault,Artist,1791,1810,1824,118,France,None,France
+3234,Boris Orlovsky,Artist,1793,1811,1837,120,Russia,None,Russia
+3235,Jean-Baptiste-Camille Corot,Artist,1796,1822,1875,121,France,None,France
+3236,Paul Delaroche,Artist,1797,1822,1856,115,France,None,France
+3237,Ferdinand Victor Eugene Delacroix,Artist,1798,1819,1863,134,France,None,France
+3238,Walenty Wankowicz,Artist,1799,1822,1842,91,Poland,None,Poland
+3239,Thomas Cole,Artist,1801,1822,1848,110,England,None,England
+3240,Samuel Palmer,Artist,1805,1824,1881,117,England,None,England
+3241,HonorÈ Daumier,Artist,1808,1830,1879,120,France,None,France
+3242,Jean-Francois Millet,Artist,1814,1839,1875,121,France,None,France
+3243,Emanuel Leutze,Artist,1816,1840,1868,108,USA,None,USA
+3244,ThÈodore ChassÈriau,Artist,1819,1835,1856,106,France,None,France
+3245,Gustave Courbet,Artist,1819,1839,1877,135,France,None,France
+3246,Rosa Bonheur,Artist,1822,1851,1899,131,France,None,France
+3247,Alexandre Cabanel,Artist,1823,1844,1889,119,France,None,France
+3248,William-Adolphe Bouguereau,Artist,1825,1848,1905,127,France,None,France
+3249,Gustave Moreau,Artist,1826,1846,1898,127,France,None,France
+3250,William Holman Hunt,Artist,1827,1848,1910,114,England,None,England
+3251,Dante Gabriel Rossetti,Artist,1828,1849,1882,113,England,None,England
+3252,Emily Mary Osborn,Artist,1828,1851,1925,88,England,None,England
+3253,John Everett Millais,Artist,1829,1849,1896,126,England,None,England
+3254,Camille Pissarro,Artist,1830,1854,1903,139,France,None,France
+3255,Edouard Manet,Artist,1832,1856,1883,134,France,None,France
+3256,James Abbott McNeill Whistler,Artist,1834,1855,1903,122,USA,None,USA
+3257,Edgar Degas,Artist,1834,1855,1917,145,France,None,France
+3258,Jules Joseph Lefebvre,Artist,1836,1855,1911,108,France,None,France
+3259,Jan Matejko,Artist,1838,1853,1893,121,Poland,None,Poland
+3260,Paul Cezanne,Artist,1839,1860,1906,128,France,None,France
+3261,Auguste Rodin,Artist,1840,1857,1917,137,France,None,France
+3262,Odilon Redon,Artist,1840,1864,1916,119,France,None,France
+3263,Claude Monet,Artist,1840,1865,1926,127,France,None,France
+3264,Pierre-Auguste Renoir,Artist,1841,1860,1919,147,France,None,France
+3265,Berthe Morisot,Artist,1841,1869,1895,126,France,None,France
+3266,Jang Seung-eop,Artist,1843,1863,1897,101,Korea,None,Korea
+3267,Edmonia Lewis,Artist,1844,1864,1907,105,USA,None,USA
+3268,Mary Cassatt,Artist,1844,1868,1926,130,USA,None,USA
+3269,Ilya Repin,Artist,1844,1870,1930,119,Russia,None,Russia
+3270,Henri Rousseau,Artist,1844,1877,1910,139,France,None,France
+3271,Viktor Vasnetsov,Artist,1848,1867,1926,110,Russia,None,Russia
+3272,Paul Gauguin,Artist,1848,1873,1903,153,France,None,France
+3273,Raja Ravi Varma,Artist,1848,1873,1906,126,India,None,India
+3274,Gustave Caillebotte,Artist,1848,1876,1894,128,France,None,France
+3275,John William Waterhouse,Artist,1849,1874,1917,144,England,None,England
+3276,John Collier,Artist,1850,1875,1934,101,England,None,England
+3277,Vincent van Gogh,Artist,1853,1873,1890,164,Netherlands,None,Netherlands
+3278,Carl Larsson,Artist,1853,1877,1919,122,Sweden,None,Sweden
+3279,Childe Hassam,Artist,1859,1879,1935,117,USA,None,USA
+3280,Georges Seurat,Artist,1859,1883,1891,132,France,None,France
+3281,James Ensor,Artist,1860,1881,1949,110,Belgium,None,Belgium
+3282,Alfons Mucha,Artist,1860,1887,1939,146,Czech Republic,None,Czech Republic
+3283,Frederic Remington,Artist,1861,1886,1909,116,USA,None,USA
+3284,Gustav Klimt,Artist,1862,1880,1918,156,Austria,None,Austria
+3285,Paul Signac,Artist,1863,1882,1935,152,France,None,France
+3286,Edvard Munch,Artist,1863,1883,1944,150,Norway,None,Norway
+3287,Henri de Toulouse-Lautrec,Artist,1864,1881,1901,123,France,None,France
+3288,Camille Claudel,Artist,1864,1882,1943,125,France,None,France
+3289,Paul SÈrusier,Artist,1864,1888,1927,112,France,None,France
+3290,Wassily Kandinsky,Artist,1866,1901,1944,148,Russia,None,Russia
+3291,Piet Mondrian,Artist,1872,1905,1944,137,Netherlands,None,Netherlands
+3292,Paul Klee,Artist,1879,1901,1940,125,Germany,None,Germany
+3293,Ernst Ludwig Kirchner,Artist,1880,1905,1938,129,Germany,None,Germany
+3294,Amedeo Modigliani,Artist,1884,1907,1920,139,Italy,None,Italy
+3295,Max Beckmann,Artist,1884,1925,1950,123,Germany,None,Germany
+3296,Robert Delaunay,Artist,1885,1904,1941,124,France,None,France
+3297,Egon Schiele,Artist,1890,1907,1918,147,Austria,None,Austria
+3298,Grant Wood,Artist,1891,1919,1942,146,USA,None,USA
+3299,ChaÔm Soutine,Artist,1893,1913,1943,108,Belarus,None,Belarus
+3300,Amrita Sher-Gil,Artist,1913,1932,1941,113,India,None,India

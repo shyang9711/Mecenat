@@ -1,0 +1,124 @@
+Acapulco,Mexico,America,None,None,None,Chilly
+Boston,United States,America,None,None,None,Tobacco
+Merida,Mexico,America,Chichen Itza,None,None,Silver
+New Orleans,United States,America,None,None,None,Cotton
+New York,United States,America,None,None,None,Coal
+Panama City,Panama,America,None,None,None,Rubber
+San Francisco,United States,America,None,None,None,Gold
+Sitka,United States,America,None,None,None,Oil
+Veracruz,Mexico,America,None,None,None,Maize
+Aden,Yemen,Arabia,None,None,None,Coffee
+Baghdad,Iraq,Arabia,None,None,Ishtar Gate,Stone
+Bandar Abbas,Iran,Arabia,None,None,None,Carpet
+Basra,Iraq,Arabia,None,None,Code of Hammurabi,Wool
+Damascus,Syria,Arabia,Petra,None,None,Iron
+Istanbul,Turkey,Arabia,Hagia Sophia,None,None,Rose
+Jerusalem,Israel,Arabia,Dome of the Rock,Holy Chalice,None,Timber
+Mecca,Saudi Arabia,Arabia,Kabba,None,None,Oil
+Athens,Greece,East Europe,Parthenon,None,Mask of Agamemnon,Marble
+Heraklion,Greece,East Europe,Knossos,None,Phaistos Disc,Olive
+Ragusa,Croatia,East Europe,None,None,None,Dye
+Thessaloniki,Greece,East Europe,None,None,Venus de Milo,Honey
+Dublin,Ireland,Britain,None,None,None,Iron
+Edinburgh,Scotland,Britain,None,Excalibur,None,Whiskey
+London,United Kingdom,Britain,Stonehenge,None,Iguanodon Fossil,Wool
+Manchester,United Kingdom,Britain,None,None,None,Coal
+Havana,Cuba,Caribbean,None,None,None,Sugar
+San Juan,Puerto Rico,Caribbean,None,None,None,Maize
+Santo Domingo,Dominican Republic,Caribbean,None,None,None,Potato
+Willemstad,Curacao,Caribbean,None,None,None,Tobacco
+Karakorum,Mongolia,Central Asia,None,None,None,Silk
+Kashgar,Xinjiang,Central Asia,None,None,None,Wool
+Lhasa,Tibet,Central Asia,Potala Palace,None,None,Copper
+Samarkand,Uzbekistan,Central Asia,None,None,None,Gold
+Aksum,Ethiopia,East Africa,None,Ark of Covenant,None,Coffee
+Beira,Mozambique,East Africa,Great Zimbabwe,None,None,Ivory
+Mogadishu,Somalia,East Africa,None,None,None,Copper
+Mombasa,Kenya,East Africa,None,None,None,Cotton
+Beijing,China,East Asia,None,Heirloom Seal of the Realm,None,Ceramic
+Busan,Korea,East Asia,None,None,Jikji,Herb
+Guangzhou,China,East Asia,None,None,None,Tea
+Hangzhou,China,East Asia,None,None,None,Silver
+Nagasaki,Japan,East Asia,None,Kusanagi,None,Rice
+Xian,China,East Asia,Terracotta Army,None,None,Silk
+Danzig,Poland,East Europe,None,None,None,Fur
+Kaffa,Ukraine,East Europe,None,None,None,Cotton
+Kyiv,Ukraine,East Europe,None,None,None,Wheat
+Moscow,Russia,East Europe,Kremlin,None,None,Vodka
+Novgorod,Russia,East Europe,None,None,None,Timber
+Riga,Latvia,East Europe,None,None,None,Amber
+St. Petersburg,Russia,East Europe,None,None,None,Oil
+Bago,Myanmar,East Indies,None,None,None,Jade
+Ho Chi Minh,Vietnam,East Indies,None,None,None,Rice
+Jakarta,Indonesia,East Indies,None,None,None,Gold
+Makassar,Indonesia,East Indies,None,None,None,Banana
+Malacca,Malaysia,East Indies,None,None,None,Cinnamon
+Manila,Philippines,East Indies,None,None,None,Sugar
+Palembang,Indonesia,East Indies,None,None,None,Pearl
+Phnom Penh,Cambodia,East Indies,Angkor Wat,None,None,Silk
+Bordeaux,France,West Europe,None,None,None,Wine
+Marsaille,France,West Europe,None,None,None,Honey
+Nantes,France,West Europe,None,None,None,Wheat
+Paris,France,West Europe,Notre-Dame,None,None,Stone
+Toulouse,France,West Europe,None,None,None,Truffle
+Cologne,Germany,West Europe,None,None,None,Fur
+Frankfurt,Germany,West Europe,None,None,None,Beer
+Hamburg,Germany,West Europe,None,None,None,Coal
+Lubeck,Germany,West Europe,None,None,None,Iron
+Prague,Czech Republic,East Europe,None,None,Codex Gigas,Silver
+Vienna,Austria,East Europe,None,None,None,Timber
+Barcelona,Spin,West Europe,None,None,None,Salt
+Bilbao,Spain,West Europe,None,None,None,Wool
+Granada,Spain,West Europe,Alhambra,None,None,Cheese
+Lisbon,Portugal,West Europe,None,None,None,Chicken
+Porto,Portugal,West Europe,None,None,None,Wheat
+Santiago de Campostela,Spain,West Europe,Santiago de Compostela Cathedral,None,None,Fish
+Seville,Spain,West Europe,None,None,None,Mercury
+Toledo,Spain,West Europe,None,None,None,Wine
+Calcutta,India,India,Mahabodhi Temple,None,None,Rice
+Calicut,India,India,None,None,None,Pepper
+Colombo,Sri Lanka,India,None,None,None,Tea
+Diu,India,India,None,None,None,Sugar
+Machilipatnam,India,India,None,None,None,Coal
+Mormugao,India,India,None,Florentine Diamond,None,Dye
+Pondicherry,India,India,None,None,None,Cinnamon
+Florence,Italy,West Europe,Florence Cathedral,None,None,Truffle
+Genoa,Italy,West Europe,None,None,None,Silver
+Milan,Italy,West Europe,None,None,Iron Crown,Wool
+Naples,Italy,West Europe,None,None,None,Wine
+Rome,Italy,West Europe,Colisseum,Dagger of Brutus,None,Stone
+Syracuse,Italy,West Europe,None,None,None,Olive
+Venice,Italy,West Europe,None,None,None,Velvet
+Buenos Aires,Argentina,Latin America,None,None,None,Silver
+Caracas,Venezuela,Latin America,None,None,None,Cacao
+Cayenne,French Guiana,Latin America,None,None,None,Coffee
+Lima,Peru,Latin America,Machu Picchu,None,Moai,Gold
+Maracaibo,Venezuela,Latin America,None,None,None,Oil
+Recife,Brazil[,Latin America,None,None,None,Timber
+Rio de Janeiro,Brazil[,Latin America,None,None,None,Sugar
+Amsterdam,Netherlands,West Europe,None,None,None,Glass
+Antwerp,Belgium,West Europe,None,None,None,Cheese
+Groningen,Netherlands,West Europe,None,None,None,Fish
+Alexandria,Egypt,North Africa,None,None,Rosetta Stone,Wheat
+Cairo,Egypt,North Africa,Pyramids of Giza,None,Nefertiti Bust,Cotton
+Casablanca,Morocco,North Africa,None,None,None,Rice
+Luxor,Egypt,North Africa,Abu Simbel,None,Mask of Tutankhamun,Stone
+Tripoli,Libya,North Africa,None,None,None,Cotton
+Tunis,Tunisia,North Africa,None,None,None,Olive
+Guam,Guam,Oceania,None,None,None,Banana
+K'Gari,Australia,Oceania,None,None,None,Coal
+Kakadu,Australia,Oceania,None,None,None,Pearl
+Pinjarra,Australia,Oceania,None,None,None,Iron
+Bergen,Norway,Scandinavia,None,None,None,Fish
+Copenhagen,Denmark,Scandinavia,None,None,None,Cheese
+Kokkola,Finland,Scandinavia,None,None,None,Copper
+Oslo,Norway,Scandinavia,None,None,None,Timber
+Stockholm,Sweden,Scandinavia,None,None,None,Fur
+Cape Town,South Africa,South Africa,None,None,None,Iron
+Durban,South Africa,South Africa,None,None,Coelacanth,Platinum
+Luanda,Angola,South Africa,None,None,None,Diamond
+Abidjan,Cote d'Ivoire,West Africa,Eye of Sahara,None,None,Ivory
+Elmina,Ghana,West Africa,None,None,None,Diamond
+Freetown,Sierra Leone,West Africa,None,None,Benin Bronzes,Incense
+Porto-Novo,Benin,West Africa,None,None,None,Oil
+Timbuktu,Mali,West Africa,Sankore Madrasah,None,None,Gold

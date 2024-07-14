@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -399,6 +398,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &255126473
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +776,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &475791668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1374,10 +1375,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UICharacterSet: {fileID: 1184121774}
   gameManager: {fileID: 919284722}
+  initializationManager: {fileID: 1864446752}
   givenName: {fileID: 988957526}
   houseName: {fileID: 1389165836}
   dropdownNationality: {fileID: 905503264}
-  dropdownReligion: {fileID: 255126475}
 --- !u!4 &622127919
 Transform:
   m_ObjectHideFlags: 0
@@ -1654,6 +1655,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1940,80 +1942,44 @@ MonoBehaviour:
   money: 1000
   reputation: 0
   year: 1300
+  playerId: 1
   givenName: 
   surname: 
-  nationality: 
-  religion: 
-  dob: 1280
-  id: 0
-  selectedCV: 0
-  selectedWage: 0
-  recursionNum: 0
-  payments: 0
-  streetNum: 0
-  streetName: 
-  city: 
-  landPrice: 0
+  residency: 
   landbuyStatus: 0
   buildingCategory: 
-  eventCount: 0
-  clientDB: {fileID: 4900000, guid: 9fd33bdfb3ea6d2448342bf6e12c10e4, type: 3}
-  workDB: {fileID: 4900000, guid: 75d07b044c451c6479507623aedc20b8, type: 3}
-  landDB: {fileID: 4900000, guid: bf5f9c0d688bab940910af5b75889f2c, type: 3}
-  dialogueDB: {fileID: 4900000, guid: 8930b3ebeccd82541a3e86f50509cb4b, type: 3}
+  landDB: {fileID: 0}
   clientList:
     client: []
-  mClient:
-    Id: 0
-    Name: 
-    Occupation: 
-    Birth: 0
-    Start: 0
-    Death: 0
-    Potential: 0
-    Nationality: 
-    Affiliation: 
-    Value: 0
-    Wage: 0
-    Age: 0
   workList:
     work: []
-  mWork:
-    Name: 
-    Id: 0
-    CreatorId: 0
-    Year: 0
-    Category: 
-    Price: 0
-    Movement: 
-    Reputation: 0
   landList:
     land: []
-  mLand:
-    name: 
-    city: 
-  dialogueList:
-    dialogue: []
-  mDialogue:
-    eventId: 0
-    alertType: 0
-    alertName: 
-    alertDesc: 
-    posBtn: 
-    negBtn: 
+  courtierList:
+    courtier: []
+  citiesList:
+    city: []
   events: []
+  currentEvents: []
   currClients: []
-  currWorks: []
-  createdWorks: []
   ownedWorks: []
   currLands: []
   ownedLands: []
-  oLWorks: []
-  oBuildings: []
-  protegeList: 
-  creatorIDList: 
-  createdWIDList: 
-  currentYClient: 
+  currCourtiers: []
+  hiredCourtiers: []
+  protegeList: []
+  creatorIdList: 
+  explorableRegion: []
+  exploredNations: []
+  scoutRegion: []
+  scoutOccupation: []
+  auctionWorks: []
+  movementList: []
+  commissionedShips: 0
+  shipList: []
+  shipBuildList: []
+  shipBuyList: []
+  trades: []
 --- !u!4 &919284723
 Transform:
   m_ObjectHideFlags: 0
@@ -2021,7 +1987,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919284721}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 473.26907, y: -204.16061, z: 1482.5997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4582,6 +4548,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856802729}
   m_CullTransparentMesh: 1
+--- !u!1 &1864446751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1864446753}
+  - component: {fileID: 1864446752}
+  m_Layer: 0
+  m_Name: InitializationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1864446752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864446751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cba053c152cbf74c9a19b85f3cd097f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 919284722}
+  clientDB: {fileID: 4900000, guid: 8cd3e299b7016ba40a6fe1d1a71f2391, type: 3}
+  workDB: {fileID: 4900000, guid: 75d07b044c451c6479507623aedc20b8, type: 3}
+  courtierDB: {fileID: 4900000, guid: 1b65175e4c19e204bab5ab87125f413b, type: 3}
+  cityDB: {fileID: 4900000, guid: 8cd3e299b7016ba40a6fe1d1a71f2391, type: 3}
+--- !u!4 &1864446753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864446751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 228.90364, y: 390.06473, z: -4.0611515}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1884829528
 GameObject:
   m_ObjectHideFlags: 0

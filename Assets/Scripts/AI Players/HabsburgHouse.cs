@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProtegePanelManager : MonoBehaviour
+public class HabsburgHouse : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

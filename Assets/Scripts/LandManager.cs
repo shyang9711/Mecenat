@@ -10,15 +10,14 @@ public class LandManager : MonoBehaviour
     public GameManager gameManager;
     public PropertiesManager propertiesManager;
 
-    public Text landName;
-    public Text landCity;
-    public Text landPrice;
+    public Transform landContent;
+    public GameObject landItemPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.instance;
-        receiveLData();
+        receiveData();
 
     }
 
@@ -28,34 +27,41 @@ public class LandManager : MonoBehaviour
         
     }
 
-    void receiveLData()
+    public void receiveData()
     {
         int tableSize = gameManager.currLands.Count;
 
-        GameObject indivBtn = transform.GetChild(0).gameObject;
+        landContent.GetChild(0).gameObject.SetActive(true);
+
+        // Clear existing buttons
+        foreach (Transform child in landContent)
+        {
+            if (child != landContent.GetChild(0))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         GameObject gameObj;
         for (int i = 0; i < tableSize; i++)
         {
 
-            gameObj = Instantiate(indivBtn, transform);
-            gameObj.name = gameManager.currLands[i].streetNum + " " + gameManager.currLands[i].streetName;
-            gameObj.transform.GetChild(0).GetComponent<Text>().text = gameManager.currLands[i].streetNum + " " + gameManager.currLands[i].streetName;
-            gameObj.transform.GetChild(1).GetComponent<Text>().text = gameManager.currLands[i].city;
-            gameObj.transform.GetChild(2).GetComponent<Text>().text = gameManager.currLands[i].price.ToString();
+            gameObj = Instantiate(landItemPrefab, landContent);
+            Land land = gameManager.currLands[i];
+            gameObj.name = land.streetNum + " " + land.streetName;
+            gameObj.transform.GetChild(0).GetComponent<Text>().text = land.streetNum + " " + land.streetName;
+            gameObj.transform.GetChild(1).GetComponent<Text>().text = land.city;
+            gameObj.transform.GetChild(2).GetComponent<Text>().text = land.price.ToString();
 
             gameObj.GetComponent<Button>().AddEventListener(i, ItemClicked);
         }
 
-        Destroy(indivBtn);
+        landItemPrefab.gameObject.SetActive(false);
     }
 
     void ItemClicked(int itemIndex)
     {
-        gameManager.streetNum = gameManager.currLands[itemIndex].streetNum;
-        gameManager.streetName = gameManager.currLands[itemIndex].streetName;
-        gameManager.city = gameManager.currLands[itemIndex].city;
-        gameManager.landPrice = gameManager.currLands[itemIndex].price;
-        propertiesManager.onIndividualBtnClick();
+        propertiesManager.onLandBtnClick(gameManager.currLands[itemIndex]);
 
     }
 }

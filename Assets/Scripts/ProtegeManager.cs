@@ -1,33 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
+using System.Linq;
 
 public class ProtegeManager : MonoBehaviour
 {
+
+    //Manager Scripts
     public GameManager gameManager;
-    public MarketManager marketManager;
+    public DialogueManager dialogueManager;
+    public ClientManager clientManager;
 
-    //Info UI
-    public Text infoName;
-    public Text infoOccupation;
-    public Text infoAge;
-    public Text infoCV;
-    public Text infoWage;
-    public Text infoReputation;
-    public Text infoCreations;
+    public Client selectedClient;
+    
+    public GameObject UIClientSet;
+    public GameObject MarketBtn;
+    public GameObject ProtegeBtn;
+    public GameObject ScoutBtn;
+    public bool isProtege;
 
-    //Transfer UI
-    public Text transferCV;
-    public Text transferWage;
+    public GameObject SendBtn;
+    public Text SendBtnTxt;
+
+    public GameObject UIInfoSet;
+    public GameObject UITransferSet;
+
+    public Text CreatedWorksCountInfo;
+
+    [SerializeField] private InputField offerValue;
+    [SerializeField] private InputField offerWage;
+
+    //Alert UI
+    public GameObject UIAlertSet;
+    public Text alertName;
+    public Text alertDesc;
+    private void Awake()
+    {
+        dialogueManager.closeAlert();
+
+        MarketBtn.SetActive(true);
+        ProtegeBtn.SetActive(false);
+
+        SendBtn.SetActive(false);
+
+        checkWorks();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.instance;
-        receivePData();
-
+        clientManager.receivePData();
     }
 
     // Update is called once per frame
@@ -35,64 +61,120 @@ public class ProtegeManager : MonoBehaviour
     {
         
     }
-    void receivePData()
+
+    public void onMarketBtnClick()
     {
-        int tableSize = gameManager.currClients.Count;
+        isProtege = false;
+        clientManager.onCloseButtonClick();
+        clientManager.receiveCData();
 
-        GameObject indivBtn = transform.GetChild(0).gameObject;
-        GameObject gameObj;
-        for (int i = 0; i < tableSize; i++)
+        MarketBtn.SetActive(false);
+        ProtegeBtn.SetActive(true);
+    }
+    public void onProtegeBtnClick()
+    {
+        isProtege = true;
+        clientManager.onCloseButtonClick();
+        clientManager.receivePData();
+
+        MarketBtn.SetActive(true);
+        ProtegeBtn.SetActive(false);
+    }
+    
+    public void onIndividualBtnClick(Client client)
+    {
+        selectedClient = client;
+        clientManager.onCloseButtonClick();
+
+        if (selectedClient != null)
         {
-
-            gameObj = Instantiate(indivBtn, transform);
-            gameObj.name = gameManager.currClients[i].Name;
-            gameObj.transform.GetChild(0).GetComponent<Text>().text = gameManager.currClients[i].Name;
-            gameObj.transform.GetChild(1).GetComponent<Text>().text = gameManager.currClients[i].Occupation;
-            gameObj.transform.GetChild(2).GetComponent<Text>().text = gameManager.currClients[i].Age.ToString();
-            gameObj.transform.GetChild(3).GetComponent<Text>().text = gameManager.currClients[i].Potential.ToString();
-            gameObj.transform.GetChild(4).GetComponent<Text>().text = gameManager.currClients[i].Value.ToString();
-            gameObj.transform.GetChild(5).GetComponent<Text>().text = gameManager.currClients[i].Affiliation;
-
-            gameObj.GetComponent<Button>().AddEventListener(i, ItemClicked);
-
-            if (gameManager.protegeList.Contains(gameManager.currClients[i].Id))
+            if (!isProtege)
             {
-                gameObj.SetActive(true);
-
+                // Update CreatedWorksCountInfo
+                CreatedWorksCountInfo.text = selectedClient.ctdWork.Count > 0 ? selectedClient.ctdWork.Count.ToString() : "0";
+                SendBtn.SetActive(true);
+                if (selectedClient.offers.Contains(gameManager.playerId)) {
+                    SendBtnTxt.text = "Resend Offer";
+                } else {
+                    SendBtnTxt.text = "Offer";
+                }
             }
             else
             {
-                gameObj.SetActive(false);
+                SendBtn.SetActive(false);
+            }
+            infoSetMove();
+        }
+    }
+
+    public void infoSetMove()
+    {
+        dialogueManager.openBlurImg();
+        UIInfoSet.SetActive(true);
+    }
+
+    public void onScoutBtnClick()
+    {
+        UIInfoSet.SetActive(false);
+        UITransferSet.SetActive(true);
+    }
+
+    public void onExitBtnClick()
+    {
+        dialogueManager.closeAlert();
+    }
+
+    public void onSendBtnClick()
+    {
+        dialogueManager.closeAlert();
+        
+        if (!string.IsNullOrEmpty(offerValue.text) && !string.IsNullOrEmpty(offerWage.text))
+        {
+            int.TryParse(offerValue.text, out int value);
+            int.TryParse(offerWage.text, out int wage);
+            string name = selectedClient.name;
+            offerValue.text = "";
+            offerWage.text = "";
+
+            if (value > gameManager.money)
+            {
+                dialogueManager.notEnoughMoney();
+            } else
+            {
+                if (gameManager.events.Count > 0)
+                {
+                    foreach (Events e in gameManager.events.ToList())
+                    {
+                        if (e.client != null)
+                        {
+                            if (e.client.Equals(selectedClient))
+                            {
+                                gameManager.events.Remove(e);
+                            }
+                        }
+                    }
+                }
+                selectedClient.offers.Add(gameManager.playerId);
+                gameManager.transferProcess(selectedClient, value, wage);
+                
+                dialogueManager.offerSent(clientManager.infoName.text);
             }
         }
-
-        Destroy(indivBtn);
     }
+
+    public void checkWorks()
+    {
+
+    }
+
 
     public void onMeBtnClick()
     {
         Invoke("MainScene", 0.2f);
     }
 
-    void ItemClicked(int itemIndex)
+    void MainScene()
     {
-        Debug.Log("item " + itemIndex + " cliked");
-        infoName.text = gameManager.currClients[itemIndex].Name;
-        infoOccupation.text = gameManager.currClients[itemIndex].Occupation;
-        infoAge.text = gameManager.currClients[itemIndex].Age.ToString();
-        infoCV.text = gameManager.currClients[itemIndex].Value.ToString();
-        infoWage.text = gameManager.currClients[itemIndex].Wage.ToString();
-        infoReputation.text = gameManager.currClients[itemIndex].Potential.ToString();
-        infoCreations.text = 0.ToString();
-
-        transferCV.text = gameManager.currClients[itemIndex].Value.ToString();
-        transferWage.text = gameManager.currClients[itemIndex].Wage.ToString();
-
-        gameManager.id = gameManager.currClients[itemIndex].Id;
-
-        gameManager.selectedCV = gameManager.currClients[itemIndex].Value;
-        gameManager.selectedWage = gameManager.currClients[itemIndex].Wage;
-
-        marketManager.onIndividualBtnClick();
+        SceneManager.LoadScene("Main");
     }
 }
